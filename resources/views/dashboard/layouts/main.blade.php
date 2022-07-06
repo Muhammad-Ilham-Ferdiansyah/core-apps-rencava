@@ -13,10 +13,11 @@
     <link rel="stylesheet" href="/typicons/typicons.css">
     <link rel="stylesheet" href="/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/bootstrap-datepicker/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
     <!-- endinject -->
     <!-- Core CSS -->
-    <link rel="stylesheet" href="/vendor/css/core.css" class="template-customizer-core-css" />
+    {{-- <link rel="stylesheet" href="/vendor/css/core.css" class="template-customizer-core-css" /> --}}
     <link rel="stylesheet" href="/vendor/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="/css/demo.css" />
 
@@ -81,15 +82,42 @@
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script src="/js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/dashboard.js"></script>
     <script src="/js/Chart.roundedBarCharts.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
-
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+        integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script> --}}
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable();
         });
+        //sweetalert function activated user
+        $('.deactive').click(function() {
+            let userId = $(this).attr('data-id');
+            Swal.fire({
+                title: "Are you sure, change activate user id " + userId + "",
+                padding: '2em',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, change it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "/dashboard/admin/users/activate/" + userId + ""
+                    Swal.fire({
+                        title: 'Updated!',
+                        padding: '2em',
+                        text: 'Your user status has been updated.',
+                        icon: 'success'
+                    })
+                }
+            })
+        })
     </script>
+
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script> --}}
     <!-- End custom js for this page-->
     {{-- SweetAlert --}}

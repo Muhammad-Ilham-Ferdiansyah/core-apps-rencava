@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index', [
             'title' => 'Dashboard',
@@ -39,6 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('dashboard/password/update', [ChangePasswordController::class, 'update']);
     //Route Role Admin
     Route::resource('dashboard/admin/users', UserController::class);
+    Route::get('dashboard/admin/users/activate/{users:id}', [UserController::class, 'activate']);
 });
 
 require __DIR__ . '/auth.php';

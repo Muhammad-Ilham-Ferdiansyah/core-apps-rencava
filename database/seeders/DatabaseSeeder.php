@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         $admin = User::create([
             'name' => 'Muhammad Ilham Ferdiansyah',
             'username' => 'ilhamferdx',
-            'image' => 'profile-images/default.jpg',
+            'image' => 'profile-images/default.png',
             'email' => 'ilhamferdiansyah737@gmail.com',
             'password' => bcrypt('password123'),
             'email_verified_at' => '2022-06-19 09:27:33'
@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
         $user = User::create([
             'name' => 'Raihan Malikul Mulki',
             'username' => 'razorraih01',
-            'image' => 'profile-images/default.jpg',
+            'image' => 'profile-images/default.png',
             'email' => 'razorraihan000@gmail.com',
             'password' => bcrypt('password123'),
             'email_verified_at' => '2022-06-22 09:17:33'

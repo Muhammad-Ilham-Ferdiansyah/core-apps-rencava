@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
@@ -25,7 +26,7 @@ class UserController extends Controller
         // $users = User::with('roles')->get();
         return view('dashboard.admin.users.index', [
             'title' => 'User Management',
-            'users' => User::with('roles')->get(),
+            'users' => User::with('roles')->orderBy('id', 'desc')->get(),
             // 'roles' => Role::all(),
         ]);
     }
@@ -67,31 +68,6 @@ class UserController extends Controller
         ]);
 
         $user->assignRole($request->role);
-        // if (auth()->user()->role == 'Admin') {
-        //     return redirect('/dashboard/admin/man_user')->with('success', 'User has been added');
-        // } else if ($request->user()->hasVerifiedEmail() == FALSE) {
-        //     Auth::login($user);
-        //     return redirect(RouteServiceProvider::HOME);
-        // }
-
-
-        // if (Auth::user()->role == 'Admin') {
-        //     echo 'test';
-        // }
-
-        // event(new Registered($user)); //kirim verifikasi email
-
-        // dd(auth()->user()->hasRoles('Admin') == $request->role);
-
-        // if (auth()->user()->role == $request->role) {
-        //     event(new Registered($user));
-        //     Auth::login();
-        // }
-
-        // if ($user->assignRole($request->role) == TRUE) {
-        //     event(new Registered($user));
-        //     Auth::login($user);
-        // }
         return redirect('dashboard/admin/users')->with('success', 'User has been added');
     }
 
@@ -114,7 +90,12 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $roles = Role::all();
+        return view('dashboard.admin.users.edit', [
+            'title' => 'Edit User',
+            'user' => $user,
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -126,7 +107,36 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'min:3', 'max:191', 'string', 'alpha_num', 'unique:users,username,' . $user->id],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'role' => ['required']
+        ]);
+        $user->update([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'updated_at' => now()
+        ]);
+
+        $user = User::find($user->id);
+        DB::table('model_has_roles')->where('model_id', $user->id)->delete();
+
+        $user->assignRole($request->role);
+        return redirect('dashboard/admin/users')->with('success', 'User has been updated');
+    }
+
+    public function activate($id)
+    {
+        $specific_user = User::find($id);
+
+        if ($specific_user->is_banned == 0) {
+            $specific_user->where('id', $id)->update(['is_banned' => 1]);
+        } else {
+            $specific_user->where('id', $id)->update(['is_banned' => 0]);
+        }
+        return redirect('dashboard/admin/users');
     }
 
     /**
