@@ -25,7 +25,7 @@ class UserController extends Controller
         // $roles = Role::all();
         // $users = User::with('roles')->get();
         return view('dashboard.admin.users.index', [
-            'title' => 'User Management',
+            'title' => 'Setup User',
             'users' => User::with('roles')->orderBy('id', 'desc')->get(),
             // 'roles' => Role::all(),
         ]);

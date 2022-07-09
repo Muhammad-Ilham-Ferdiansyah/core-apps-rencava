@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Role;
 
 class ProfileController extends Controller
 {
@@ -18,7 +19,8 @@ class ProfileController extends Controller
     {
         return view('dashboard.profile.index', [
             'title' => 'My Profile',
-            'users' => User::where('id', auth()->user()->id)->get()
+            'users' => User::where('id', auth()->user()->id)->get(),
+            'roles' => Role::all()
         ]);
     }
 
@@ -86,12 +88,11 @@ class ProfileController extends Controller
         ]);
 
         if ($request->file('image')) {
-            if ($request->oldImage != 'profile-images/default.jpg') {
+            if ($request->oldImage != 'profile-images/default.png') {
                 Storage::delete($request->oldImage);
             }
             $validateData['image'] = $request->file('image')->store('profile-images');
         }
-
         Auth::user()->update($validateData);
         return redirect('/dashboard/profile')->with('success', 'Profile has been updated');
     }

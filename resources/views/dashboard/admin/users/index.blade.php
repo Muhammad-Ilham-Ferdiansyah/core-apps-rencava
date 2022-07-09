@@ -33,15 +33,15 @@
                                             <div>
                                                 <h6 class="text-dark">{{ $user->name }}</h6>
                                                 <p>
-                                                    @if ($user->getRoleNames()->first() == 'Admin')
+                                                    @if ($user->roles->first()->id == 1)
                                                         <div class="badge badge-opacity-success">
                                                             {{ $user->getRoleNames()->first() }}
                                                         </div>
-                                                    @elseif ($user->getRoleNames()->first() == 'Project Manager')
+                                                    @elseif ($user->roles->first()->id == 2)
                                                         <div class="badge badge-opacity-warning">
                                                             {{ $user->getRoleNames()->first() }}
                                                         </div>
-                                                    @elseif ($user->getRoleNames()->first() == 'Software Engineer')
+                                                    @elseif ($user->roles->first()->id == 3)
                                                         <div class="badge badge-opacity-primary">
                                                             {{ $user->getRoleNames()->first() }}
                                                         </div>

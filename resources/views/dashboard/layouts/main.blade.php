@@ -115,7 +115,33 @@
                     })
                 }
             })
-        })
+        });
+
+        //sweetalert function delete role
+        $('.delete-role').click(function() {
+            let roleId = $(this).attr('data-id');
+            let roleName = $(this).attr('data-name');
+            Swal.fire({
+                title: "Are you sure, delete role " + roleName + "",
+                padding: '2em',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "/dashboard/admin/roles/delete/" + roleId + ""
+                    Swal.fire({
+                        title: 'Updated!',
+                        padding: '2em',
+                        text: 'Role has been deleted.',
+                        icon: 'success'
+                    })
+                }
+            })
+        });
     </script>
 
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script> --}}

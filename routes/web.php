@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChangePasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Spatie\Permission\Contracts\Role;
 use Spatie\Permission\Models\Role as ModelsRole;
@@ -26,7 +27,7 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index', [
             'title' => 'Dashboard',
-            'roles' => ModelsRole::all()->count()
+            'roles' => ModelsRole::all()->count(),
         ]);
     });
 
@@ -40,6 +41,9 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     //Route Role Admin
     Route::resource('dashboard/admin/users', UserController::class);
     Route::get('dashboard/admin/users/activate/{users:id}', [UserController::class, 'activate']);
+    //Setup Role
+    Route::resource('dashboard/admin/roles', RoleController::class);
+    Route::get('dashboard/admin/roles/delete/{roles:id}', [RoleController::class, 'delete']);
 });
 
 require __DIR__ . '/auth.php';

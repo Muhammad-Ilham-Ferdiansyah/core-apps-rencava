@@ -13,11 +13,15 @@
                         <h5 class="card-title">{{ $users[0]->name }}</h5>
                         <p class="card-text">{{ $users[0]->username }}</p>
                         <p class="card-text">{{ $users[0]->email }}</p>
-                        @role('Admin')
-                            <h5 class="card-title badge text-bg-primary">Administrator</h5>
+                        @if ($roles[0]->id == 1)
+                            <h5 class="card-title badge text-bg-success">Administrator</h5>
+                        @elseif ($roles[0]->id == 2)
+                            <h5 class="card-title badge text-bg-warning">Project Manager</h5>
+                        @elseif ($roles[0]->id == 3)
+                            <h5 class="card-title badge text-bg-primary">Software Engineer</h5>
                         @else
-                            <h5 class="card-title badge text-bg-warning">User</h5>
-                        @endrole
+                            <h5 class="card-title badge text-bg-info">Project Manager</h5>
+                        @endif
                         <p class="card-text"><small
                                 class="text-muted">{{ $users[0]->created_at->diffForHumans() }}</small></p>
                     </div>
