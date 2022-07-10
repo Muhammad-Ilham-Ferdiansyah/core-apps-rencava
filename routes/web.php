@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\Menu;
 use Spatie\Permission\Contracts\Role;
 use Spatie\Permission\Models\Role as ModelsRole;
 
@@ -23,11 +25,13 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
 Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index', [
             'title' => 'Dashboard',
             'roles' => ModelsRole::all()->count(),
+            'app_menus' => Menu::all()
         ]);
     });
 
@@ -44,6 +48,8 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     //Setup Role
     Route::resource('dashboard/admin/roles', RoleController::class);
     Route::get('dashboard/admin/roles/delete/{roles:id}', [RoleController::class, 'delete']);
+    //Setup Menu
+    Route::resource('dashboard/admin/menu', MenuController::class);
 });
 
 require __DIR__ . '/auth.php';

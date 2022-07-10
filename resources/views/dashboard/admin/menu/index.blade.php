@@ -1,11 +1,10 @@
 @extends('dashboard.layouts.main')
 @section('container')
     <div class="contain-wrapper">
-        {{-- {{ dd($roles) }} --}}
         <div class="row m-3">
             <div class="col-lg-6">
-                <a href="/dashboard/admin/roles/create" class="btn btn-primary text-white me-0"><i
-                        class="mdi mdi-plus me-2"></i>Create Role</a>
+                <a href="/dashboard/admin/menu/create" class="btn btn-primary text-white me-0"><i
+                        class="mdi mdi-plus me-2"></i>Create Menu</a>
             </div>
         </div>
         <hr class="m-4">
@@ -16,48 +15,36 @@
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Nama Role</th>
-                                <th scope="col">Jumlah User</th>
+                                <th scope="col">Nama Menu</th>
+                                <th scope="col">Link</th>
+                                <th scope="col">Published</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($roles as $role)
+                            @foreach ($app_menus as $menu)
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
-                                    {{-- nama role --}}
-                                    @if ($role->id == 1)
-                                        <td>
-                                            <div class="badge badge-opacity-success">
-                                                {{ $role->name }}
-                                            </div>
-                                        </td>
-                                    @elseif ($role->id == 2)
-                                        <td>
-                                            <div class="badge badge-opacity-warning">
-                                                {{ $role->name }}
-                                            </div>
-                                        </td>
-                                    @elseif ($role->id == 3)
-                                        <td>
-                                            <div class="badge badge-opacity-primary">
-                                                {{ $role->name }}
-                                            </div>
-                                        </td>
-                                    @else
-                                        <td>
-                                            <div class="badge badge-opacity-info">
-                                                {{ $role->name }}
-                                            </div>
-                                        </td>
-                                    @endif
-                                    {{-- jumlah user --}}
                                     <td>
-                                        {{ $role->users_count }}
+                                        {{ $menu->menu_name }}
                                     </td>
                                     <td>
-                                        {{ $role->created_at->diffForHumans() }}
+                                        {{ $menu->link }}
+                                    </td>
+                                    <td>
+                                        @if ($menu->published == 1)
+                                            <div class="badge badge-opacity-success">
+                                                Yes
+                                            </div>
+                                        @else
+                                            <div class="badge badge-opacity-danger">
+                                                No
+                                            </div>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $menu->created_at->diffForHumans() }}
                                     </td>
                                     <td>
                                         <div class="dropdown">
@@ -68,11 +55,11 @@
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton1">
                                                 <a class="dropdown-item" href="javascript:void(0);"
-                                                    onclick="location.href='/dashboard/admin/roles/{{ $role->id }}/edit'"><i
+                                                    onclick="location.href='/dashboard/admin/roles/{{ $menu->id }}/edit'"><i
                                                         class="mdi mdi-pencil me-2"></i>Update</a>
                                                 <div class="dropdown-divider"></div>
                                                 <button class="dropdown-item text-danger delete-role"
-                                                    data-id="{{ $role->id }}" data-name="{{ $role->name }}"
+                                                    data-id="{{ $menu->id }}" data-name="{{ $menu->name }}"
                                                     href="#" name="delete-role"><i class="mdi mdi-delete me-2"></i>
                                                     Delete</button>
                                             </div>
@@ -84,9 +71,6 @@
                         </tbody>
                     </table>
                 </div>
-                {{-- <div class="d-flex justify-content-end">
-                    {{ $users->links() }}
-                </div> --}}
             </div>
         </div>
     </div>

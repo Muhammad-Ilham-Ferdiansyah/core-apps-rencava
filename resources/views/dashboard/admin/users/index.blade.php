@@ -4,7 +4,7 @@
         <div class="row m-3">
             <div class="col-lg-6">
                 <a href="/dashboard/admin/users/create" class="btn btn-primary text-white me-0"><i
-                        class="icon-plus me-2"></i>Create User</a>
+                        class="mdi mdi-plus me-2"></i>Create User</a>
             </div>
         </div>
         <hr class="m-4">

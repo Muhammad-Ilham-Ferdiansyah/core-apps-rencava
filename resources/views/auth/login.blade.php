@@ -12,6 +12,10 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <div class="mb-3 text-center">
+            <h2 class="font-semibold text-5xl">Aplikasi Perencanaan, Pencatatan dan Evaluasi Proyek PT. Primalogic Global
+                Teknologi</h2>
+        </div>
 
         <form method="POST" action="{{ route('login') }}">
             @csrf

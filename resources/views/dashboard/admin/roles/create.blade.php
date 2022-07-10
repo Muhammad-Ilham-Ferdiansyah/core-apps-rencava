@@ -32,7 +32,7 @@
                         </select>
                     </div>
                     <div class="mt-3">
-                        <a href="javascript:void(0);" onclick="location.href='/dashboard/admin/roles/update'"
+                        <a href="javascript:void(0);" onclick="location.href='/dashboard/admin/roles/store'"
                             class="text-decoration-none">
                             <button class="btn btn-primary">Create
                             </button>
