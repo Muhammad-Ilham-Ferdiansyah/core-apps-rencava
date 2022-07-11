@@ -55,12 +55,12 @@
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton1">
                                                 <a class="dropdown-item" href="javascript:void(0);"
-                                                    onclick="location.href='/dashboard/admin/roles/{{ $menu->id }}/edit'"><i
+                                                    onclick="location.href='/dashboard/admin/menu/{{ $menu->id }}/edit'"><i
                                                         class="mdi mdi-pencil me-2"></i>Update</a>
                                                 <div class="dropdown-divider"></div>
-                                                <button class="dropdown-item text-danger delete-role"
-                                                    data-id="{{ $menu->id }}" data-name="{{ $menu->name }}"
-                                                    href="#" name="delete-role"><i class="mdi mdi-delete me-2"></i>
+                                                <button class="dropdown-item text-danger delete-menu"
+                                                    data-id="{{ $menu->id }}" data-name="{{ $menu->menu_name }}"
+                                                    href="#" name="delete-menu"><i class="mdi mdi-delete me-2"></i>
                                                     Delete</button>
                                             </div>
                                         </div>

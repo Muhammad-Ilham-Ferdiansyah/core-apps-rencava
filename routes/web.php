@@ -50,6 +50,7 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     Route::get('dashboard/admin/roles/delete/{roles:id}', [RoleController::class, 'delete']);
     //Setup Menu
     Route::resource('dashboard/admin/menu', MenuController::class);
+    Route::get('dashboard/admin/menu/delete/{app_menu:id}', [MenuController::class, 'delete']);
 });
 
 require __DIR__ . '/auth.php';

@@ -142,6 +142,31 @@
                 }
             })
         });
+        //Delete menu
+        $('.delete-menu').click(function() {
+            let menuId = $(this).attr('data-id');
+            let menuName = $(this).attr('data-name');
+            Swal.fire({
+                title: "Are you sure, delete menu " + menuName + "",
+                padding: '2em',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "/dashboard/admin/menu/delete/" + menuId + ""
+                    Swal.fire({
+                        title: 'Deleted!',
+                        padding: '2em',
+                        text: 'Menu has been deleted.',
+                        icon: 'success'
+                    })
+                }
+            })
+        });
     </script>
 
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script> --}}

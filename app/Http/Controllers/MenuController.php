@@ -95,7 +95,13 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-        //
+        return view('dashboard.admin.menu.edit', [
+            'title' => 'Edit Menu',
+            'menu' => $menu,
+            'menu_name' => Menu::where('main_id', 0)->where('published', 1)
+                ->orderBy('orderno', 'asc')
+                ->get()
+        ]);
     }
 
     /**
@@ -107,7 +113,36 @@ class MenuController extends Controller
      */
     public function update(Request $request, Menu $menu)
     {
-        //
+        $request->validate([
+            'menu_name' => ['required', 'string', 'max:255'],
+            'main_id' => ['required'],
+            'link' => ['required', 'string'],
+            'orderno' => ['required', 'numeric'],
+            'icon' => ['required'],
+            'menu_desc' => ['required', 'max:255'],
+        ]);
+        $clicked = $request->menu_name;
+        $clicked2 = str_replace(' ', '_', $clicked);
+        $clicked3 = strtolower($clicked2);
+
+        if ($request->has('published')) {
+            $published = $request->published = 1;
+        } else {
+            $published = $request->published = 0;
+        }
+
+        $menu->update([
+            'menu_name' => $clicked,
+            'main_id' => $request->main_id,
+            'link' => $request->link,
+            'orderno' => $request->orderno,
+            'icon' => $request->icon,
+            'menu_desc' => $request->menu_desc,
+            'published' => $published,
+            'clicked' => $clicked3,
+        ]);
+
+        return redirect('dashboard/admin/menu')->with('success', 'Menu has been updated.');
     }
 
     /**
@@ -116,8 +151,11 @@ class MenuController extends Controller
      * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Menu $menu)
+    public function delete($id)
     {
-        //
+        $menu = Menu::find($id);
+        $menu->delete();
+
+        return redirect('dashboard/admin/menu');
     }
 }
