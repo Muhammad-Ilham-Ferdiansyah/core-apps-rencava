@@ -3,8 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Menu;
-use App\Models\Product;
 use App\Models\User;
+use App\Models\Client;
+use App\Models\DetailProject;
+use App\Models\DetailTeam;
+use App\Models\Product;
+use App\Models\Project;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
@@ -197,6 +201,55 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'product_name' => 'PlitaSoft Mobile Apps',
             'product_desc' => 'Agency Portal and Customer Portal'
+        ]);
+        //Isi table Clients
+        Client::create([
+            'client_name' => 'PT. Asuransi Jiwa Central Asia Raya',
+            'client_image' => 'ajcar.jpg',
+            'address' => 'Jl. Jend. Gatot Subroto Kav 74-75 Menteng Dalam Tebet Jakarta Selatan DKI Jakarta, RT.2/RW.1, Menteng Dalam, Kec. Tebet, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12870'
+        ]);
+        Client::create([
+            'client_name' => 'PT. Asuransi Jiwa BNI Jiwasraya (BNI-Life)',
+            'client_image' => 'bni-life.jpg',
+            'address' => 'Jl. K.S. Tubun No.67, RT.2/RW.3, Petamburan, Kecamatan Tanah Abang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10260'
+        ]);
+        //Isi table Project
+        Project::create([
+            'client_id' => 1,
+            'project_name' => 'Unit Linked Software Development and Implementation',
+            'technology' => 'Client Server, SQL Server, Power Builder',
+            'budget' => '1200000000',
+            'contract' => now()
+        ]);
+        Project::create([
+            'client_id' => 2,
+            'project_name' => 'Individual Life Insurance Development and Implementation',
+            'technology' => 'Client Server with SQL Server and Power Bulider',
+            'budget' => '2000000000',
+            'contract' => now()
+        ]);
+        //Isi table detail_project
+        DetailProject::create([
+            'project_id' => 1,
+            'product_id' => 1,
+            'estimasi_orang' => 5,
+            'startdate' => '2022-07-13 04:37:25',
+            'enddate' => '2022-08-12 02:37:25'
+        ]);
+        DetailProject::create([
+            'project_id' => 2,
+            'product_id' => 1,
+            'estimasi_orang' => 10,
+            'startdate' => '2022-10-13 06:37:25',
+            'enddate' => '2022-12-12 02:37:25'
+        ]);
+        //Isi table detail team
+        DetailTeam::create([
+            'detail_project_id' => 1,
+            'user_id' => 3,
+            'jobdesc' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, laborum quos voluptates quia beatae aperiam at optio unde tenetur, possimus expedita earum tempore deserunt commodi suscipit doloribus. Sapiente vitae ipsum ad eveniet reprehenderit rem, alias laboriosam expedita atque facere dolorum aliquid reiciendis quos blanditiis. Libero ab nihil ea laborum, illo quae facere quis qui veniam, voluptas numquam corporis error. Iusto maiores minus nesciunt assumenda rerum recusandae a at consectetur laboriosam officia? Nisi, officiis qui delectus pariatur magnam cumque dolores, similique sunt in iste sequi hic distinctio neque aut et quisquam debitis odit corrupti eius voluptate assumenda aliquam veniam praesentium! Labore!',
+            'startdate' => '2022-10-13 06:37:25',
+            'enddate' => '2022-12-12 02:37:25'
         ]);
     }
 }

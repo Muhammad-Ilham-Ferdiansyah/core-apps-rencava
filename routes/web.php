@@ -1,13 +1,16 @@
 <?php
 
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Models\Menu;
+use App\Models\Project;
 use Spatie\Permission\Contracts\Role;
 use Spatie\Permission\Models\Role as ModelsRole;
 
@@ -52,9 +55,13 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     //Setup Menu
     Route::resource('dashboard/admin/menu', MenuController::class);
     Route::get('dashboard/admin/menu/delete/{app_menu:id}', [MenuController::class, 'delete']);
+    //Setup Client
+    Route::resource('dashboard/admin/clients', ClientController::class);
     //Setup Product
     Route::resource('dashboard/admin/products', ProductController::class);
     Route::get('dashboard/admin/products/delete/{products:id}', [ProductController::class, 'delete']);
+    //List Project
+    Route::resource('dashboard/admin/projects', ProjectController::class);
 });
 
 require __DIR__ . '/auth.php';
