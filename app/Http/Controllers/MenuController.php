@@ -118,7 +118,7 @@ class MenuController extends Controller
             'main_id' => ['required'],
             'link' => ['required', 'string'],
             'orderno' => ['required', 'numeric'],
-            'icon' => ['required'],
+            'icon' => ['max:255'],
             'menu_desc' => ['required', 'max:255'],
         ]);
         $clicked = $request->menu_name;

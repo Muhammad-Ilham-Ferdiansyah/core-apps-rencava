@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -51,6 +52,9 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     //Setup Menu
     Route::resource('dashboard/admin/menu', MenuController::class);
     Route::get('dashboard/admin/menu/delete/{app_menu:id}', [MenuController::class, 'delete']);
+    //Setup Product
+    Route::resource('dashboard/admin/products', ProductController::class);
+    Route::get('dashboard/admin/products/delete/{products:id}', [ProductController::class, 'delete']);
 });
 
 require __DIR__ . '/auth.php';

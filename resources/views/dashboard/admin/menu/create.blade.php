@@ -108,10 +108,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group row">
-                                <label for="menu_desc" class="col-sm-3 mt-1">Menu Description</label>
+                                <label for="menu_desc" class="col-sm-3">Menu Description</label>
                                 <div class="col-sm-9">
-                                    <textarea name="menu_desc" id="menu_desc" class="form-control @error('menu_desc') is-invalid @enderror">
-                                    </textarea>
+                                    <input type="text" class="form-control @error('menu_desc') is-invalid @enderror"
+                                        id="menu_desc" name="menu_desc" placeholder="Menu Description"
+                                        value="{{ old('menu_desc') }}">
                                     @error('menu_desc')
                                         <div class="invalid-feedback">
                                             {{ $message }}

@@ -134,7 +134,7 @@
                 if (result.isConfirmed) {
                     window.location = "/dashboard/admin/roles/delete/" + roleId + ""
                     Swal.fire({
-                        title: 'Updated!',
+                        title: 'Deleted!',
                         padding: '2em',
                         text: 'Role has been deleted.',
                         icon: 'success'
@@ -162,6 +162,31 @@
                         title: 'Deleted!',
                         padding: '2em',
                         text: 'Menu has been deleted.',
+                        icon: 'success'
+                    })
+                }
+            })
+        });
+        //Delete Product
+        $('.delete-product').click(function() {
+            let productId = $(this).attr('data-id');
+            let productName = $(this).attr('data-name');
+            Swal.fire({
+                title: "Are you sure, delete product " + productName + "",
+                padding: '2em',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "/dashboard/admin/products/delete/" + productId + ""
+                    Swal.fire({
+                        title: 'Deleted!',
+                        padding: '2em',
+                        text: 'Product has been deleted.',
                         icon: 'success'
                     })
                 }

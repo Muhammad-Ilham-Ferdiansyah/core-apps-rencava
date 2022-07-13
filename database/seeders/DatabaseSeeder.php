@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Menu;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -153,6 +154,49 @@ class DatabaseSeeder extends Seeder
             'icon' => '',
             'published' => 1,
             'menu_desc' => 'Pengaturan Menu'
+        ]);
+        Menu::create([
+            'menu_name' => 'Setup Produk',
+            'main_id' => 2,
+            'link' => 'admin/products',
+            'clicked' => 'products',
+            'orderno' => 21,
+            'icon' => '',
+            'published' => 1,
+            'menu_desc' => 'Setup Produk Software'
+        ]);
+
+        Product::create([
+            'product_name' => 'PlitaSoft ILIIS',
+            'product_desc' => 'Individual Life Insurance Information System (Conventional, Unit Link, Health, Sharia)'
+        ]);
+        Product::create([
+            'product_name' => 'PlitaSoft GLIIS',
+            'product_desc' => 'Group Life Insurance Information System (Conventional, Unit Link, Health, Sharia)'
+        ]);
+        Product::create([
+            'product_name' => 'PlitaSoft Pension Funds',
+            'product_desc' => 'Pension Fund Information System'
+        ]);
+        Product::create([
+            'product_name' => 'PlitaSoft Financial',
+            'product_desc' => 'General Ledger, Budgeting, Cash Management '
+        ]);
+        Product::create([
+            'product_name' => 'PlitaSoft IIS',
+            'product_desc' => 'Investment Information System '
+        ]);
+        Product::create([
+            'product_name' => 'PlitaSoft HRIS',
+            'product_desc' => 'Human Resources Information System '
+        ]);
+        Product::create([
+            'product_name' => 'PlitaSoft AIS',
+            'product_desc' => 'Agency Information System'
+        ]);
+        Product::create([
+            'product_name' => 'PlitaSoft Mobile Apps',
+            'product_desc' => 'Agency Portal and Customer Portal'
         ]);
     }
 }

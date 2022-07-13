@@ -20,7 +20,7 @@ class CreateAppMenu extends Migration
             $table->string('link');
             $table->string('clicked');
             $table->integer('orderno');
-            $table->string('icon');
+            $table->string('icon')->nullable();
             $table->boolean('published');
             $table->string('menu_desc');
             $table->timestamps();
