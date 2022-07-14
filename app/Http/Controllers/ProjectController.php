@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.admin.projects.create', [
+            'title' => 'Add Project',
+            'clients' => Client::all()
+        ]);
     }
 
     /**

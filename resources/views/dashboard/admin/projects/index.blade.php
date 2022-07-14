@@ -16,8 +16,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Nama Client</th>
                                 <th scope="col">Nama Proyek</th>
+                                <th scope="col">Nama Client</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -26,10 +26,10 @@
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>
-                                        {{ $project->client->client_name }}
+                                        {{ $project->project_name }}
                                     </td>
                                     <td>
-                                        {{ $project->project_name }}
+                                        {{ $project->client->client_name }}
                                     </td>
                                     <td>
                                         <div class="dropdown">
@@ -67,36 +67,32 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Details Project</h5>
+                                                <h5 class="modal-title fw-bold" id="exampleModalLabel">Details Project</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="card mb-3" style="max-width: 540px;">
-                                                    <div class="row g-0">
-                                                        <div class="col-md-4">
-                                                            <img src="..." class="img-fluid rounded-start"
-                                                                alt="...">
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <div class="card-body">
-                                                                <h5 class="card-title lh-base">
-                                                                    {{ $project->project_name }}
-                                                                </h5>
-                                                                <p class="card-text"><b>Nama Klien :</b>
-                                                                    {{ $project->client->client_name }}</p>
-                                                                <p class="card-text"><b>Teknologi :</b>
-                                                                    {{ $project->technology }}</p>
-                                                                <p class="card-text"><b>Budget :</b>
-                                                                    Rp. {{ number_format($project->budget, 2) }}</p>
-                                                                <p class="card-text"><b>Kontrak :</b>
-                                                                    {{ date('d M Y', strtotime($project->contract)) }}
-                                                                </p>
-                                                                <p class="card-text"><small class="text-muted">Last updated
-                                                                        {{ $project->updated_at->diffForHumans() }}</small>
-                                                                </p>
-                                                            </div>
-                                                        </div>
+                                                <div class="card">
+                                                    <img src="{{ asset('storage/' . $project->client->client_image) }}"
+                                                        class="card-img-top rounded mx-auto d-block m-2"
+                                                        alt="{{ $project->client->client_name }}" style="width: 15rem;">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title lh-base">{{ $project->project_name }}</h5>
+                                                        <p class="card-text">{{ $project->client->client_name }}</p>
+                                                    </div>
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item"><b>Teknologi :</b>
+                                                            {{ $project->technology }}</li>
+                                                        <li class="list-group-item"><b>Budget :</b>
+                                                            Rp. {{ number_format($project->budget, 2) }}</li>
+                                                        <li class="list-group-item"><b>Kontrak :</b>
+                                                            {{ date('d M Y', strtotime($project->contract)) }}
+                                                        </li>
+                                                    </ul>
+                                                    <div class="card-body">
+                                                        <p class="card-text"><small class="text-muted">Last updated
+                                                                {{ $project->updated_at->diffForHumans() }}</small>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>

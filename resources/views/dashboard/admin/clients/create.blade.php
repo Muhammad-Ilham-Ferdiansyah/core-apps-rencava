@@ -33,14 +33,16 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="address">Client Address</label>
-                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
-                            name="address" placeholder="Client Address" value="{{ old('address') }}">
-                        @error('address')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <div class="form-floating">
+                            <textarea class="form-control @error('address') is-invalid @enderror" placeholder="Client Address" id="address"
+                                name="address" style="height: 100px">{{ Request::old('address') }}</textarea>
+                            <label for="address">Client Address</label>
+                            @error('address')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                     </div>
                     <div class="mt-3">
                         <a href="javascript:void(0);" onclick="location.href='/dashboard/admin/products/store'"

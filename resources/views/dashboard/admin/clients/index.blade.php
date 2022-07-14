@@ -22,7 +22,8 @@
                         <div class="card-footer">
                             <a href="/dashboard/admin/clients/{{ $client->id }}/edit"
                                 class="badge btn-primary text-decoration-none"><i class="mdi mdi-pencil me-2"></i>Update</a>
-                            <a href="#" class="badge btn-danger text-decoration-none"><i
+                            <a href="#" class="badge btn-danger text-decoration-none delete-client"
+                                data-id="{{ $client->id }}" data-name="{{ $client->client_name }}"><i
                                     class="mdi mdi-delete me-2"></i>Delete</a>
                         </div>
                     </div>

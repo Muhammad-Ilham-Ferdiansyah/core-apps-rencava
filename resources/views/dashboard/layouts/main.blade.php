@@ -31,8 +31,10 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="/css/vertical-layout-light/style.css">
-    <link rel="stylesheet" href="/select2/select2.min.css">
-    <link rel="stylesheet" href="/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/css/select2/select2.min.css">
+    {{-- <link rel="stylesheet" href="/vendor/select2/select2.min.css"> --}}
+    <link rel="stylesheet" href="/vendor/css/select2-bootstrap-theme/select2-bootstrap.min.css">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
     {{-- dataTables --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.css" />
     <!-- endinject -->
@@ -79,7 +81,15 @@
     <script src="/js/template.js"></script>
     <script src="/js/settings.js"></script>
     <script src="/js/todolist.js"></script>
+    <script src="autoNumeric.min.js" type="text/javascript"></script>
+    <!-- ...or, you may also directly use a CDN :-->
+    <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.1.0"></script>
+    <!-- ...or -->
+    <script src="https://unpkg.com/autonumeric"></script>
     <!-- endinject -->
+    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+    <script src="/vendor/js/select2.min.js"></script>
+    {{-- <script src="/vendor/js/select2.js"></script> --}}
     <!-- Custom js for this page-->
     <script src="/js/jquery.cookie.js" type="text/javascript"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -89,6 +99,17 @@
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
         integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script> --}}
     <script>
+        //select 2
+
+        $('.js-example-basic-single').select2();
+
+        //Auto Numeric
+        new AutoNumeric('#budget', {
+            currencySymbol: 'Rp. ',
+            decimalPlaces: '0',
+            decimalCharacter: ',',
+            digitGroupSeparator: '.'
+        });
         $(document).ready(function() {
             $('#myTable').DataTable();
         });
@@ -187,6 +208,31 @@
                         title: 'Deleted!',
                         padding: '2em',
                         text: 'Product has been deleted.',
+                        icon: 'success'
+                    })
+                }
+            })
+        });
+        //Delete Client
+        $('.delete-client').click(function() {
+            let clientId = $(this).attr('data-id');
+            let clientName = $(this).attr('data-name');
+            Swal.fire({
+                title: "Are you sure, delete client " + clientName + "",
+                padding: '2em',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "/dashboard/admin/clients/delete/" + clientId + ""
+                    Swal.fire({
+                        title: 'Deleted!',
+                        padding: '2em',
+                        text: 'Client has been deleted.',
                         icon: 'success'
                     })
                 }

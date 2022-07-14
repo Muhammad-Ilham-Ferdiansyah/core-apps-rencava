@@ -114,8 +114,15 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function delete($id)
     {
-        //
+        $client = Client::find($id);
+
+        if ($client->client_image) {
+            Storage::delete($client->client_image);
+        }
+        $client->delete();
+
+        return redirect('dashboard/admin/clients');
     }
 }

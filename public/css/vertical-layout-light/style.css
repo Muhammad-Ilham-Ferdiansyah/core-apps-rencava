@@ -21716,7 +21716,7 @@ pre {
 code {
     padding: 5px;
     color: #f95f53;
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 300;
     font-size: 0.812rem;
     border-radius: 4px;
@@ -21736,7 +21736,7 @@ code {
     -webkit-transition: all 0.25s ease;
     -ms-transition: all 0.25s ease;
     font-size: calc(0.812rem - 0.05rem);
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 400;
     border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
@@ -27310,7 +27310,7 @@ dl li {
     padding-left: 0;
     position: relative;
     margin-bottom: 0;
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 .icon-data-list li {
@@ -28229,7 +28229,7 @@ dl li {
 }
 
 .table.select-table td {
-    font-family: Manrope;
+    font-family: Inter;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -28490,11 +28490,11 @@ dl li {
 }
 
 .home-tab {
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 .home-tab .nav-tabs {
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
     border-bottom: none;
 }
 
@@ -28511,7 +28511,7 @@ dl li {
     padding: 12px 14px;
     border: none;
     border-right: 1px solid #dee2e6;
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
     background: transparent;
 }
 
@@ -28529,7 +28529,7 @@ dl li {
 
 .home-tab .tab-content {
     padding: 24px 0;
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
     border: none;
 }
 
@@ -30224,7 +30224,7 @@ table.dataTable tbody td.select-checkbox:after {
     thead
     tr
     th.dow {
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
     color: #1f1f1f;
     font-size: 0.875rem;
     font-weight: initial;
@@ -32162,7 +32162,7 @@ div.tagsinput span.tag a {
 .sidebar {
     min-height: calc(100vh - 97px);
     background: #f4f5f7;
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 500;
     padding: 0;
     width: 220px;
@@ -34055,7 +34055,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item .welcome-text {
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 28px;
@@ -34069,7 +34069,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item .welcome-sub-text {
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -34086,7 +34086,7 @@ div.tagsinput span.tag a {
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
     min-width: 170px;
     height: 34px;
     background: #ffffff;
@@ -34106,7 +34106,7 @@ div.tagsinput span.tag a {
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item .navbar-date-picker {
     background: #ffffff;
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
     height: 36px;
     border: 1px solid #dfdfdf;
     border-radius: 6px;
@@ -40543,7 +40543,7 @@ div.tagsinput span.tag a {
 .settings-panel .settings-heading {
     padding: 16px 0 13px 35px;
     font-size: 0.812rem;
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 500;
     line-height: 1;
     color: rgba(0, 0, 0, 0.9);
@@ -40739,7 +40739,7 @@ div.tagsinput span.tag a {
 }
 
 .settings-panel .events p {
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 400;
 }
 

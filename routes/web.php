@@ -57,6 +57,7 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     Route::get('dashboard/admin/menu/delete/{app_menu:id}', [MenuController::class, 'delete']);
     //Setup Client
     Route::resource('dashboard/admin/clients', ClientController::class);
+    Route::get('dashboard/admin/clients/delete/{clients:id}', [ClientController::class, 'delete']);
     //Setup Product
     Route::resource('dashboard/admin/products', ProductController::class);
     Route::get('dashboard/admin/products/delete/{products:id}', [ProductController::class, 'delete']);
