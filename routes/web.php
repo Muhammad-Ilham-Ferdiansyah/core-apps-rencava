@@ -63,6 +63,7 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     Route::get('dashboard/admin/products/delete/{products:id}', [ProductController::class, 'delete']);
     //List Project
     Route::resource('dashboard/admin/projects', ProjectController::class);
+    Route::get('dashboard/admin/projects/delete/{projects:id}', [ProjectController::class, 'delete']);
 });
 
 require __DIR__ . '/auth.php';

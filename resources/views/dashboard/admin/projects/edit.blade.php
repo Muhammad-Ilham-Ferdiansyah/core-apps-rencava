@@ -4,17 +4,18 @@
     <div class="contain-wrapper">
         <div class="card m-3">
             <div class="card-body">
-                <h4 class="card-title">Add Project</h4>
+                <h4 class="card-title">Edit Project</h4>
                 <p class="card-description">
-                    Add project here.
+                    Edit project here.
                 </p>
-                <form class="forms-sample" method="POST" action="/dashboard/admin/projects">
+                <form class="forms-sample" method="POST" action="/dashboard/admin/projects/{{ $project->id }}">
+                    @method('PUT')
                     @csrf
                     <div class="form-group">
                         <label for="project_name">Nama Proyek</label>
                         <input type="text" class="form-control @error('project_name') is-invalid @enderror"
                             id="project_name" name="project_name" placeholder="Project Name"
-                            value="{{ old('project_name') }}">
+                            value="{{ old('project_name', $project->project_name) }}">
                         @error('project_name')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -26,8 +27,7 @@
                         <select name="client_id" class="form-control @error('client_id') is-invalid @enderror">
                             <option value="" disabled selected>Pilih Klien</option>
                             @foreach ($clients as $client)
-                                <option value="{{ $client->id }}"
-                                    {{ Request::old('client_id') == $client->id ? 'selected' : '' }}>
+                                <option value="{{ $client->id }}" {{ $project->id == $client->id ? 'selected' : '' }}>
                                     {{ $client->client_name }}</option>
                             @endforeach
                             @error('client_id')
@@ -39,20 +39,33 @@
                     </div>
                     <div class="form-group">
                         <div class="form-floating">
-                            <textarea class="form-control @error('technology') is-invalid @enderror" placeholder="Technology" id="technology"
-                                name="technology" style="height: 100px">{{ Request::old('technology') }}</textarea>
-                            <label for="technology">Technology</label>
-                            @error('technology')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            @if ($project->technology)
+                                <textarea class="form-control @error('technology') is-invalid @enderror" placeholder="Technology" id="technology"
+                                    name="technology" style="height: 100px">
+                                {{ $project->technology }}</textarea>
+                                <label for="technology">Technology</label>
+                                @error('technology')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            @else
+                                <textarea class="form-control @error('technology') is-invalid @enderror" placeholder="Technology" id="technology"
+                                    name="technology" style="height: 100px">
+                                {{ Request::old('technology') }}</textarea>
+                                <label for="technology">Technology</label>
+                                @error('technology')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="budget">Budget</label>
                         <input type="text" class="form-control @error('budget') is-invalid @enderror" id="budget"
-                            name="budget" placeholder="Budget Project" value="{{ old('budget') }}">
+                            name="budget" placeholder="Budget Project" value="{{ old('budget', $project->budget) }}">
                         @error('budget')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -64,7 +77,7 @@
                             <label for="contract">Contract</label>
                             <input type="date" class="form-control @error('contract') is-invalid @enderror"
                                 id="contract" name="contract" placeholder="Contract Start"
-                                value="{{ old('contract') }}">
+                                value="{{ old('contract', $project->contract) }}">
                             @error('contract')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -73,7 +86,7 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <a href="javascript:void(0);" onclick="location.href='/dashboard/admin/projects/store'"
+                        <a href="javascript:void(0);" onclick="location.href='/dashboard/admin/projects/update'"
                             class="text-decoration-none">
                             <button class="btn btn-primary">Add
                             </button>

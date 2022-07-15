@@ -169,6 +169,26 @@ class DatabaseSeeder extends Seeder
             'published' => 1,
             'menu_desc' => 'Setup Produk Software'
         ]);
+        Menu::create([
+            'menu_name' => 'Setup Klien',
+            'main_id' => 2,
+            'link' => 'admin/clients',
+            'clicked' => 'clients',
+            'orderno' => 22,
+            'icon' => '',
+            'published' => 1,
+            'menu_desc' => 'Setup Klien'
+        ]);
+        Menu::create([
+            'menu_name' => 'List Proyek',
+            'main_id' => 2,
+            'link' => 'admin/projects',
+            'clicked' => 'projects',
+            'orderno' => 23,
+            'icon' => '',
+            'published' => 1,
+            'menu_desc' => 'List Proyek'
+        ]);
 
         Product::create([
             'product_name' => 'PlitaSoft ILIIS',
@@ -218,14 +238,14 @@ class DatabaseSeeder extends Seeder
             'client_id' => 1,
             'project_name' => 'Unit Linked Software Development and Implementation',
             'technology' => 'Client Server, SQL Server, Power Builder',
-            'budget' => '1200000000',
+            'budget' => '1.200.000.000',
             'contract' => now()
         ]);
         Project::create([
             'client_id' => 2,
             'project_name' => 'Individual Life Insurance Development and Implementation',
             'technology' => 'Client Server with SQL Server and Power Bulider',
-            'budget' => '2000000000',
+            'budget' => '2.000.000.000',
             'contract' => now()
         ]);
         //Isi table detail_project

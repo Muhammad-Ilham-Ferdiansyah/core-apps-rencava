@@ -4,8 +4,8 @@
         {{-- {{ dd($roles) }} --}}
         <div class="row m-3">
             <div class="col-lg-6">
-                <a href="/dashboard/admin/products/create" class="btn btn-primary text-white me-0"><i
-                        class="mdi mdi-plus me-2"></i>Create Project</a>
+                <a href="/dashboard/admin/projects/create" class="btn btn-primary text-white me-0"><i
+                        class="mdi mdi-plus me-2"></i>Add Project</a>
             </div>
         </div>
         <hr class="m-4">
@@ -44,13 +44,13 @@
                                                         class="mdi mdi-eye me-2"></i>Details</button>
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="javascript:void(0);"
-                                                    onclick="location.href='/dashboard/admin/products/{{ $project->id }}/edit'"><i
+                                                    onclick="location.href='/dashboard/admin/projects/{{ $project->id }}/edit'"><i
                                                         class="mdi mdi-pencil me-2"></i>Update</a>
                                                 <div class="dropdown-divider"></div>
-                                                <button class="dropdown-item text-danger delete-product"
+                                                <button class="dropdown-item text-danger delete-project"
                                                     data-id="{{ $project->id }}"
                                                     data-name="{{ $project->project_name }}" href="#"
-                                                    name="delete-product"><i class="mdi mdi-delete me-2"></i>
+                                                    name="delete-project"><i class="mdi mdi-delete me-2"></i>
                                                     Delete</button>
                                             </div>
                                         </div>
@@ -84,7 +84,7 @@
                                                         <li class="list-group-item"><b>Teknologi :</b>
                                                             {{ $project->technology }}</li>
                                                         <li class="list-group-item"><b>Budget :</b>
-                                                            Rp. {{ number_format($project->budget, 2) }}</li>
+                                                            Rp. {{ $project->budget }}</li>
                                                         <li class="list-group-item"><b>Kontrak :</b>
                                                             {{ date('d M Y', strtotime($project->contract)) }}
                                                         </li>

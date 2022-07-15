@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -117,11 +118,13 @@ class ClientController extends Controller
     public function delete($id)
     {
         $client = Client::find($id);
+        $client_in_project = Project::find($id);
 
         if ($client->client_image) {
             Storage::delete($client->client_image);
         }
         $client->delete();
+        $client_in_project->delete();
 
         return redirect('dashboard/admin/clients');
     }

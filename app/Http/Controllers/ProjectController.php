@@ -42,7 +42,17 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData =  $request->validate([
+            'project_name' => ['required', 'max:255'],
+            'client_id' => ['required'],
+            'technology' => ['required', 'max:255'],
+            'budget' => ['required'],
+            'contract' => ['required']
+        ]);
+
+        Project::create($validateData);
+
+        return redirect('dashboard/admin/projects')->with('success', 'Project has been added.');
     }
 
     /**
@@ -64,7 +74,11 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('dashboard.admin.projects.edit', [
+            'title' => 'Edit Project',
+            'project' => $project,
+            'clients' => Client::all()
+        ]);
     }
 
     /**
@@ -76,7 +90,17 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $validateData =  $request->validate([
+            'project_name' => ['required', 'max:255'],
+            'client_id' => ['required'],
+            'technology' => ['required', 'max:255'],
+            'budget' => ['required'],
+            'contract' => ['required']
+        ]);
+
+        $project->update($validateData);
+
+        return redirect('dashboard/admin/projects')->with('success', 'Project has been updated.');
     }
 
     /**
@@ -85,8 +109,11 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function delete($id)
     {
-        //
+        $project = Project::find($id);
+        $project->delete();
+
+        return redirect('dashboard/admin/projects');
     }
 }

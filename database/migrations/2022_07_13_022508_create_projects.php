@@ -18,8 +18,8 @@ class CreateProjects extends Migration
             $table->foreignId('client_id');
             $table->string('project_name');
             $table->string('technology');
-            $table->double('budget');
-            $table->timestamp('contract')->nullable();
+            $table->string('budget');
+            $table->date('contract')->nullable();
             $table->timestamps();
         });
     }
