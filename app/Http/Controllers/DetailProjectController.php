@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetailProject;
+use App\Models\Product;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class DetailProjectController extends Controller
@@ -14,7 +16,10 @@ class DetailProjectController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.admin.detail_projects.index', [
+            'title' => 'Detail Proyek',
+            'detail_project' => DetailProject::all()
+        ]);
     }
 
     /**
@@ -24,7 +29,11 @@ class DetailProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.admin.detail_projects.create', [
+            'title' => 'Add Detail Proyek',
+            'projects' => Project::all(),
+            'products' => Product::all()
+        ]);
     }
 
     /**
@@ -35,7 +44,17 @@ class DetailProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'project_id' => ['required'],
+            'product_id' => ['required'],
+            'estimasi_orang' => ['required', 'numeric'],
+            'startdate' => ['required', 'date'],
+            'enddate' => ['required', 'date']
+        ]);
+
+        DetailProject::create($validateData);
+
+        return redirect('dashboard/admin/detail_projects')->with('success', 'Detail Project has been added.');
     }
 
     /**

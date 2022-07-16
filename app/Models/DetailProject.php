@@ -11,4 +11,14 @@ class DetailProject extends Model
 
     // public $table = "detail_projects";
     protected $guarded = ['id'];
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

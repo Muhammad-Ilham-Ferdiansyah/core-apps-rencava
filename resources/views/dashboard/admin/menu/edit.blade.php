@@ -32,7 +32,7 @@
                                 <label for="main_id" class="col-sm-3">Menu Induk</label>
                                 <div class="col-sm-9">
                                     <select name="main_id" class="form-control @error('main_id') is-invalid @enderror">
-                                        <option value="">Pilih Menu Induk</option>
+                                        <option value="0">Pilih Menu Induk</option>
                                         @foreach ($menu_name as $m)
                                             <option value="{{ $m->id }}"
                                                 {{ $menu->main_id == $m->id ? 'selected' : '' }}>

@@ -47,7 +47,6 @@ class MenuController extends Controller
     {
         $request->validate([
             'menu_name' => ['required', 'string', 'max:255'],
-            'main_id' => ['required'],
             'link' => ['required', 'string'],
             'orderno' => ['required', 'numeric'],
             'icon' => ['max:255'],
@@ -115,7 +114,6 @@ class MenuController extends Controller
     {
         $request->validate([
             'menu_name' => ['required', 'string', 'max:255'],
-            'main_id' => ['required'],
             'link' => ['required', 'string'],
             'orderno' => ['required', 'numeric'],
             'icon' => ['max:255'],

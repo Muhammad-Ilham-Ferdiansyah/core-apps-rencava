@@ -16,7 +16,7 @@ class CreateAppMenu extends Migration
         Schema::create('app_menu', function (Blueprint $table) {
             $table->id();
             $table->string('menu_name');
-            $table->integer('main_id');
+            $table->integer('main_id')->default(0);
             $table->string('link');
             $table->string('clicked');
             $table->integer('orderno');

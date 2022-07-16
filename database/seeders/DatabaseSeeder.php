@@ -189,6 +189,26 @@ class DatabaseSeeder extends Seeder
             'published' => 1,
             'menu_desc' => 'List Proyek'
         ]);
+        Menu::create([
+            'menu_name' => 'Detail Proyek',
+            'main_id' => 2,
+            'link' => 'admin/detail_projects',
+            'clicked' => 'detail_projects',
+            'orderno' => 24,
+            'icon' => '',
+            'published' => 1,
+            'menu_desc' => 'Detail Proyek'
+        ]);
+        // Menu::create([
+        //     'menu_name' => 'List Proyek',
+        //     'main_id' => 2,
+        //     'link' => 'admin/projects',
+        //     'clicked' => 'projects',
+        //     'orderno' => 23,
+        //     'icon' => '',
+        //     'published' => 1,
+        //     'menu_desc' => 'List Proyek'
+        // ]);
 
         Product::create([
             'product_name' => 'PlitaSoft ILIIS',

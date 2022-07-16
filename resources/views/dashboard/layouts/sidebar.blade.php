@@ -9,7 +9,7 @@ $submenu = Menu::where('main_id', '<>', 0)
     ->orderBy('orderno', 'asc')
     ->get();
 ?>
-<nav class="sidebar sidebar-offcanvas px-2" id="sidebar">
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         @foreach ($menu as $m)
             @if ($m->link == 'dashboard')
@@ -37,7 +37,7 @@ $submenu = Menu::where('main_id', '<>', 0)
                                 @foreach ($submenu as $s)
                                     @if ($s->main_id == $m->id)
                                         <li class="nav-item"> <a class="nav-link" href="javascript:void(0);"
-                                                onclick="location.href='/dashboard/{{ $s->link }}'">{{ $s->menu_name }}</a>
+                                                onclick="window.location='/dashboard/{{ $s->link }}'">{{ $s->menu_name }}</a>
                                         </li>
                                     @endif
                                 @endforeach
