@@ -44,7 +44,8 @@ class DetailProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
+        // dd($request);
+        $request->validate([
             'project_id' => ['required'],
             'product_id' => ['required'],
             'estimasi_orang' => ['required', 'numeric'],
@@ -52,7 +53,15 @@ class DetailProjectController extends Controller
             'enddate' => ['required', 'date']
         ]);
 
-        DetailProject::create($validateData);
+        foreach ($request->product_id as $product) {
+            DetailProject::create([
+                'project_id' => $request->project_id,
+                'product_id' => $product,
+                'estimasi_orang' => $request->estimasi_orang,
+                'startdate' => $request->startdate,
+                'enddate' => $request->enddate
+            ]);
+        }
 
         return redirect('dashboard/admin/detail_projects')->with('success', 'Detail Project has been added.');
     }

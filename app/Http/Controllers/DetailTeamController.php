@@ -14,7 +14,10 @@ class DetailTeamController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.admin.detail_teams.index', [
+            'title' => 'Detail Team',
+            'detail_teams' => DetailTeam::all()
+        ]);
     }
 
     /**

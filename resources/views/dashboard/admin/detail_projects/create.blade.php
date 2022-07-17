@@ -27,20 +27,16 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="product_id" class="col-sm-3">Nama Product</label>
-                        <select name="product_id" class="form-control @error('product_id') is-invalid @enderror">
-                            <option value="" disabled selected>Pilih Produk</option>
-                            @foreach ($products as $product)
-                                <option value="{{ $product->id }}"
-                                    {{ Request::old('product_id') == $product->id ? 'selected' : '' }}>
-                                    {{ $product->product_name }}</option>
-                            @endforeach
-                            @error('product_id')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </select>
+                        <label for="product_id" class="col-sm-3 mt-1">Product Name</label>
+                        @foreach ($products as $product)
+                            <div class="form-check mx-sm-2">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="product_id[]"
+                                        value="{{ $product->id }}">
+                                    {{ $product->product_name }}
+                                </label>
+                            </div>
+                        @endforeach
                     </div>
                     <div class="form-group">
                         <label for="estimasi_orang">Estimasi Orang</label>

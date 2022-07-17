@@ -10,6 +10,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DetailProjectController;
+use App\Http\Controllers\DetailTeamController;
 use App\Models\Menu;
 use App\Models\Project;
 use Spatie\Permission\Contracts\Role;
@@ -67,6 +68,8 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     Route::get('dashboard/admin/projects/delete/{projects:id}', [ProjectController::class, 'delete']);
     //Detail Project
     Route::resource('dashboard/admin/detail_projects', DetailProjectController::class);
+    //Detail Team
+    Route::resource('dashboard/admin/detail_teams', DetailTeamController::class);
 });
 
 require __DIR__ . '/auth.php';
