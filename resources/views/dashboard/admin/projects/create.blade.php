@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-group">
                         <label for="client_id" class="col-sm-3">Nama Klien</label>
-                        <select name="client_id" class="form-control @error('client_id') is-invalid @enderror">
+                        <select name="client_id" class="form-control text-dark @error('client_id') is-invalid @enderror">
                             <option value="" disabled selected>Pilih Klien</option>
                             @foreach ($clients as $client)
                                 <option value="{{ $client->id }}"

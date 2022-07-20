@@ -30,7 +30,8 @@
                             <div class="form-group row">
                                 <label for="main_id" class="col-sm-3">Menu Induk</label>
                                 <div class="col-sm-9">
-                                    <select name="main_id" class="form-control @error('main_id') is-invalid @enderror">
+                                    <select name="main_id"
+                                        class="form-control text-dark @error('main_id') is-invalid @enderror">
                                         <option value="0" selected>Pilih Menu Induk</option>
                                         @foreach ($menu_parent as $menu)
                                             <option value="{{ $menu->id }}">{{ $menu->menu_name }}</option>

@@ -180,34 +180,24 @@ class DatabaseSeeder extends Seeder
             'menu_desc' => 'Setup Klien'
         ]);
         Menu::create([
-            'menu_name' => 'List Proyek',
+            'menu_name' => 'Setup Proyek',
             'main_id' => 2,
             'link' => 'admin/projects',
             'clicked' => 'projects',
             'orderno' => 23,
             'icon' => '',
             'published' => 1,
-            'menu_desc' => 'List Proyek'
+            'menu_desc' => 'Setup Proyek'
         ]);
         Menu::create([
-            'menu_name' => 'Detail Proyek',
+            'menu_name' => 'Setup Detail Proyek',
             'main_id' => 2,
             'link' => 'admin/detail_projects',
             'clicked' => 'detail_projects',
             'orderno' => 24,
             'icon' => '',
             'published' => 1,
-            'menu_desc' => 'Detail Proyek'
-        ]);
-        Menu::create([
-            'menu_name' => 'Detail Team',
-            'main_id' => 2,
-            'link' => 'admin/detail_teams',
-            'clicked' => 'detail_teams',
-            'orderno' => 25,
-            'icon' => '',
-            'published' => 1,
-            'menu_desc' => 'Detail Team'
+            'menu_desc' => 'Setup Detail Proyek'
         ]);
 
         Product::create([
@@ -272,24 +262,39 @@ class DatabaseSeeder extends Seeder
         DetailProject::create([
             'project_id' => 1,
             'product_id' => 1,
+            'user_id' => 12,
             'estimasi_orang' => 5,
-            'startdate' => '2022-07-13 04:37:25',
-            'enddate' => '2022-08-12 02:37:25'
+            'startdate' => '2022-07-13',
+            'enddate' => '2022-08-12'
         ]);
         DetailProject::create([
             'project_id' => 2,
-            'product_id' => 1,
+            'product_id' => 2,
             'estimasi_orang' => 10,
-            'startdate' => '2022-10-13 06:37:25',
-            'enddate' => '2022-12-12 02:37:25'
+            'startdate' => '2022-10-13',
+            'enddate' => '2022-12-12'
         ]);
         //Isi table detail team
         DetailTeam::create([
             'detail_project_id' => 1,
             'user_id' => 3,
-            'jobdesc' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, laborum quos voluptates quia beatae aperiam at optio unde tenetur, possimus expedita earum tempore deserunt commodi suscipit doloribus. Sapiente vitae ipsum ad eveniet reprehenderit rem, alias laboriosam expedita atque facere dolorum aliquid reiciendis quos blanditiis. Libero ab nihil ea laborum, illo quae facere quis qui veniam, voluptas numquam corporis error. Iusto maiores minus nesciunt assumenda rerum recusandae a at consectetur laboriosam officia? Nisi, officiis qui delectus pariatur magnam cumque dolores, similique sunt in iste sequi hic distinctio neque aut et quisquam debitis odit corrupti eius voluptate assumenda aliquam veniam praesentium! Labore!',
-            'startdate' => '2022-10-13 06:37:25',
-            'enddate' => '2022-12-12 02:37:25'
+            'jobdesc' => 'Desain User Interface',
+            'startdate' => '2022-10-18',
+            'enddate' => '2022-12-12'
+        ]);
+        DetailTeam::create([
+            'detail_project_id' => 2,
+            'user_id' => 5,
+            'jobdesc' => 'Desain Database',
+            'startdate' => '2022-07-13',
+            'enddate' => '2022-11-20'
+        ]);
+        DetailTeam::create([
+            'detail_project_id' => 1,
+            'user_id' => 2,
+            'jobdesc' => 'Dokumen BRD (Business Requirement Document)',
+            'startdate' => '2022-06-11',
+            'enddate' => '2022-10-13'
         ]);
     }
 }

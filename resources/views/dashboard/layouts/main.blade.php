@@ -247,6 +247,30 @@
                 }
             })
         });
+        $('.delete-detail-project').click(function() {
+            let detailProjectId = $(this).attr('data-id');
+            let detailProjectName = $(this).attr('data-name');
+            Swal.fire({
+                title: "Are you sure, delete detail project " + detailProjectName + "",
+                padding: '2em',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "/dashboard/admin/detail_projects/delete/" + detailProjectId + ""
+                    Swal.fire({
+                        title: 'Deleted!',
+                        padding: '2em',
+                        text: 'Detail Project has been deleted.',
+                        icon: 'success'
+                    })
+                }
+            })
+        });
         //autonumeric
         new AutoNumeric('#budget', {
             // currencySymbol: 'Rp. ',

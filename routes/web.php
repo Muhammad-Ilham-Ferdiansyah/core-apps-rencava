@@ -68,6 +68,7 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     Route::get('dashboard/admin/projects/delete/{projects:id}', [ProjectController::class, 'delete']);
     //Detail Project
     Route::resource('dashboard/admin/detail_projects', DetailProjectController::class);
+    Route::get('dashboard/admin/detail_projects/delete/{detail_projects:project_id}', [DetailProjectController::class, 'delete']);
     //Detail Team
     Route::resource('dashboard/admin/detail_teams', DetailTeamController::class);
 });

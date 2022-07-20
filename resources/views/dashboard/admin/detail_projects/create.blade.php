@@ -12,7 +12,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="project_id" class="col-sm-3">Nama Project</label>
-                        <select name="project_id" class="form-control @error('project_id') is-invalid @enderror">
+                        <select name="project_id" class="form-control text-dark @error('project_id') is-invalid @enderror">
                             <option value="" disabled selected>Pilih Project</option>
                             @foreach ($projects as $project)
                                 <option value="{{ $project->id }}"
@@ -38,49 +38,13 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="form-group">
-                        <label for="estimasi_orang">Estimasi Orang</label>
-                        <input type="number" class="form-control @error('estimasi_orang') is-invalid @enderror"
-                            id="estimasi_orang" name="estimasi_orang" placeholder="Estimasi Orang"
-                            value="{{ old('estimasi_orang') }}">
-                        @error('estimasi_orang')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-6">
-                            <label for="startdate">Tanggal Mulai</label>
-                            <input type="date" class="form-control @error('startdate') is-invalid @enderror"
-                                id="startdate" name="startdate" placeholder="Tanggal Mulai"
-                                value="{{ old('start_date') }}">
-                            @error('startdate')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-6">
-                            <label for="enddate">Tanggal Selesai</label>
-                            <input type="date" class="form-control @error('enddate') is-invalid @enderror" id="enddate"
-                                name="enddate" placeholder="Tanggal Selesai" value="{{ old('enddate') }}">
-                            @error('enddate')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
                     <div class="mt-3">
                         <a href="javascript:void(0);" onclick="location.href='/dashboard/admin/detail_projects/store'"
                             class="text-decoration-none">
                             <button class="btn btn-primary">Add
                             </button>
                         </a>
-                        <a href="/dashboard/admin/projects" class="btn btn-outline-dark">Cancel</a>
+                        <a href="/dashboard/admin/detail_projects" class="btn btn-outline-dark">Cancel</a>
                     </div>
                 </form>
             </div>

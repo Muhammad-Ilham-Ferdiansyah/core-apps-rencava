@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\DetailProject;
 use App\Models\Product;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DetailProjectController extends Controller
 {
@@ -18,7 +20,7 @@ class DetailProjectController extends Controller
     {
         return view('dashboard.admin.detail_projects.index', [
             'title' => 'Detail Proyek',
-            'detail_project' => DetailProject::all()
+            'detail_project' => DetailProject::get()->unique('project_id')
         ]);
     }
 
@@ -48,18 +50,12 @@ class DetailProjectController extends Controller
         $request->validate([
             'project_id' => ['required'],
             'product_id' => ['required'],
-            'estimasi_orang' => ['required', 'numeric'],
-            'startdate' => ['required', 'date'],
-            'enddate' => ['required', 'date']
         ]);
 
         foreach ($request->product_id as $product) {
             DetailProject::create([
                 'project_id' => $request->project_id,
                 'product_id' => $product,
-                'estimasi_orang' => $request->estimasi_orang,
-                'startdate' => $request->startdate,
-                'enddate' => $request->enddate
             ]);
         }
 
@@ -72,9 +68,15 @@ class DetailProjectController extends Controller
      * @param  \App\Models\DetailProject  $detailProject
      * @return \Illuminate\Http\Response
      */
-    public function show(DetailProject $detailProject)
+    public function show($id)
     {
-        //
+        $detailProject = DetailProject::all()->where('project_id', $id);
+        // dd($detailProject);
+        return view('dashboard.admin.detail_projects.show', [
+            'title' => 'Edit Detail Project',
+            'detail_project' => $detailProject,
+            // 'count' => DetailProject::where('project_id', $detailProject->id)
+        ]);
     }
 
     /**
@@ -85,7 +87,13 @@ class DetailProjectController extends Controller
      */
     public function edit(DetailProject $detailProject)
     {
-        //
+        return view('dashboard.admin.detail_projects.edit', [
+            'title' => 'Edit Detail Proyek',
+            'detail_project' => $detailProject,
+            'projects' => Project::all(),
+            'products' => Product::all(),
+            'users' => User::role('Project Manager')->get()
+        ]);
     }
 
     /**
@@ -97,7 +105,24 @@ class DetailProjectController extends Controller
      */
     public function update(Request $request, DetailProject $detailProject)
     {
-        //
+        // $oldProduct = DetailProject::select('product_id')->get();
+        $request->validate([
+            'product_id' => ['required'],
+            'user_id' => ['required'],
+            'estimasi_orang' => ['required', 'numeric'],
+            'startdate' => ['required', 'date'],
+            'enddate' => ['required', 'date']
+        ]);
+
+        $detailProject->update([
+            'product_id' => $request->product_id,
+            'user_id' => $request->user_id,
+            'estimasi_orang' => $request->estimasi_orang,
+            'startdate' => $request->startdate,
+            'enddate' => $request->enddate
+        ]);
+
+        return redirect('dashboard/admin/detail_projects/' . $detailProject->project_id)->with('success', 'Detail Project has been updated.');
     }
 
     /**
@@ -106,8 +131,11 @@ class DetailProjectController extends Controller
      * @param  \App\Models\DetailProject  $detailProject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DetailProject $detailProject)
+    public function delete($id)
     {
-        //
+        $detail_project = DetailProject::find('project_id', $id);
+        $detail_project->delete();
+
+        return redirect('dashboard/admin/detail_projects');
     }
 }

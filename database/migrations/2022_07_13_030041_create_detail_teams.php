@@ -18,8 +18,8 @@ class CreateDetailTeams extends Migration
             $table->foreignId('detail_project_id');
             $table->foreignId('user_id');
             $table->text('jobdesc');
-            $table->timestamp('startdate')->nullable();
-            $table->timestamp('enddate')->nullable();
+            $table->date('startdate')->nullable();
+            $table->date('enddate')->nullable();
             $table->timestamps();
         });
     }

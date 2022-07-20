@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-group">
                         <label for="guard_name">Guard Name</label>
-                        <select name="guard_name" class="form-control @error('guard_name') is-invalid @enderror">
+                        <select name="guard_name" class="form-control text-dark @error('guard_name') is-invalid @enderror">
                             <option value="web" {{ $role->guard_name == 'web' ? 'selected' : '' }}>
                                 Web
                             </option>

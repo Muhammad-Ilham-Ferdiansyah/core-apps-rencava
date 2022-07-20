@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group">
                         <label for="role">Role</label>
-                        <select name="role" class="form-control @error('role') is-invalid @enderror">
+                        <select name="role" class="form-control text-dark @error('role') is-invalid @enderror">
                             <option value="" selected>Select Role</option>
                             @foreach ($roles as $role)
                                 <option value="{{ $role->id }}">{{ $role->name }}</option>

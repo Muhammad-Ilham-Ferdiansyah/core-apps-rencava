@@ -49,7 +49,10 @@ class DetailTeamController extends Controller
      */
     public function show(DetailTeam $detailTeam)
     {
-        //
+        return view('dashboard.admin.detail_teams.show', [
+            'title' => 'Show Detail Teams',
+            'detail_teams' => $detailTeam
+        ]);
     }
 
     /**
