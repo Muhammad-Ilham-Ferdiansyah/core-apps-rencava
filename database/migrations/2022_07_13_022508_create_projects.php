@@ -16,10 +16,13 @@ class CreateProjects extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id');
+            $table->foreignId('product_id');
+            $table->foreignId('user_id');
             $table->string('project_name');
             $table->string('technology');
             $table->string('budget');
-            $table->date('contract')->nullable();
+            $table->date('startdate')->nullable();
+            $table->date('enddate')->nullable();
             $table->timestamps();
         });
     }

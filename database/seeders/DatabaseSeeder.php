@@ -68,6 +68,17 @@ class DatabaseSeeder extends Seeder
 
         $user->assignRole('Project Manager');
 
+        $user = User::create([
+            'name' => 'I Kade Budiarta',
+            'username' => 'ikade',
+            'image' => 'profile-images/default.png',
+            'email' => 'ikadebudiarta@gmail.com',
+            'password' => bcrypt('password123'),
+            'email_verified_at' => '2022-09-22 09:17:33'
+        ]);
+
+        $user->assignRole('Project Manager');
+
         //SEED App_menu
         Menu::create([
             'menu_name' => 'Dashboard',
@@ -246,33 +257,40 @@ class DatabaseSeeder extends Seeder
         //Isi table Project
         Project::create([
             'client_id' => 1,
+            'product_id' => 1,
+            'user_id' => 12,
             'project_name' => 'Unit Linked Software Development and Implementation',
             'technology' => 'Client Server, SQL Server, Power Builder',
             'budget' => '1.200.000.000',
-            'contract' => now()
+            'startdate' => '2022-07-13',
+            'enddate' => '2022-10-11'
         ]);
         Project::create([
             'client_id' => 2,
+            'product_id' => 2,
+            'user_id' => 12,
             'project_name' => 'Individual Life Insurance Development and Implementation',
             'technology' => 'Client Server with SQL Server and Power Bulider',
             'budget' => '2.000.000.000',
-            'contract' => now()
+            'startdate' => '2022-11-13',
+            'enddate' => '2022-01-13'
         ]);
         //Isi table detail_project
         DetailProject::create([
             'project_id' => 1,
-            'product_id' => 1,
-            'user_id' => 12,
-            'estimasi_orang' => 5,
+            'user_id' => 7,
+            'module_name' => 'Modul Finance',
+            'jobdesc' => 'Analisis Sistem Finance',
             'startdate' => '2022-07-13',
             'enddate' => '2022-08-12'
         ]);
         DetailProject::create([
-            'project_id' => 2,
-            'product_id' => 2,
-            'estimasi_orang' => 10,
-            'startdate' => '2022-10-13',
-            'enddate' => '2022-12-12'
+            'project_id' => 1,
+            'user_id' => 6,
+            'module_name' => 'Modul Kepesertaan',
+            'jobdesc' => 'Setup Kepesertaan',
+            'startdate' => '2022-03-20',
+            'enddate' => '2022-06-13'
         ]);
         //Isi table detail team
         DetailTeam::create([

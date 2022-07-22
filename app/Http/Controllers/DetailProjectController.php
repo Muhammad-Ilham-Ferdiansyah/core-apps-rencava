@@ -34,7 +34,8 @@ class DetailProjectController extends Controller
         return view('dashboard.admin.detail_projects.create', [
             'title' => 'Add Detail Proyek',
             'projects' => Project::all(),
-            'products' => Product::all()
+            'products' => Product::all(),
+            'users' => User::role('Software Engineer')->get()
         ]);
     }
 
@@ -46,18 +47,39 @@ class DetailProjectController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        $request->validate([
-            'project_id' => ['required'],
-            'product_id' => ['required'],
-        ]);
+        // dd($request->all());
+        // $request->validate([
+        //     'project_id' => ['required'],
+        //     'module_name' => ['required'],
+        //     'user_id' => ['required'],
+        //     'jobdesc' => ['required'],
+        // ]);
 
-        foreach ($request->product_id as $product) {
-            DetailProject::create([
-                'project_id' => $request->project_id,
-                'product_id' => $product,
-            ]);
+        $project_id = $request->project_id;
+        $module_name = $request->module_name;
+        $user_id = $request->user_id;
+        $jobdesc = $request->jobdesc;
+        $stardate = $request->startdate;
+        $enddate = $request->enddate;
+
+
+        for ($i = 0; $i < count($module_name); $i++) {
+            $validateData = [
+                'project_id' => $project_id,
+                'user_id' => $user_id[$i],
+                'module_name' => $module_name[$i],
+                'jobdesc' => $jobdesc[$i],
+                'startdate' => $stardate[$i],
+                'enddate' => $enddate[$i]
+            ];
+            DetailProject::create($validateData);
         }
+        // foreach ($request->product_id as $product) {
+        //     DetailProject::create([
+        //         'project_id' => $request->project_id,
+        //         'product_id' => $product,
+        //     ]);
+        // }
 
         return redirect('dashboard/admin/detail_projects')->with('success', 'Detail Project has been added.');
     }

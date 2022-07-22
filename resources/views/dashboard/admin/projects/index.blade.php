@@ -48,9 +48,8 @@
                                                         class="mdi mdi-pencil me-2"></i>Update</a>
                                                 <div class="dropdown-divider"></div>
                                                 <button class="dropdown-item text-danger delete-project"
-                                                    data-id="{{ $project->id }}"
-                                                    data-name="{{ $project->project_name }}" href="#"
-                                                    name="delete-project"><i class="mdi mdi-delete me-2"></i>
+                                                    data-id="{{ $project->id }}" data-name="{{ $project->project_name }}"
+                                                    href="#" name="delete-project"><i class="mdi mdi-delete me-2"></i>
                                                     Delete</button>
                                             </div>
                                         </div>
@@ -84,8 +83,11 @@
                                                             {{ $project->technology }}</li>
                                                         <li class="list-group-item"><b>Budget :</b>
                                                             Rp. {{ $project->budget }}</li>
-                                                        <li class="list-group-item"><b>Kontrak :</b>
-                                                            {{ date('d M Y', strtotime($project->contract)) }}
+                                                        <li class="list-group-item"><b>Tanggal Mulai :</b>
+                                                            {{ date('d M Y', strtotime($project->startdate)) }}
+                                                        </li>
+                                                        <li class="list-group-item"><b>Tanggal Selesai :</b>
+                                                            {{ date('d M Y', strtotime($project->enddate)) }}
                                                         </li>
                                                     </ul>
                                                     <div class="card-body">

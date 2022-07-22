@@ -8,12 +8,29 @@
                 Back
             </button>
         </div>
+        {{-- <div class="card m-3"> --}}
+
+        {{-- <nav class="nav nav-pills flex-column flex-sm-row">
+                @foreach ($detail_project as $dp)
+                    <a class="flex-sm-fill text-sm-center nav-link {{ $loop->first ? 'active' : '' }}" aria-current="page"
+                        href="#tab-{{ $dp->id }}">{{ $dp->module_name }}</a>
+                @endforeach
+            </nav>
+            <div class="tab-content">
+                @foreach ($detail_project as $dp)
+                    <div role="tabpanel" class="tab-pane active" class="tab-pane" id="tab-{{ $dp->id }}">
+                        <h2>{{ $dp->modul_name }}</h2>
+                        <p>{{ $dp->jobdesc }}</p>
+                    </div>
+                @endforeach
+            </div> --}}
+        {{-- </div> --}}
         <div class="row row-cols-1 row-cols-md-3 g-4 mx-2">
             @foreach ($detail_project as $dp)
                 <div class="col stretch-card">
                     <div class="card card-rounded">
                         <div class="card-body card-rounded">
-                            <h4 class="card-title lh-base">{{ $dp->product->product_name }}</h4>
+                            <h4 class="card-title lh-base">{{ $dp->module_name }}</h4>
                             <div class="list align-items-center border-bottom py-2">
                                 <div class="wrapper w-100">
                                     <p class="mb-2 font-weight-medium">
@@ -34,19 +51,15 @@
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="d-flex align-items-center">
-                                            @if ($dp->user_id == null)
-                                                <div class="badge badge-opacity-warning me-3">Lengkapi data</div>
-                                            @else
-                                                <div class="badge badge-opacity-warning">
-                                                    <i class="mdi mdi-account-star me-1"></i>
-                                                    {{ $dp->user->name }}
-                                                </div>
-                                            @endif
+                                            <div class="badge badge-opacity-warning">
+                                                <i class="mdi mdi-account-star me-1"></i>
+                                                {{ $dp->project->user->name }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list align-items-center border-bottom py-2">
+                            {{-- <div class="list align-items-center border-bottom py-2">
                                 <div class="wrapper w-100">
                                     <p class="mb-2 font-weight-medium">
                                         Estimasi Orang
@@ -100,7 +113,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="card-body">
                                 <a class="badge btn-success text-decoration-none"
                                     href="/dashboard/admin/detail_projects/{{ $dp->id }}/edit" role="button">Edit</a>

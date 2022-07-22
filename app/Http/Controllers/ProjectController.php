@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Product;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -30,7 +32,9 @@ class ProjectController extends Controller
     {
         return view('dashboard.admin.projects.create', [
             'title' => 'Add Project',
-            'clients' => Client::all()
+            'clients' => Client::all(),
+            'products' => Product::all(),
+            'users' => User::role('Project Manager')->get()
         ]);
     }
 
@@ -45,9 +49,12 @@ class ProjectController extends Controller
         $validateData =  $request->validate([
             'project_name' => ['required', 'max:255'],
             'client_id' => ['required'],
+            'product_id' => ['required'],
+            'user_id' => ['required'],
             'technology' => ['required', 'max:255'],
             'budget' => ['required'],
-            'contract' => ['required']
+            'startdate' => ['required', 'date'],
+            'enddate' => ['required', 'date']
         ]);
 
         Project::create($validateData);
