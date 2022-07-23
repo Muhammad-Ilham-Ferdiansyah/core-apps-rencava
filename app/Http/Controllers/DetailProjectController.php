@@ -56,18 +56,16 @@ class DetailProjectController extends Controller
         // ]);
 
         $project_id = $request->project_id;
-        $module_name = $request->module_name;
         $user_id = $request->user_id;
         $jobdesc = $request->jobdesc;
         $stardate = $request->startdate;
         $enddate = $request->enddate;
 
 
-        for ($i = 0; $i < count($module_name); $i++) {
+        for ($i = 0; $i < count($user_id); $i++) {
             $validateData = [
                 'project_id' => $project_id,
                 'user_id' => $user_id[$i],
-                'module_name' => $module_name[$i],
                 'jobdesc' => $jobdesc[$i],
                 'startdate' => $stardate[$i],
                 'enddate' => $enddate[$i]
@@ -95,9 +93,18 @@ class DetailProjectController extends Controller
         $detailProject = DetailProject::all()->where('project_id', $id);
         // dd($detailProject);
         return view('dashboard.admin.detail_projects.show', [
-            'title' => 'Edit Detail Project',
-            'detail_project' => $detailProject,
+            'title' => 'Show Detail Project',
+            'detail_project' => $detailProject->unique('user_id'),
             // 'count' => DetailProject::where('project_id', $detailProject->id)
+        ]);
+    }
+
+    public function show_detail($id)
+    {
+        $detailProjectUsers = DetailProject::all()->where('user_id', $id);
+        return view('dashboard.admin.detail_projects.show_detail', [
+            'title' => 'Show Detail Project by User',
+            'detail_project_user' => $detailProjectUsers
         ]);
     }
 

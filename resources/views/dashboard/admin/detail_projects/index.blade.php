@@ -30,8 +30,8 @@
                                     <td>
                                         <button type="button" class="btn btn-success btn-icon-text p-2"
                                             onclick="location.href='/dashboard/admin/detail_projects/{{ $dp->project_id }}'">
-                                            <i class="ti-pencil-alt btn-icon-prepend"></i>
-                                            Update
+                                            <i class="ti-eye btn-icon-prepend"></i>
+                                            Show Details
                                         </button>
                                     </td>
                                 </tr>

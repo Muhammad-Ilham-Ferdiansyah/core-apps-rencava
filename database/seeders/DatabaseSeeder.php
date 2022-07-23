@@ -279,7 +279,6 @@ class DatabaseSeeder extends Seeder
         DetailProject::create([
             'project_id' => 1,
             'user_id' => 7,
-            'module_name' => 'Modul Finance',
             'jobdesc' => 'Analisis Sistem Finance',
             'startdate' => '2022-07-13',
             'enddate' => '2022-08-12'
@@ -287,7 +286,6 @@ class DatabaseSeeder extends Seeder
         DetailProject::create([
             'project_id' => 1,
             'user_id' => 6,
-            'module_name' => 'Modul Kepesertaan',
             'jobdesc' => 'Setup Kepesertaan',
             'startdate' => '2022-03-20',
             'enddate' => '2022-06-13'

@@ -284,10 +284,7 @@
         $(document).ready(function() {
             $('#add_btn').on('click', function() {
                 let html = '';
-
-                // console.log(test);
                 html += '<tr>';
-                html += '<td><input type="text" name="module_name[]" class="form-control"></td>';
                 html += '<td><select name="user_id[]" class="form-control text-dark">'
                 $("#mySelectionBox option").each(function() {
                     html += '<option value="' + this.value + '">' +

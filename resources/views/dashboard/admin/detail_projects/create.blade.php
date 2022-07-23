@@ -30,7 +30,6 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">Nama Modul</th>
                                     <th scope="col">Person In Charge</th>
                                     <th scope="col">Deskripsi Pekerjaan</th>
                                     <th scope="col">Tanggal Mulai</th>
@@ -40,7 +39,6 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="text" name="module_name[]" class="form-control"></td>
                                     <td>
                                         <select name="user_id[]" id="mySelectionBox"
                                             class="form-control text-dark @error('user_id') is-invalid @enderror">

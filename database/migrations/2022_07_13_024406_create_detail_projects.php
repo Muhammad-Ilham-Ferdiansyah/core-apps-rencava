@@ -17,7 +17,6 @@ class CreateDetailProjects extends Migration
             $table->id();
             $table->foreignId('project_id');
             $table->foreignId('user_id');
-            $table->string('module_name');
             $table->text('jobdesc');
             $table->date('startdate')->nullable();
             $table->date('enddate')->nullable();
