@@ -23,6 +23,17 @@
                             @enderror
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="estimasi_orang">Estimasi Orang</label>
+                        <input type="number" class="form-control @error('estimasi_orang') is-invalid @enderror"
+                            id="estimasi_orang" name="estimasi_orang" placeholder="Estimasi Orang"
+                            value="{{ old('estimasi_orang') }}">
+                        @error('estimasi_orang')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                     <p class="card-description">
                         Add detail project here.
                     </p>

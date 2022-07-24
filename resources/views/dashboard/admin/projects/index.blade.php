@@ -26,7 +26,7 @@
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>
-                                        {{ $project->project_name }}
+                                        {{ $project->project_name . ' - ' . $project->product->product_name }}
                                     </td>
                                     <td>
                                         {{ $project->client->client_name }}

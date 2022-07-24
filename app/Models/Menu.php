@@ -15,4 +15,9 @@ class Menu extends Model
      akan sama dengan nama model yang ditambahkan dengan mengubahnya menjadi plural.*/
 
     protected $guarded = ['id'];
+
+    // public function role()
+    // {
+    //     return $this->belongsTo('model_has_roles');
+    // }
 }

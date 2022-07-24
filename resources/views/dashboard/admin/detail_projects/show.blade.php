@@ -55,7 +55,9 @@
                     </div>
                 </div>
             @endforeach
-
+            {{-- <div class="d-flex justify-content-end">
+                {{ $detail_project[0]->links() }}
+            </div> --}}
         </div>
     </div>
 @endsection

@@ -9,6 +9,7 @@ use App\Models\DetailProject;
 use App\Models\DetailTeam;
 use App\Models\Product;
 use App\Models\Project;
+use App\Models\RoleMenu;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
@@ -78,6 +79,17 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user->assignRole('Project Manager');
+
+        $user = User::create([
+            'name' => 'Muhammad Raihan Nur Azmii',
+            'username' => 'azmi18',
+            'image' => 'profile-images/default.png',
+            'email' => 'mraihanna.18@gmail.com',
+            'password' => bcrypt('password123'),
+            'email_verified_at' => '2022-09-22 09:17:33'
+        ]);
+
+        $user->assignRole('Software Engineer');
 
         //SEED App_menu
         Menu::create([
@@ -209,6 +221,97 @@ class DatabaseSeeder extends Seeder
             'icon' => '',
             'published' => 1,
             'menu_desc' => 'Setup Detail Proyek'
+        ]);
+        Menu::create([
+            'menu_name' => 'Monitoring Proyek',
+            'main_id' => 3,
+            'link' => 'user/mn_projects',
+            'clicked' => 'mn_project',
+            'orderno' => 31,
+            'icon' => '',
+            'published' => 1,
+            'menu_desc' => 'Monitoring Proyek'
+        ]);
+
+        RoleMenu::create([
+            'app_menu_id' => 1,
+            'role_id' => 1,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 2,
+            'role_id' => 1,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 3,
+            'role_id' => 1,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 4,
+            'role_id' => 1,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 5,
+            'role_id' => 1,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 6,
+            'role_id' => 1,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 7,
+            'role_id' => 1,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 8,
+            'role_id' => 1,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 9,
+            'role_id' => 1,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 10,
+            'role_id' => 1,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 11,
+            'role_id' => 1,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 12,
+            'role_id' => 1,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 13,
+            'role_id' => 1,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 14,
+            'role_id' => 1,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 1,
+            'role_id' => 2,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 2,
+            'role_id' => 2,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 3,
+            'role_id' => 2,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 4,
+            'role_id' => 2,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 1,
+            'role_id' => 3,
+        ]);
+        RoleMenu::create([
+            'app_menu_id' => 3,
+            'role_id' => 3,
         ]);
 
         Product::create([

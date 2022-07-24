@@ -16,6 +16,7 @@ class CreateDetailProjects extends Migration
         Schema::create('detail_projects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id');
+            $table->string('estimasi_orang')->nullable();
             $table->foreignId('user_id');
             $table->text('jobdesc');
             $table->date('startdate')->nullable();

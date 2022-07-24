@@ -3,12 +3,11 @@
     <div class="contain-wrapper">
         <div class="m-3">
             <button type="button" class="btn btn-sm btn-primary btn-icon-text"
-                onclick="location.href='/dashboard/admin/detail_projects/{{ $detail_project_user[0]->project_id }}'">
+                onclick="location.href='/dashboard/admin/detail_projects/{{ $detail_project_users->project_id }}'">
                 <i class="ti-arrow-left btn-icon-prepend"></i>
                 Back
             </button>
         </div>
-        {{-- {{ dd($detail_project) }} --}}
         <hr class="m-4">
         <div class="card m-3">
             <div class="card-body">

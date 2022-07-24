@@ -11,6 +11,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DetailProjectController;
 use App\Http\Controllers\DetailTeamController;
+use App\Http\Controllers\MonitoringProjectController;
 use App\Models\DetailProject;
 use App\Models\Menu;
 use App\Models\Project;
@@ -73,6 +74,8 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     Route::get('dashboard/admin/detail_projects/delete/{detail_projects:project_id}', [DetailProjectController::class, 'delete']);
     //Detail Team
     Route::resource('dashboard/admin/detail_teams', DetailTeamController::class);
+    //Monitoring Project
+    Route::resource('dashboard/user/mn_projects', MonitoringProjectController::class);
 });
 
 require __DIR__ . '/auth.php';

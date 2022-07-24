@@ -56,6 +56,7 @@ class DetailProjectController extends Controller
         // ]);
 
         $project_id = $request->project_id;
+        $estimasi_orang = $request->estimasi_orang;
         $user_id = $request->user_id;
         $jobdesc = $request->jobdesc;
         $stardate = $request->startdate;
@@ -65,6 +66,7 @@ class DetailProjectController extends Controller
         for ($i = 0; $i < count($user_id); $i++) {
             $validateData = [
                 'project_id' => $project_id,
+                'estimasi_orang' => $estimasi_orang,
                 'user_id' => $user_id[$i],
                 'jobdesc' => $jobdesc[$i],
                 'startdate' => $stardate[$i],
@@ -104,7 +106,8 @@ class DetailProjectController extends Controller
         $detailProjectUsers = DetailProject::all()->where('user_id', $id);
         return view('dashboard.admin.detail_projects.show_detail', [
             'title' => 'Show Detail Project by User',
-            'detail_project_user' => $detailProjectUsers
+            'detail_project_user' => $detailProjectUsers,
+            'detail_project_users' => $detailProjectUsers->first(),
         ]);
     }
 
