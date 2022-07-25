@@ -28,7 +28,10 @@ class MonitoringProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.user.mn_projects.create', [
+            'title' => 'Add Progress',
+            'detail_projects' => DetailProject::where('user_id', auth()->user()->id)->get()
+        ]);
     }
 
     /**
@@ -39,7 +42,22 @@ class MonitoringProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd(DetailProject::where('id', 3)->get());
+        $target = DetailProject::where('id', $request->detail_project_id)->get();
+        $request->validate([
+            'detail_project_id' => ['required'],
+            'date_progress' => ['required'],
+            'progress' => ['required'],
+        ]);
+
+        MonitoringProject::create([
+            'detail_project_id' => $request->detail_project_id,
+            'date_progress' => $request->date_progress,
+            'progress' => $request->progress,
+            'target' => $target[0]->enddate
+        ]);
+
+        return redirect('dashboard/user/mn_projects')->with('success', 'Progress has been added.');
     }
 
     /**
@@ -59,9 +77,13 @@ class MonitoringProjectController extends Controller
      * @param  \App\Models\MonitoringProject  $monitoringProject
      * @return \Illuminate\Http\Response
      */
-    public function edit(MonitoringProject $monitoringProject)
+    public function edit($id)
     {
-        //
+        // $detailProject = DetailProject::where('id', $id)->get();
+        // // dd($detailProject);
+        // return view('dashboard.user.mn_projects.edit', [
+        //     'title' => 'Assessment ' . $detailProject[0]->jobdesc
+        // ]);
     }
 
     /**
@@ -85,5 +107,14 @@ class MonitoringProjectController extends Controller
     public function destroy(MonitoringProject $monitoringProject)
     {
         //
+    }
+
+    public function assessment($id)
+    {
+        $detailProject = DetailProject::where('id', $id)->get();
+        return view('dashboard.user.mn_projects.assessment', [
+            'title' => 'Assessment ' . $detailProject[0]->jobdesc,
+            'detail_projects' => $detailProject
+        ]);
     }
 }

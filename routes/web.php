@@ -76,6 +76,7 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     Route::resource('dashboard/admin/detail_teams', DetailTeamController::class);
     //Monitoring Project
     Route::resource('dashboard/user/mn_projects', MonitoringProjectController::class);
+    Route::get('dashboard/user/mn_projects/assessment/{detail_projects:project_id}', [MonitoringProjectController::class, 'assessment']);
 });
 
 require __DIR__ . '/auth.php';

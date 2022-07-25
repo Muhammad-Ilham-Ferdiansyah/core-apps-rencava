@@ -381,7 +381,7 @@ class DatabaseSeeder extends Seeder
         //Isi table detail_project
         DetailProject::create([
             'project_id' => 1,
-            'user_id' => 7,
+            'user_id' => 14,
             'jobdesc' => 'Analisis Sistem Finance',
             'startdate' => '2022-07-13',
             'enddate' => '2022-08-12'
@@ -393,10 +393,17 @@ class DatabaseSeeder extends Seeder
             'startdate' => '2022-03-20',
             'enddate' => '2022-06-13'
         ]);
+        DetailProject::create([
+            'project_id' => 1,
+            'user_id' => 14,
+            'jobdesc' => 'Analisis Sistem API',
+            'startdate' => '2022-03-20',
+            'enddate' => '2022-06-13'
+        ]);
         //Isi table detail team
         DetailTeam::create([
             'detail_project_id' => 1,
-            'user_id' => 3,
+            'user_id' => 14,
             'jobdesc' => 'Desain User Interface',
             'startdate' => '2022-10-18',
             'enddate' => '2022-12-12'

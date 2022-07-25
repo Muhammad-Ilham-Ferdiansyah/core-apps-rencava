@@ -16,11 +16,11 @@ class CreateMonitoringProjects extends Migration
         Schema::create('monitoring_projects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('detail_project_id');
-            $table->date('tanggal');
+            $table->date('date_progress');
             $table->date('target');
             $table->text('progress');
-            $table->string('status');
-            $table->date('date_selesai');
+            $table->string('status')->nullable();
+            $table->date('date_selesai')->nullable();
             $table->string('evaluasi')->nullable();
             $table->timestamps();
         });
