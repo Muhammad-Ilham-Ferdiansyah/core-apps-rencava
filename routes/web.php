@@ -71,7 +71,7 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     //Detail Project
     Route::resource('dashboard/admin/detail_projects', DetailProjectController::class);
     Route::get('dashboard/admin/detail_projects/show_detail/{detail_projects:user_id}', [DetailProjectController::class, 'show_detail']);
-    Route::get('dashboard/admin/detail_projects/delete/{detail_projects:project_id}', [DetailProjectController::class, 'delete']);
+    Route::get('dashboard/admin/detail_projects/delete/{detail_projects:id}', [DetailProjectController::class, 'delete']);
     //Detail Team
     Route::resource('dashboard/admin/detail_teams', DetailTeamController::class);
     //Monitoring Project

@@ -41,7 +41,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">Person In Charge</th>
+                                    <th scope="col">Employee</th>
                                     <th scope="col">Deskripsi Pekerjaan</th>
                                     <th scope="col">Tanggal Mulai</th>
                                     <th scope="col">Tanggal Selesai</th>

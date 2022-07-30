@@ -44,6 +44,12 @@ class MonitoringProjectController extends Controller
     {
         // dd(DetailProject::where('id', 3)->get());
         $target = DetailProject::where('id', $request->detail_project_id)->get();
+        $tglAkhir = $target[0]->enddate;
+        $tglAwal = now();
+        $to = \Carbon\Carbon::createFromFormat('Y-m-d', $tglAkhir);
+        $from = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $tglAwal);
+        $diff_in_days = $to->diffInDays($from);
+        // dd($diff_in_days);
         $request->validate([
             'detail_project_id' => ['required'],
             'date_progress' => ['required'],
@@ -54,7 +60,7 @@ class MonitoringProjectController extends Controller
             'detail_project_id' => $request->detail_project_id,
             'date_progress' => $request->date_progress,
             'progress' => $request->progress,
-            'target' => $target[0]->enddate
+            'target' => $diff_in_days
         ]);
 
         return redirect('dashboard/user/mn_projects')->with('success', 'Progress has been added.');

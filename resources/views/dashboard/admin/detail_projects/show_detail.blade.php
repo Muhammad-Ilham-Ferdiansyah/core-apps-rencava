@@ -36,16 +36,24 @@
                                         {{ date('d M Y', strtotime($dpu->enddate)) }}
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-success btn-icon-text p-2"
-                                            onclick="location.href='/dashboard/admin/detail_projects/{{ $dpu->project_id }}'">
-                                            <i class="ti-pencil-alt btn-icon-prepend"></i>
-                                            Update
-                                        </button>
-                                        <button type="button" class="btn btn-danger btn-icon-text p-2"
-                                            onclick="location.href='/dashboard/admin/detail_projects/{{ $dpu->project_id }}'">
-                                            <i class="ti-trash btn-icon-prepend"></i>
-                                            Delete
-                                        </button>
+                                        <div class="dropdown">
+                                            <button class="btn btn-success dropdown-toggle" type="button"
+                                                id="dropdownMenuIconButton1" data-bs-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                <i class="mdi mdi-dots-vertical"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton1">
+                                                <a class="dropdown-item" href="javascript:void(0);"
+                                                    onclick="location.href='/dashboard/admin/detail_projects/{{ $dpu->id }}/edit'"><i
+                                                        class="mdi mdi-pencil me-2"></i>Update</a>
+                                                <div class="dropdown-divider"></div>
+                                                <button class="dropdown-item text-danger delete-detail-project"
+                                                    data-id="{{ $dpu->id }}" data-name="{{ $dpu->jobdesc }}"
+                                                    href="#" name="delete-detail-project"><i
+                                                        class="mdi mdi-delete me-2"></i>
+                                                    Delete</button>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

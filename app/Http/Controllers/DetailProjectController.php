@@ -104,8 +104,9 @@ class DetailProjectController extends Controller
     public function show_detail($id)
     {
         $detailProjectUsers = DetailProject::all()->where('user_id', $id);
+        $detailProjectUser = DetailProject::all()->where('user_id', $id)->first();
         return view('dashboard.admin.detail_projects.show_detail', [
-            'title' => 'Show Detail Project by User',
+            'title' => 'Show Detail Project by ' . $detailProjectUser->user->name,
             'detail_project_user' => $detailProjectUsers,
             'detail_project_users' => $detailProjectUsers->first(),
         ]);
@@ -120,11 +121,11 @@ class DetailProjectController extends Controller
     public function edit(DetailProject $detailProject)
     {
         return view('dashboard.admin.detail_projects.edit', [
-            'title' => 'Edit Detail Proyek',
+            'title' => 'Edit Detail Proyek ' .  $detailProject->jobdesc,
             'detail_project' => $detailProject,
             'projects' => Project::all(),
             'products' => Product::all(),
-            'users' => User::role('Project Manager')->get()
+            'users' => User::role('Software Engineer')->get()
         ]);
     }
 
@@ -139,16 +140,16 @@ class DetailProjectController extends Controller
     {
         // $oldProduct = DetailProject::select('product_id')->get();
         $request->validate([
-            'product_id' => ['required'],
             'user_id' => ['required'],
+            'jobdesc' => ['required'],
             'estimasi_orang' => ['required', 'numeric'],
             'startdate' => ['required', 'date'],
             'enddate' => ['required', 'date']
         ]);
 
         $detailProject->update([
-            'product_id' => $request->product_id,
             'user_id' => $request->user_id,
+            'jobdesc' => $request->jobdesc,
             'estimasi_orang' => $request->estimasi_orang,
             'startdate' => $request->startdate,
             'enddate' => $request->enddate
@@ -165,9 +166,9 @@ class DetailProjectController extends Controller
      */
     public function delete($id)
     {
-        $detail_project = DetailProject::find('project_id', $id);
+        $detail_project = DetailProject::find($id);
         $detail_project->delete();
 
-        return redirect('dashboard/admin/detail_projects');
+        return redirect('dashboard/admin/detail_projects/' . $id);
     }
 }

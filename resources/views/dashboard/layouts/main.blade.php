@@ -251,7 +251,7 @@
             let detailProjectId = $(this).attr('data-id');
             let detailProjectName = $(this).attr('data-name');
             Swal.fire({
-                title: "Are you sure, delete detail project " + detailProjectName + "",
+                title: "Are you sure, delete jobdesc " + detailProjectName + "",
                 padding: '2em',
                 text: "You won't be able to revert this!",
                 icon: 'warning',

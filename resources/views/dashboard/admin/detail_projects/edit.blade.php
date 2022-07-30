@@ -4,33 +4,17 @@
     <div class="contain-wrapper">
         <div class="card m-3">
             <div class="card-body">
-                <h4 class="card-title">{{ $detail_project->project->project_name }}</h4>
+                <h4 class="card-title">{{ $detail_project->jobdesc }}</h4>
                 <p class="card-description">
                     Edit detail project here.
                 </p>
-                <form class="forms-sample" method="POST"
-                    action="/dashboard/admin/detail_projects/{{ $detail_project->id }}">
+                <form class="forms-sample" method="POST" action="/dashboard/admin/detail_projects/{{ $detail_project->id }}">
                     @method('PUT')
                     @csrf
                     <div class="form-group">
-                        <label for="product_id" class="col-sm-3 mt-1">Product Name</label>
-                        @foreach ($products as $product)
-                            <div class="col-sm-4">
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="product_id" id="product_id"
-                                            value="{{ $product->id }}"
-                                            {{ $detail_project->product_id == $product->id ? 'checked' : '' }}>
-                                        {{ $product->product_name }}
-                                    </label>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="form-group">
-                        <label for="user_id" class="col-sm-3">Nama Project Manager</label>
+                        <label for="user_id" class="col-sm-3">Nama Employee</label>
                         <select name="user_id" class="form-control text-dark @error('user_id') is-invalid @enderror">
-                            <option value="" disabled selected>Pilih Project Manager</option>
+                            <option value="" disabled selected>Pilih Employee</option>
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}"
                                     {{ $detail_project->user_id == $user->id ? 'selected' : '' }}>
@@ -42,6 +26,17 @@
                                 </div>
                             @enderror
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobdesc">Deskripsi Pekerjaan</label>
+                        <input type="text" class="form-control @error('jobdesc') is-invalid @enderror" id="jobdesc"
+                            name="jobdesc" placeholder="Deskripsi Pekerjaan"
+                            value="{{ old('jobdesc', $detail_project->jobdesc) }}">
+                        @error('jobdesc')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="estimasi_orang">Estimasi Orang</label>
@@ -86,7 +81,7 @@
                             <button class="btn btn-primary">Update
                             </button>
                         </a>
-                        <a href="/dashboard/admin/detail_projects/{{ $detail_project->project_id }}"
+                        <a href="/dashboard/admin/detail_projects/show_detail/{{ $detail_project->user_id }}"
                             class="btn btn-outline-dark">Cancel</a>
                     </div>
                 </form>

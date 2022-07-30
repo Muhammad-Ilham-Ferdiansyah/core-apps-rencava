@@ -96,9 +96,9 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Target</th>
-                                        <th>Progress</th>
                                         <th>Tanggal</th>
+                                        <th>Progress</th>
+                                        <th>Target</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -108,13 +108,13 @@
                                             <td>
                                                 {{ $loop->iteration }}</td>
                                             <td>
-                                                {{ date('d M Y', strtotime($mn_project->target)) }}
+                                                {{ date('d M Y', strtotime($mn_project->date_progress)) }}
                                             </td>
                                             <td>
                                                 {{ $mn_project->progress }}
                                             </td>
                                             <td>
-                                                {{ date('d M Y', strtotime($mn_project->date_progress)) }}
+                                                {{ $mn_project->target . ' hari' }}
                                             </td>
                                             <td>
                                                 <div class="badge badge-opacity-warning">On Going</div>
