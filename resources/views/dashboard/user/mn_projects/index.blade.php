@@ -48,9 +48,9 @@
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-primary btn-icon-text p-2"
-                                                    onclick="location.href='/dashboard/user/mn_projects/assessment/{{ $dt_project->id }}'">
-                                                    <i class="ti-pencil-alt btn-icon-prepend"></i>
-                                                    Proses
+                                                    onclick="location.href='/dashboard/user/mn_projects/{{ $dt_project->id }}'">
+                                                    <i class="ti-eye btn-icon-prepend"></i>
+                                                    Detail
                                                 </button>
                                             </td>
                                         </tr>

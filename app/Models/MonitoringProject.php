@@ -11,7 +11,7 @@ class MonitoringProject extends Model
 
     protected $guarded = ['id'];
 
-    public function project()
+    public function detail_project()
     {
         return $this->belongsTo(DetailProject::class);
     }

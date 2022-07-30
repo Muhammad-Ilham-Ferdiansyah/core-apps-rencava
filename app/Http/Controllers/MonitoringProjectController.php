@@ -66,9 +66,13 @@ class MonitoringProjectController extends Controller
      * @param  \App\Models\MonitoringProject  $monitoringProject
      * @return \Illuminate\Http\Response
      */
-    public function show(MonitoringProject $monitoringProject)
+    public function show($id)
     {
-        //
+        // dd($id);
+        return view('dashboard.user.mn_projects.show', [
+            'title' => 'Detail Pekerjaan',
+            'monitoring_projects' => MonitoringProject::where('detail_project_id', $id)->orderBy('date_progress', 'desc')->get()
+        ]);
     }
 
     /**
