@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetailProject;
+use App\Models\MonitoringProject;
 use App\Models\Product;
 use App\Models\Project;
 use App\Models\User;
@@ -153,6 +154,10 @@ class DetailProjectController extends Controller
             'estimasi_orang' => $request->estimasi_orang,
             'startdate' => $request->startdate,
             'enddate' => $request->enddate
+        ]);
+
+        MonitoringProject::where('detail_project_id', $detailProject->id)->update([
+            'target' => $request->enddate
         ]);
 
         return redirect('dashboard/admin/detail_projects/' . $detailProject->project_id)->with('success', 'Detail Project has been updated.');

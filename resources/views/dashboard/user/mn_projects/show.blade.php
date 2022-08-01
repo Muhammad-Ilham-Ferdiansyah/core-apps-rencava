@@ -114,7 +114,7 @@
                                                 {{ $mn_project->progress }}
                                             </td>
                                             <td>
-                                                {{ $mn_project->target . ' hari' }}
+                                                {{ date('d M Y', strtotime($mn_project->target)) }}
                                             </td>
                                             <td>
                                                 <div class="badge badge-opacity-warning">On Going</div>
