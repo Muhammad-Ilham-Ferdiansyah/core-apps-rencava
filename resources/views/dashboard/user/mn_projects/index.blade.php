@@ -46,13 +46,27 @@
                                             <td>
                                                 {{ date('d M Y', strtotime($dt_project->enddate)) }}
                                             </td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary btn-icon-text p-2"
-                                                    onclick="location.href='/dashboard/user/mn_projects/{{ $dt_project->id }}'">
-                                                    <i class="ti-eye btn-icon-prepend"></i>
-                                                    Detail
-                                                </button>
-                                            </td>
+                                            <?php $monitoring_project = DB::table('monitoring_projects')
+                                                ->where('detail_project_id', $dt_project->id)
+                                                ->first(); ?>
+                                            @if (!$monitoring_project)
+                                                <td>
+                                                    <button type="button" class="btn btn-danger btn-icon-text p-2"
+                                                        onclick="location.href='/dashboard/user/mn_projects/{{ $dt_project->id }}'"
+                                                        disabled>
+                                                        <i class="ti-pencil-alt btn-icon-prepend"></i>
+                                                        Belum Ada Progress
+                                                    </button>
+                                                </td>
+                                            @else
+                                                <td>
+                                                    <button type="button" class="btn btn-primary btn-icon-text p-2"
+                                                        onclick="location.href='/dashboard/user/mn_projects/{{ $dt_project->id }}'">
+                                                        <i class="ti-eye btn-icon-prepend"></i>
+                                                        Detail
+                                                    </button>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

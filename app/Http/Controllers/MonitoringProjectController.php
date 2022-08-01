@@ -17,7 +17,7 @@ class MonitoringProjectController extends Controller
     {
         return view('dashboard.user.mn_projects.index', [
             'title' => 'Monitoring Project',
-            'detail_projects' => DetailProject::where('user_id', auth()->user()->id)->get()
+            'detail_projects' => DetailProject::where('user_id', auth()->user()->id)->get(),
         ]);
     }
 

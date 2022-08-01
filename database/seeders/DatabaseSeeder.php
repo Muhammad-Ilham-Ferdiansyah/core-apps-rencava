@@ -27,6 +27,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'guard_name' => 'web'
         ]);
+        Role::create([
+            'name' => 'Owner',
+            'guard_name' => 'web'
+        ]);
 
         Role::create([
             'name' => 'Project Manager',
@@ -57,6 +61,17 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $admin->assignRole('Admin');
+
+        $owner = User::create([
+            'name' => 'I Made Artika',
+            'username' => 'imadeartika',
+            'image' => 'profile-images/default.png',
+            'email' => 'imadeartika@gmail.com',
+            'password' => bcrypt('password123'),
+            'email_verified_at' => '2022-06-19 09:27:33'
+        ]);
+        $owner->assignRole('Owner');
+
 
         $user = User::create([
             'name' => 'Raihan Malikul Mulki',
@@ -379,48 +394,29 @@ class DatabaseSeeder extends Seeder
             'enddate' => '2022-01-13'
         ]);
         //Isi table detail_project
-        DetailProject::create([
-            'project_id' => 1,
-            'user_id' => 14,
-            'jobdesc' => 'Analisis Sistem Finance',
-            'startdate' => '2022-07-13',
-            'enddate' => '2022-08-12'
-        ]);
-        DetailProject::create([
-            'project_id' => 1,
-            'user_id' => 6,
-            'jobdesc' => 'Setup Kepesertaan',
-            'startdate' => '2022-03-20',
-            'enddate' => '2022-06-13'
-        ]);
-        DetailProject::create([
-            'project_id' => 1,
-            'user_id' => 14,
-            'jobdesc' => 'Analisis Sistem API',
-            'startdate' => '2022-03-20',
-            'enddate' => '2022-06-13'
-        ]);
-        //Isi table detail team
-        DetailTeam::create([
-            'detail_project_id' => 1,
-            'user_id' => 14,
-            'jobdesc' => 'Desain User Interface',
-            'startdate' => '2022-10-18',
-            'enddate' => '2022-12-12'
-        ]);
-        DetailTeam::create([
-            'detail_project_id' => 2,
-            'user_id' => 5,
-            'jobdesc' => 'Desain Database',
-            'startdate' => '2022-07-13',
-            'enddate' => '2022-11-20'
-        ]);
-        DetailTeam::create([
-            'detail_project_id' => 1,
-            'user_id' => 2,
-            'jobdesc' => 'Dokumen BRD (Business Requirement Document)',
-            'startdate' => '2022-06-11',
-            'enddate' => '2022-10-13'
-        ]);
+        // DetailProject::create([
+        //     'project_id' => 1,
+        //     'estimasi_orang' => 10,
+        //     'user_id' => 15,
+        //     'jobdesc' => 'Analisis Sistem Finance',
+        //     'startdate' => '2022-07-13',
+        //     'enddate' => '2022-08-12'
+        // ]);
+        // DetailProject::create([
+        //     'project_id' => 1,
+        //     'estimasi_orang' => 15,
+        //     'user_id' => 6,
+        //     'jobdesc' => 'Setup Kepesertaan',
+        //     'startdate' => '2022-03-20',
+        //     'enddate' => '2022-06-13'
+        // ]);
+        // DetailProject::create([
+        //     'project_id' => 1,
+        //     'estimasi_orang' => 8,
+        //     'user_id' => 15,
+        //     'jobdesc' => 'Analisis Sistem API',
+        //     'startdate' => '2022-03-20',
+        //     'enddate' => '2022-06-13'
+        // ]);
     }
 }

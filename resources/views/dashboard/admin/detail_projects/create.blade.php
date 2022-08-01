@@ -54,7 +54,7 @@
                                         <select name="user_id[]" id="mySelectionBox"
                                             class="form-control text-dark @error('user_id') is-invalid @enderror">
                                             <option value="" disabled selected data-name="{{ $users }}">Pilih
-                                                PIC</option>
+                                                Employee</option>
                                             @foreach ($users as $user)
                                                 <option value="{{ $user->id }}"
                                                     {{ Request::old('user_id') == $user->id ? 'selected' : '' }}>
