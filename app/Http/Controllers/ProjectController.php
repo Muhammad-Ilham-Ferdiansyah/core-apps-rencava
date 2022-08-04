@@ -46,18 +46,42 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData =  $request->validate([
-            'project_name' => ['required', 'max:255'],
-            'client_id' => ['required'],
-            'product_id' => ['required'],
-            'user_id' => ['required'],
-            'technology' => ['required', 'max:255'],
-            'budget' => ['required'],
-            'startdate' => ['required', 'date'],
-            'enddate' => ['required', 'date']
-        ]);
+        // $request->validate([
+        //     'project_name' => ['required', 'max:255'],
+        //     'client_id' => ['required'],
+        //     'product_id' => ['required'],
+        //     'user_id' => ['required'],
+        //     'technology' => ['required', 'max:255'],
+        //     'budget' => ['required'],
+        //     'startdate' => ['required', 'date'],
+        //     'enddate' => ['required', 'date']
+        // ]);
+        $project_name = $request->project_name;
+        $client_id = $request->client_id;
+        $product_id = $request->product_id;
+        $user_id = $request->user_id;
+        $technology = $request->technology;
+        $budget = $request->budget;
+        $stardate = $request->startdate;
+        $enddate = $request->enddate;
 
-        Project::create($validateData);
+
+        for ($i = 0; $i < count($user_id); $i++) {
+            $validateData = [
+                'project_name' => $project_name,
+                'client_id' => $client_id,
+                'product_id' => $product_id[$i],
+                'user_id' => $user_id[$i],
+                'technology' => $technology[$i],
+                'budget' => $budget[$i],
+                'startdate' => $stardate[$i],
+                'enddate' => $enddate[$i]
+            ];
+            Project::create($validateData);
+        }
+
+
+        // Project::create($validateData);
 
         return redirect('dashboard/admin/projects')->with('success', 'Project has been added.');
     }

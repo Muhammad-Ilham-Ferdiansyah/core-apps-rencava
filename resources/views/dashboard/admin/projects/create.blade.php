@@ -48,122 +48,77 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label for="product_id" class="col-sm-3">Nama Produk</label>
-                                <div class="col-sm-9">
-                                    <select name="product_id"
+            </div>
+        </div>
+        <div class="card m-3">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table select-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Produk</th>
+                                <th scope="col">Project Manager</th>
+                                <th scope="col">Technology</th>
+                                <th scope="col">Budget</th>
+                                <th scope="col">Tanggal Mulai</th>
+                                <th scope="col">Tanggal Selesai</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select name="product_id[]" id="mySelectionBoxProduct"
                                         class="form-control text-dark @error('product_id') is-invalid @enderror">
-                                        <option value="" disabled selected>Pilih Produk</option>
+                                        <option value="" disabled selected data-name="{{ $products }}">Pilih
+                                            Product</option>
                                         @foreach ($products as $product)
                                             <option value="{{ $product->id }}"
                                                 {{ Request::old('product_id') == $product->id ? 'selected' : '' }}>
                                                 {{ $product->product_name }}</option>
                                         @endforeach
-                                        @error('product_id')
+                                        @error('project_id')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
                                         @enderror
                                     </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label for="user_id" class="col-sm-3">Manajer Proyek</label>
-                                <div class="col-sm-9">
-                                    <select name="user_id"
+                                </td>
+                                <td>
+                                    <select name="user_id[]" id="mySelectionBoxPM"
                                         class="form-control text-dark @error('user_id') is-invalid @enderror">
-                                        <option value="" disabled selected>Pilih Manajer Proyek</option>
+                                        <option value="" disabled selected data-name="{{ $users }}">Pilih
+                                            Project Manager</option>
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}"
                                                 {{ Request::old('user_id') == $user->id ? 'selected' : '' }}>
                                                 {{ $user->name }}</option>
                                         @endforeach
-                                        @error('user_id')
+                                        @error('project_id')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
                                         @enderror
                                     </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label for="technology" class="col-sm-3 mt-1">Teknologi</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control @error('technology') is-invalid @enderror"
-                                        id="technology" name="technology" placeholder="Nama Teknologi"
-                                        value="{{ old('technology') }}">
-                                    @error('technology')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label for="budget" class="col-sm-3 mt-1">Budget</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control @error('budget') is-invalid @enderror"
-                                        id="budget" name="budget" placeholder="Budget Project"
-                                        value="{{ old('budget') }}">
-                                    @error('budget')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label for="startdate" class="col-sm-3 mt-1">Tanggal Mulai</label>
-                                <div class="col-sm-9">
-                                    <input type="date" class="form-control @error('startdate') is-invalid @enderror"
-                                        id="startdate" name="startdate" placeholder="Tanggal Dimulai"
-                                        value="{{ old('startdate') }}">
-                                    @error('startdate')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label for="enddate" class="col-sm-3 mt-1">Tanggal Selesai</label>
-                                <div class="col-sm-9">
-                                    <input type="date" class="form-control @error('enddate') is-invalid @enderror"
-                                        id="enddate" name="enddate" placeholder="Tanggal Selesai"
-                                        value="{{ old('enddate') }}">
-                                    @error('enddate')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <a href="javascript:void(0);" onclick="location.href='/dashboard/admin/projects/store'"
-                            class="text-decoration-none">
-                            <button class="btn btn-primary">Add
-                            </button>
-                        </a>
-                        <a href="/dashboard/admin/projects" class="btn btn-outline-dark">Cancel</a>
-                    </div>
+                                </td>
+                                <td><input type="text" name="technology[]" class="form-control"></td>
+                                <td><input type="text" name="budget[]" class="form-control"></td>
+                                <td><input type="date" name="startdate[]" class="form-control"></td>
+                                <td><input type="date" name="enddate[]" class="form-control"></td>
+                                <td> <button type="button" class="btn btn-sm btn-success" id="add_btn_project"><i
+                                            class="ti-plus fw-bold"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-3">
+                    <a href="javascript:void(0);" onclick="location.href='/dashboard/admin/projects/store'"
+                        class="text-decoration-none">
+                        <button class="btn btn-primary">Add
+                        </button>
+                    </a>
+                    <a href="/dashboard/admin/projects" class="btn btn-outline-dark">Cancel</a>
+                </div>
                 </form>
             </div>
         </div>

@@ -292,26 +292,26 @@ class DatabaseSeeder extends Seeder
             'address' => 'Jl. K.S. Tubun No.67, RT.2/RW.3, Petamburan, Kecamatan Tanah Abang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10260'
         ]);
         //Isi table Project
-        Project::create([
-            'client_id' => 1,
-            'product_id' => 1,
-            'user_id' => 12,
-            'project_name' => 'Unit Linked Software Development and Implementation',
-            'technology' => 'Client Server, SQL Server, Power Builder',
-            'budget' => '1.200.000.000',
-            'startdate' => '2022-07-13',
-            'enddate' => '2022-10-11'
-        ]);
-        Project::create([
-            'client_id' => 2,
-            'product_id' => 2,
-            'user_id' => 12,
-            'project_name' => 'Individual Life Insurance Development and Implementation',
-            'technology' => 'Client Server with SQL Server and Power Bulider',
-            'budget' => '2.000.000.000',
-            'startdate' => '2022-11-13',
-            'enddate' => '2022-01-13'
-        ]);
+        // Project::create([
+        //     'client_id' => 1,
+        //     'product_id' => 1,
+        //     'user_id' => 12,
+        //     'project_name' => 'Unit Linked Software Development and Implementation',
+        //     'technology' => 'Client Server, SQL Server, Power Builder',
+        //     'budget' => '1.200.000.000',
+        //     'startdate' => '2022-07-13',
+        //     'enddate' => '2022-10-11'
+        // ]);
+        // Project::create([
+        //     'client_id' => 2,
+        //     'product_id' => 2,
+        //     'user_id' => 12,
+        //     'project_name' => 'Individual Life Insurance Development and Implementation',
+        //     'technology' => 'Client Server with SQL Server and Power Bulider',
+        //     'budget' => '2.000.000.000',
+        //     'startdate' => '2022-11-13',
+        //     'enddate' => '2022-01-13'
+        // ]);
         //Isi table detail_project
         // DetailProject::create([
         //     'project_id' => 1,

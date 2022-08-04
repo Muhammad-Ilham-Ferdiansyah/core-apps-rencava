@@ -306,6 +306,41 @@
             $(this).closest('tr').remove();
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#add_btn_project').on('click', function() {
+                let html = '';
+                html += '<tr>';
+                html += '<td><select name="product_id[]" class="form-control text-dark">'
+                $("#mySelectionBoxProduct option").each(function() {
+                    html += '<option value="' + this.value + '">' +
+                        this
+                        .text +
+                        '</option>';
+                });
+                html += '</select></td>';
+                html += '<td><select name="user_id[]" class="form-control text-dark">'
+                $("#mySelectionBoxPM option").each(function() {
+                    html += '<option value="' + this.value + '">' +
+                        this
+                        .text +
+                        '</option>';
+                });
+                html += '</select></td>';
+                html += `<td><input type="text" name="technology[]" class="form-control"></td>`;
+                html += `<td><input type="text" name="budget[]" class="form-control"></td>`;
+                html += `<td><input type="date" name="startdate[]" class="form-control"></td>`;
+                html += `<td><input type="date" name="enddate[]" class="form-control"></td>`;
+                html += `<td> <button type="button" class="btn btn-sm btn-danger" id="remove"><i
+                                                class="ti-close fw-bold"></i></button></td>`;
+                html += '</tr>';
+                $('tbody').append(html)
+            });
+        });
+        $(document).on('click', '#remove', function() {
+            $(this).closest('tr').remove();
+        });
+    </script>
 
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script> --}}
     <!-- End custom js for this page-->
