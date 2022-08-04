@@ -173,7 +173,8 @@ class DetailProjectController extends Controller
     {
         $detail_project = DetailProject::find($id);
         $detail_project->delete();
+        MonitoringProject::where('detail_project_id', $id)->delete();
 
-        return redirect('dashboard/admin/detail_projects/' . $id);
+        return redirect('dashboard/admin/detail_projects/');
     }
 }

@@ -248,87 +248,6 @@ class DatabaseSeeder extends Seeder
             'menu_desc' => 'Monitoring Proyek'
         ]);
 
-        RoleMenu::create([
-            'app_menu_id' => 1,
-            'role_id' => 1,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 2,
-            'role_id' => 1,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 3,
-            'role_id' => 1,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 4,
-            'role_id' => 1,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 5,
-            'role_id' => 1,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 6,
-            'role_id' => 1,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 7,
-            'role_id' => 1,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 8,
-            'role_id' => 1,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 9,
-            'role_id' => 1,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 10,
-            'role_id' => 1,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 11,
-            'role_id' => 1,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 12,
-            'role_id' => 1,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 13,
-            'role_id' => 1,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 14,
-            'role_id' => 1,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 1,
-            'role_id' => 2,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 2,
-            'role_id' => 2,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 3,
-            'role_id' => 2,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 4,
-            'role_id' => 2,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 1,
-            'role_id' => 3,
-        ]);
-        RoleMenu::create([
-            'app_menu_id' => 3,
-            'role_id' => 3,
-        ]);
-
         Product::create([
             'product_name' => 'PlitaSoft ILIIS',
             'product_desc' => 'Individual Life Insurance Information System (Conventional, Unit Link, Health, Sharia)'
@@ -364,12 +283,12 @@ class DatabaseSeeder extends Seeder
         //Isi table Clients
         Client::create([
             'client_name' => 'PT. Asuransi Jiwa Central Asia Raya',
-            'client_image' => 'ajcar.jpg',
+            'client_image' => 'client-images/eGWWB33TZfvEfKWa0qkkgXBIdsAbE20dmMdD4nTu.jpg',
             'address' => 'Jl. Jend. Gatot Subroto Kav 74-75 Menteng Dalam Tebet Jakarta Selatan DKI Jakarta, RT.2/RW.1, Menteng Dalam, Kec. Tebet, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12870'
         ]);
         Client::create([
             'client_name' => 'PT. Asuransi Jiwa BNI Jiwasraya (BNI-Life)',
-            'client_image' => 'bni-life.jpg',
+            'client_image' => 'client-images/rPEdogdhaUPqe5aWXZB58XaoVoZI5RyTjju8ktKZ.png',
             'address' => 'Jl. K.S. Tubun No.67, RT.2/RW.3, Petamburan, Kecamatan Tanah Abang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10260'
         ]);
         //Isi table Project
