@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DetailProject;
 use App\Models\MonitoringProject;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class MonitoringProjectController extends Controller
@@ -18,7 +19,7 @@ class MonitoringProjectController extends Controller
         return view('dashboard.user.mn_projects.index', [
             'title' => 'Monitoring Project',
             'detail_projects' => DetailProject::where('user_id', auth()->user()->id)->get(),
-            'detail_by_pm' => DetailProject::all()
+            'project_by_pm' => Project::where('user_id', auth()->user()->id)->get()
         ]);
     }
 
@@ -51,18 +52,30 @@ class MonitoringProjectController extends Controller
         // $from = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $tglAwal);
         // $diff_in_days = $to->diffInDays($from);
         // dd($target[0]);
-        $request->validate([
+
+        $validateData = $request->validate([
             'detail_project_id' => ['required'],
             'date_progress' => ['required'],
+            'desc_progress' => ['required'],
             'progress' => ['required'],
+            'evidence' => ['image', 'file', 'max:1024'],
         ]);
 
-        MonitoringProject::create([
-            'detail_project_id' => $request->detail_project_id,
-            'date_progress' => $request->date_progress,
-            'progress' => $request->progress,
-            'target' => $target[0]->enddate
-        ]);
+
+        if ($request->file('evidence')) {
+            $validateData['evidence'] = $request->file('evidence')->store('evidence-images');
+        }
+
+        $validateData['target'] = $target[0]->enddate;
+
+        MonitoringProject::create($validateData);
+
+        // MonitoringProject::create([
+        //     'detail_project_id' => $request->detail_project_id,
+        //     'date_progress' => $request->date_progress,
+        //     'progress' => $request->progress,
+        //     'target' => $target[0]->enddate
+        // ]);
 
         return redirect('dashboard/user/mn_projects')->with('success', 'Progress has been added.');
     }
@@ -79,6 +92,22 @@ class MonitoringProjectController extends Controller
         return view('dashboard.user.mn_projects.show', [
             'title' => 'Detail Pekerjaan',
             'monitoring_projects' => MonitoringProject::where('detail_project_id', $id)->orderBy('date_progress', 'desc')->get()
+        ]);
+    }
+
+    public function assessment($id)
+    {
+        return view('dashboard.user.mn_projects.assessment', [
+            'title' => 'Assessment Pekerjaan',
+            'detail_projects' => DetailProject::where('project_id', $id)->get()
+        ]);
+    }
+
+    public function show_detail($id)
+    {
+        return view('dashboard.user.mn_projects.show_detail', [
+            'title' => 'Show Detail',
+            'monitoring_projects' => MonitoringProject::where('detail_project_id', $id)->get()
         ]);
     }
 
@@ -118,14 +147,5 @@ class MonitoringProjectController extends Controller
     public function destroy(MonitoringProject $monitoringProject)
     {
         //
-    }
-
-    public function assessment($id)
-    {
-        $detailProject = DetailProject::where('id', $id)->get();
-        return view('dashboard.user.mn_projects.assessment', [
-            'title' => 'Assessment ' . $detailProject[0]->jobdesc,
-            'detail_projects' => $detailProject
-        ]);
     }
 }

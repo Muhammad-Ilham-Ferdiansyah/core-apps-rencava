@@ -34,7 +34,7 @@ class DetailProjectController extends Controller
     {
         return view('dashboard.admin.detail_projects.create', [
             'title' => 'Add Detail Proyek',
-            'projects' => Project::all(),
+            'projects' => Project::where('user_id', auth()->user()->id)->get(),
             'products' => Product::all(),
             'users' => User::role('Software Engineer')->get()
         ]);

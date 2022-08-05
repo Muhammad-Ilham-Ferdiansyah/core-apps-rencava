@@ -5,7 +5,7 @@
         <div class="card m-3">
             <div class="card-body">
                 <h4 class="card-title">Add Detail Project</h4>
-                <form class="forms-sample" method="POST" action="/dashboard/user/mn_projects">
+                <form class="forms-sample" method="POST" action="/dashboard/user/mn_projects" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="detail_project_id" class="col-sm-3">Nama Proyek</label>
@@ -36,10 +36,43 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="progress">Progress</label>
-                        <input type="text" class="form-control @error('progress') is-invalid @enderror" id="progress"
-                            name="progress" placeholder="Progress" value="{{ old('progress') }}">
-                        @error('progress')
+                        <label for="desc_progress">Deskripsi Progress</label>
+                        <input type="text" class="form-control @error('desc_progress') is-invalid @enderror"
+                            id="desc_progress" name="desc_progress" placeholder="Deskripsi Progress"
+                            value="{{ old('desc_progress') }}">
+                        @error('desc_progress')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="progress">Persentase Progress</label>
+                                <div class="input-group">
+                                    <input type="text" id="progress"
+                                        name="progress"class="form-control @error('progress') is-invalid @enderror"
+                                        aria-label="Percentage" placeholder="Persentase Progress">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-primary text-white">%</span>
+                                    </div>
+                                    @error('progress')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="evidence" class="form-label">Evidence</label>
+                        <img class="img-preview img-fluid mb-3 col-sm-5 rounded-xl">
+                        <input type="file" class="form-control pb-4 @error('evidence') is-invalid @enderror"
+                            id="evidence" name="evidence" onchange="previewImage()">
+                        @error('evidence')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -58,4 +91,20 @@
         </div>
     </div>
     </div>
+    <script>
+        //preview image
+        function previewImage() {
+            const image = document.querySelector('#evidence');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
 @endsection

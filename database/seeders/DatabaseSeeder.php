@@ -63,10 +63,10 @@ class DatabaseSeeder extends Seeder
         $admin->assignRole('Admin');
 
         $owner = User::create([
-            'name' => 'I Made Artika',
-            'username' => 'imadeartika',
+            'name' => 'Lisandro Martinez',
+            'username' => 'Licha',
             'image' => 'profile-images/default.png',
-            'email' => 'imadeartika@gmail.com',
+            'email' => 'lisandro@gmail.com',
             'password' => bcrypt('password123'),
             'email_verified_at' => '2022-06-19 09:27:33'
         ]);
@@ -74,10 +74,10 @@ class DatabaseSeeder extends Seeder
 
 
         $user = User::create([
-            'name' => 'Raihan Malikul Mulki',
-            'username' => 'razorraih01',
+            'name' => 'Scott McTominay',
+            'username' => 'McTominay',
             'image' => 'profile-images/default.png',
-            'email' => 'razorraihan000@gmail.com',
+            'email' => 'mctominay@gmail.com',
             'password' => bcrypt('password123'),
             'email_verified_at' => '2022-06-22 09:17:33'
         ]);
@@ -85,10 +85,10 @@ class DatabaseSeeder extends Seeder
         $user->assignRole('Project Manager');
 
         $user = User::create([
-            'name' => 'I Kade Budiarta',
-            'username' => 'ikade',
-            'image' => 'profile-images/default.png',
-            'email' => 'ikadebudiarta@gmail.com',
+            'name' => 'James Maddison',
+            'username' => 'madds',
+            'image' => 'profile-images/XuuBXBrhxnarr98TCv2y2UU46EN38klq6fEHheA1.png',
+            'email' => 'maddison@gmail.com',
             'password' => bcrypt('password123'),
             'email_verified_at' => '2022-09-22 09:17:33'
         ]);
@@ -100,6 +100,17 @@ class DatabaseSeeder extends Seeder
             'username' => 'azmi18',
             'image' => 'profile-images/default.png',
             'email' => 'mraihanna.18@gmail.com',
+            'password' => bcrypt('password123'),
+            'email_verified_at' => '2022-09-22 09:17:33'
+        ]);
+
+        $user->assignRole('Software Engineer');
+
+        $user = User::create([
+            'name' => 'Aldo Dwie',
+            'username' => 'aldo',
+            'image' => 'profile-images/default.png',
+            'email' => 'aldodwrzy@gmail.com',
             'password' => bcrypt('password123'),
             'email_verified_at' => '2022-09-22 09:17:33'
         ]);
@@ -295,7 +306,7 @@ class DatabaseSeeder extends Seeder
         Project::create([
             'client_id' => 1,
             'product_id' => 1,
-            'user_id' => 12,
+            'user_id' => 14,
             'project_name' => 'Unit Linked Software Development and Implementation',
             'technology' => 'Client Server, SQL Server, Power Builder',
             'budget' => '1.200.000.000',

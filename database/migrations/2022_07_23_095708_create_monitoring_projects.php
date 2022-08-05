@@ -18,7 +18,9 @@ class CreateMonitoringProjects extends Migration
             $table->foreignId('detail_project_id');
             $table->date('date_progress');
             $table->date('target');
-            $table->text('progress');
+            $table->text('desc_progress');
+            $table->string('progress');
+            $table->string('evidence');
             $table->string('status')->nullable();
             $table->date('date_selesai')->nullable();
             $table->string('evaluasi')->nullable();

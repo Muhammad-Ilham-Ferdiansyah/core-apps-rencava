@@ -98,6 +98,7 @@
                                         <th>No</th>
                                         <th>Tanggal</th>
                                         <th>Progress</th>
+                                        <th>Persentase</th>
                                         <th>Target</th>
                                         <th>Status</th>
                                     </tr>
@@ -111,14 +112,23 @@
                                                 {{ date('d M Y', strtotime($mn_project->date_progress)) }}
                                             </td>
                                             <td>
-                                                {{ $mn_project->progress }}
+                                                {{ $mn_project->desc_progress }}
+                                            </td>
+                                            <td>
+                                                {{ $mn_project->progress . '%' }}
                                             </td>
                                             <td>
                                                 {{ date('d M Y', strtotime($mn_project->target)) }}
                                             </td>
-                                            <td>
-                                                <div class="badge badge-opacity-warning">On Going</div>
-                                            </td>
+                                            @if ($mn_project->progress < 100)
+                                                <td>
+                                                    <div class="badge badge-opacity-warning">On Going</div>
+                                                </td>
+                                            @else
+                                                <td>
+                                                    <div class="badge badge-opacity-success">Completed</div>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

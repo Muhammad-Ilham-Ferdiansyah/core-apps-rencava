@@ -2,21 +2,21 @@
 @section('container')
     <div class="contain-wrapper">
         @if (auth()->user()->roles->first()->id == 3)
-            <div class="row m-2">
-                @foreach ($detail_by_pm as $item)
+            <div class="row m-3">
+                @foreach ($project_by_pm as $item)
                     <div class="col-md-4 col-lg-4 grid-margin stretch-card">
                         <div class="card card-rounded">
                             <div class="card-body card-rounded">
                                 <div class="list align-items-center border-bottom py-2">
                                     <div class="wrapper w-100">
                                         <p class="mb-2 fw-bold">
-                                            Nama Karyawan
+                                            Nama Proyek
                                         </p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex align-items-center">
-                                                <i class="mdi mdi-account me-1"></i>
+                                                <i class="mdi mdi-cube-send me-1"></i>
                                                 <p class="mb-0 text-small">
-                                                    {{ $item->user->name }}
+                                                    {{ $item->project_name }}
                                                 </p>
                                             </div>
                                         </div>
@@ -25,13 +25,28 @@
                                 <div class="list align-items-center border-bottom py-2">
                                     <div class="wrapper w-100">
                                         <p class="mb-2 fw-bold">
-                                            Pekerjaan
+                                            Nama Produk
+                                        </p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <i class="mdi mdi-cube-outline me-1"></i>
+                                                <p class="mb-0 text-small">
+                                                    {{ $item->product->product_name }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list align-items-center border-bottom py-2">
+                                    <div class="wrapper w-100">
+                                        <p class="mb-2 fw-bold">
+                                            Teknologi
                                         </p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex align-items-center">
                                                 <i class="mdi mdi-file-outline me-1"></i>
                                                 <p class="mb-0 text-small">
-                                                    {{ $item->jobdesc }}
+                                                    {{ $item->technology }}
                                                 </p>
                                             </div>
                                         </div>
@@ -47,7 +62,7 @@
                                             <div class="d-flex align-items-center">
                                                 <i class="mdi mdi-calendar me-1"></i>
                                                 <p class="mb-0 text-small">
-
+                                                    {{ date('d/m/Y', strtotime($item->startdate)) }}
                                                 </p>
                                             </div>
                                         </div>
@@ -62,10 +77,19 @@
                                             <div class="d-flex align-items-center">
                                                 <i class="mdi mdi-calendar me-1"></i>
                                                 <p class="mb-0 text-small">
-
+                                                    {{ date('d/m/Y', strtotime($item->enddate)) }}
                                                 </p>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="list align-items-center pt-3">
+                                    <div class="wrapper w-100">
+                                        <p class="mb-0">
+                                            <a href="/dashboard/user/mn_projects/assessment/{{ $item->id }}"
+                                                class="fw-bold text-primary">
+                                                Show detail</a>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
