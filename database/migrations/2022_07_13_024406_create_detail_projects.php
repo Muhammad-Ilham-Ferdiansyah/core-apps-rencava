@@ -19,6 +19,7 @@ class CreateDetailProjects extends Migration
             $table->string('estimasi_orang')->nullable();
             $table->foreignId('user_id');
             $table->text('jobdesc');
+            $table->foreignId('complexity_id');
             $table->date('startdate')->nullable();
             $table->date('enddate')->nullable();
             $table->timestamps();

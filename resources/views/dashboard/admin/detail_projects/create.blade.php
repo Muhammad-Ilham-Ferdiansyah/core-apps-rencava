@@ -41,8 +41,9 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">Employee</th>
+                                    <th scope="col">Software Enginner</th>
                                     <th scope="col">Deskripsi Pekerjaan</th>
+                                    <th scope="col">Kompleksitas</th>
                                     <th scope="col">Tanggal Mulai</th>
                                     <th scope="col">Tanggal Selesai</th>
                                     <th scope="col">Aksi</th>
@@ -54,7 +55,7 @@
                                         <select name="user_id[]" id="mySelectionBox"
                                             class="form-control text-dark @error('user_id') is-invalid @enderror">
                                             <option value="" disabled selected data-name="{{ $users }}">Pilih
-                                                Employee</option>
+                                                Software Engineer</option>
                                             @foreach ($users as $user)
                                                 <option value="{{ $user->id }}"
                                                     {{ Request::old('user_id') == $user->id ? 'selected' : '' }}>
@@ -68,6 +69,24 @@
                                         </select>
                                     </td>
                                     <td><input type="text" name="jobdesc[]" class="form-control"></td>
+                                    <td>
+                                        <select name="complexity_id[]" id="mySelectionBoxComplexity"
+                                            class="form-control text-dark @error('complexity_id') is-invalid @enderror">
+                                            <option value="" disabled selected data-name="{{ $complexities }}">Pilih
+                                                Kompleksitas</option>
+                                            @foreach ($complexities as $complexity)
+                                                {{-- {{ dd($complexity) }} --}}
+                                                <option value="{{ $complexity->id }}"
+                                                    {{ Request::old('complexity_id') == $complexity->id ? 'selected' : '' }}>
+                                                    {{ $complexity->name }}</option>
+                                            @endforeach
+                                            @error('complexity_id')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </select>
+                                    </td>
                                     <td><input type="date" name="startdate[]" class="form-control"></td>
                                     <td><input type="date" name="enddate[]" class="form-control"></td>
                                     <td> <button type="button" class="btn btn-sm btn-success" id="add_btn"><i

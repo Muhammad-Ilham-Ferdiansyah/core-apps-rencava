@@ -294,6 +294,14 @@
                 });
                 html += '</select></td>';
                 html += `<td><input type="text" name="jobdesc[]" class="form-control"></td>`;
+                html += '<td><select name="complexity_id[]" class="form-control text-dark">'
+                $("#mySelectionBoxComplexity option").each(function() {
+                    html += '<option value="' + this.value + '">' +
+                        this
+                        .text +
+                        '</option>';
+                });
+                html += '</select></td>';
                 html += `<td><input type="date" name="startdate[]" class="form-control"></td>`;
                 html += `<td><input type="date" name="enddate[]" class="form-control"></td>`;
                 html += `<td> <button type="button" class="btn btn-sm btn-danger" id="remove"><i

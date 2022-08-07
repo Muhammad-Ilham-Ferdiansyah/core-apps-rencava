@@ -25,4 +25,8 @@ class DetailProject extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function complexity()
+    {
+        return $this->belongsTo(Complexity::class);
+    }
 }

@@ -4,7 +4,7 @@
     <div class="contain-wrapper">
         <div class="card m-3">
             <div class="card-body">
-                <h4 class="card-title">Add Detail Project</h4>
+                <h4 class="card-title">Add Progress</h4>
                 <form class="forms-sample" method="POST" action="/dashboard/user/mn_projects" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">

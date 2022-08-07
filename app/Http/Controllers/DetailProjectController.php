@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Complexity;
 use App\Models\DetailProject;
 use App\Models\MonitoringProject;
 use App\Models\Product;
@@ -35,7 +36,7 @@ class DetailProjectController extends Controller
         return view('dashboard.admin.detail_projects.create', [
             'title' => 'Add Detail Proyek',
             'projects' => Project::where('user_id', auth()->user()->id)->get(),
-            'products' => Product::all(),
+            'complexities' => Complexity::all(),
             'users' => User::role('Software Engineer')->get()
         ]);
     }
@@ -59,6 +60,7 @@ class DetailProjectController extends Controller
         $project_id = $request->project_id;
         $estimasi_orang = $request->estimasi_orang;
         $user_id = $request->user_id;
+        $complexity_id = $request->complexity_id;
         $jobdesc = $request->jobdesc;
         $stardate = $request->startdate;
         $enddate = $request->enddate;
@@ -70,6 +72,7 @@ class DetailProjectController extends Controller
                 'estimasi_orang' => $estimasi_orang,
                 'user_id' => $user_id[$i],
                 'jobdesc' => $jobdesc[$i],
+                'complexity_id' => $complexity_id[$i],
                 'startdate' => $stardate[$i],
                 'enddate' => $enddate[$i]
             ];
@@ -112,6 +115,11 @@ class DetailProjectController extends Controller
             'detail_project_users' => $detailProjectUsers->first(),
         ]);
     }
+
+    // public function add_revision($id)
+    // {
+    //     return view('dashboard.user.detail')
+    // }
 
     /**
      * Show the form for editing the specified resource.

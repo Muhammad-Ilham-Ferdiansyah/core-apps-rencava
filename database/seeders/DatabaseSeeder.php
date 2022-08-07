@@ -12,6 +12,7 @@ use App\Models\Project;
 use App\Models\RoleMenu;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -87,7 +88,7 @@ class DatabaseSeeder extends Seeder
         $user = User::create([
             'name' => 'James Maddison',
             'username' => 'madds',
-            'image' => 'profile-images/XuuBXBrhxnarr98TCv2y2UU46EN38klq6fEHheA1.png',
+            'image' => 'profile-images/PYUyvEMzbE7HGhLavmqkthmwqF0zjI5O2dN28HIW.png',
             'email' => 'maddison@gmail.com',
             'password' => bcrypt('password123'),
             'email_verified_at' => '2022-09-22 09:17:33'
@@ -96,10 +97,10 @@ class DatabaseSeeder extends Seeder
         $user->assignRole('Project Manager');
 
         $user = User::create([
-            'name' => 'Muhammad Raihan Nur Azmii',
-            'username' => 'azmi18',
-            'image' => 'profile-images/default.png',
-            'email' => 'mraihanna.18@gmail.com',
+            'name' => 'John Doe',
+            'username' => 'johndoe',
+            'image' => 'profile-images/yNRS7zqgBveIE1lRKEksn1OHZte1KvPIMrn7Vfkz.png',
+            'email' => 'johndoe@gmail.com',
             'password' => bcrypt('password123'),
             'email_verified_at' => '2022-09-22 09:17:33'
         ]);
@@ -323,30 +324,28 @@ class DatabaseSeeder extends Seeder
             'startdate' => '2022-11-13',
             'enddate' => '2022-01-13'
         ]);
-        //Isi table detail_project
-        // DetailProject::create([
-        //     'project_id' => 1,
-        //     'estimasi_orang' => 10,
-        //     'user_id' => 15,
-        //     'jobdesc' => 'Analisis Sistem Finance',
-        //     'startdate' => '2022-07-13',
-        //     'enddate' => '2022-08-12'
-        // ]);
-        // DetailProject::create([
-        //     'project_id' => 1,
-        //     'estimasi_orang' => 15,
-        //     'user_id' => 6,
-        //     'jobdesc' => 'Setup Kepesertaan',
-        //     'startdate' => '2022-03-20',
-        //     'enddate' => '2022-06-13'
-        // ]);
-        // DetailProject::create([
-        //     'project_id' => 1,
-        //     'estimasi_orang' => 8,
-        //     'user_id' => 15,
-        //     'jobdesc' => 'Analisis Sistem API',
-        //     'startdate' => '2022-03-20',
-        //     'enddate' => '2022-06-13'
-        // ]);
+
+        DB::table('complexities')->insert([
+            'name' => 'Mudah',
+            'desc_complexity' => 'Complexity Easy Point (1)'
+        ]);
+        DB::table('complexities')->insert([
+            'name' => 'Normal',
+            'desc_complexity' => 'Complexity Normal Point (2)'
+        ]);
+
+        DB::table('complexities')->insert([
+            'name' => 'Sulit',
+            'desc_complexity' => 'Complexity Hard Point (3)'
+        ]);
+        DB::table('complexities')->insert([
+            'name' => 'Sangat Sulit',
+            'desc_complexity' => 'Complexity Very Hard Point (4)'
+        ]);
+
+        DB::table('complexities')->insert([
+            'name' => 'Kompleks',
+            'desc_complexity' => 'Complexity Expert Point (5)'
+        ]);
     }
 }

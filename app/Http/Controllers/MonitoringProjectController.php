@@ -111,6 +111,17 @@ class MonitoringProjectController extends Controller
         ]);
     }
 
+    public function add_revision(Request $request, $id)
+    {
+        if ($request->isMethod('put')) {
+            $data = $request->all();
+
+            MonitoringProject::where(['id' => $id])->update(['revision' => $data['revision']]);
+
+            return redirect()->back()->with('success', 'Revision has been sended.');
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
