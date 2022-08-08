@@ -291,6 +291,16 @@ class DatabaseSeeder extends Seeder
             'published' => 1,
             'menu_desc' => 'Matriks Perbandingan Alternatif dan Kriteria'
         ]);
+        Menu::create([
+            'menu_name' => 'Matriks Ternormalisasi',
+            'main_id' => 4,
+            'link' => 'admin/matrix_normalize',
+            'clicked' => 'matrix_normalize',
+            'orderno' => 43,
+            'icon' => '',
+            'published' => 1,
+            'menu_desc' => 'Matriks Ternormalisasi'
+        ]);
 
         Product::create([
             'product_name' => 'PlitaSoft ILIIS',

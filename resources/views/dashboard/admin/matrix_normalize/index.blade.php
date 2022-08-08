@@ -11,10 +11,10 @@
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">ID Detail <span class="badge badge-success">Alternatif</span></th>
-                                <th scope="col">Kompleksitas <span class="badge badge-warning">Kriteria</span></th>
-                                <th scope="col">Waktu <span class="badge badge-warning">Kriteria</span></th>
-                                <th scope="col">Revisi <span class="badge badge-warning">Kriteria</span></th>
+                                <th scope="col">ID Detail</th>
+                                <th scope="col">Kompleksitas</th>
+                                <th scope="col">Waktu</th>
+                                <th scope="col">Revisi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,26 +31,10 @@
                                         {{ $md->evaluasi }}
                                     </td>
                                     <td>
-                                        <?php $rev = DB::table('monitoring_projects')
-                                            ->select('revision')
-                                            ->where('detail_project_id', '=', $md->detail_project_id)
-                                            ->get(); ?>
-                                        <?php $i = 0; ?>
-                                        @foreach ($rev as $r)
-                                            @if ($r->revision != null)
-                                                <?php $i = $i + 1; ?>
-                                            @endif
-                                        @endforeach
-
-                                        @if ($i > 4)
-                                            {{ 5 }}
-                                        @elseif ($i < 4)
-                                            {{ $i + 1 }}
-                                        @endif
+                                        {{ $md->total_rev }}
                                     </td>
                                 </tr>
                             @endforeach
-
                         </tbody>
                     </table>
                     <!-- Modal -->
