@@ -19,7 +19,7 @@ class MonitoringProjectController extends Controller
     {
         return view('dashboard.user.mn_projects.index', [
             'title' => 'Monitoring Project',
-            'detail_projects' => DetailProject::where('user_id', auth()->user()->id)->where('created_at', 'desc')->get(),
+            'detail_projects' => DetailProject::where('user_id', auth()->user()->id)->get(),
             'project_by_pm' => Project::where('user_id', auth()->user()->id)->get()
         ]);
     }
@@ -124,16 +124,41 @@ class MonitoringProjectController extends Controller
 
     public function approved($id)
     {
-        $completed = MonitoringProject::all();
+        // $completed = MonitoringProject::where();
         // $not_completed = MonitoringProject::where('progress', '<>', 100)->get();
         $data = MonitoringProject::where('id', $id)->get();
         $data_target = $data[0]->progress;
+        $date_selesai = $data[0]->date_progress;
+        $date_target = $data[0]->target;
 
-        // dd($completed[0]->progress);
+        function dateDiffInDays($date_selesai, $date_target)
+        {
+            $diff = strtotime($date_selesai) - strtotime($date_target);
+            return abs(round($diff / 86400));
+        }
 
-        if ($completed[0]->progress == 100) {
-            MonitoringProject::where(['id' => $id])->update(['status' => 100]);
-        } else {
+        $get_day = (dateDiffInDays($date_selesai, $date_target));
+
+        if ($date_target >= $date_selesai) {
+            $evaluasi = 5;
+        } else if (($date_target < $date_selesai) && $get_day == 1) {
+            $evaluasi = 4;
+        } else if (($date_target < $date_selesai) && $get_day == 2) {
+            $evaluasi = 3;
+        } else if (($date_target < $date_selesai) && $get_day == 3) {
+            $evaluasi = 2;
+        } else if (($date_target < $date_selesai) && $get_day == 4) {
+            $evaluasi = 1;
+        }
+
+
+        if ($data[0]->progress == 100) {
+            MonitoringProject::where(['id' => $id])->update([
+                'status' => 100,
+                'date_selesai' => $date_selesai,
+                'evaluasi' => $evaluasi
+            ]);
+        } elseif ($data[0]->progress != 100) {
             MonitoringProject::where(['id' => $id])->update(['status' => $data_target]);
         }
 

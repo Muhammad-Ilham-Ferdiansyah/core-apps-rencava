@@ -5,7 +5,7 @@
         {{-- {{ dd($monitoring_projects) }} --}}
         @if ($monitoring_projects->count())
             <div class="m-3">
-                <a href="/dashboard/user/mn_projects/assessment/{{ $monitoring_projects[0]->id }}"
+                <a href="/dashboard/user/mn_projects/assessment/{{ $monitoring_projects[0]->detail_project->project_id }}"
                     class="btn btn-primary text-decoration-none">
                     <i class="ti-arrow-left btn-icon-prepend"></i> Back</a>
 

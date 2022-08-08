@@ -1,23 +1,27 @@
 <?php
 
-use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\MenuController;
-use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\DetailProjectController;
-use App\Http\Controllers\DetailTeamController;
-use App\Http\Controllers\MonitoringProjectController;
-use App\Http\Controllers\SetupReferenceController;
-use App\Models\DetailProject;
 use App\Models\Menu;
 use App\Models\Project;
+use App\Models\DetailProject;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\DetailTeamController;
 use Spatie\Permission\Models\Role as ModelsRole;
+use App\Http\Controllers\DetailProjectController;
+use Symfony\Component\HttpKernel\Event\ViewEvent;
+use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\SetupReferenceController;
+use App\Http\Controllers\MonitoringProjectController;
+use App\Models\MonitoringProject;
+use phpDocumentor\Reflection\Types\Null_;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +88,35 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     // Route::get('dashboard/user/mn_projects/add_revision/{monitoring_projects:id}', [MonitoringProjectController::class, 'add_revision']);
     //Setup Bobot
     Route::resource('dashboard/admin/setup_reference', SetupReferenceController::class);
+    //Matriks Perbandingan
+    Route::get('dashboard/admin/matrix_difference', function () {
+        // $detail = DB::table('monitoring_projects')->where('revision', '!=', null)->get();
+        // $id_detail = $detail[0]->detail_project_id;
+        // $get_day = MonitoringProject::select('target', 'date_selesai')->get();
+        // $get_target = $get_day[0]->target;
+        // $get_selesai = $get_day[0]->date_selesai;
+
+        // function dateDiffInDays($get_target, $get_selesai)
+        // {
+        //     $diff = strtotime($get_target) - strtotime($get_selesai);
+        //     return abs(round($diff / 86400));
+        // }
+        // dd($get_selesai);
+        // dd(dateDiffInDays($get_target, $get_selesai));
+        // $revision = MonitoringProject::all();
+        $revision = DB::table('monitoring_projects')->join('detail_projects', 'monitoring_projects.detail_project_id', '=', 'detail_projects.id')
+            ->where('progress', '=', 100)->where('status', '=', 100)
+            ->select('detail_project_id', 'evaluasi', DB::raw('count(revision)+1 as total_rev'), 'complexity_id')
+            ->groupBy('detail_project_id')
+            ->get();
+        // dd($revision);
+        //$revision = MonitoringProject::where('revision', '!=', null)->where('detail_project_id', $id_detail)->count();
+        return view('dashboard.admin.matrix_difference.index', [
+            'title' => 'Matriks Perbandingan Alternatif dan Kriteria',
+            'matrix_differences' => DB::table('monitoring_projects')->orderBy('detail_project_id', 'asc')->get()->unique('detail_project_id'),
+            'revision' => $revision
+        ]);
+    });
 });
 
 require __DIR__ . '/auth.php';

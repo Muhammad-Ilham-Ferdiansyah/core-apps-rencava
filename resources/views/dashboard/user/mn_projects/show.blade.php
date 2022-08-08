@@ -137,9 +137,13 @@
                                                 <td>
                                                     <div class="badge badge-opacity-warning">On Going</div>
                                                 </td>
-                                            @else
+                                            @elseif ($mn_project->progress == 100 && $mn_project->status == 100)
                                                 <td>
                                                     <div class="badge badge-opacity-success">Completed</div>
+                                                </td>
+                                            @else
+                                                <td>
+                                                    <div class="badge badge-opacity-info">Review by PM</div>
                                                 </td>
                                             @endif
                                         </tr>
@@ -154,22 +158,22 @@
     </div>
     {{-- Modal --}}
     @foreach ($monitoring_projects as $mn_project)
-    @endforeach
-    <div class="modal fade" id="revision-modal-{{ $mn_project->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Revisi '{{ $mn_project->desc_progress }}'</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    {{ $mn_project->revision }}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <div class="modal fade" id="revision-modal-{{ $mn_project->id }}" tabindex="-1"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Revisi '{{ $mn_project->desc_progress }}'</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ $mn_project->revision }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endforeach
 @endsection

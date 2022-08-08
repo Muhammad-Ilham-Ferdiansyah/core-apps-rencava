@@ -109,6 +109,17 @@ class DatabaseSeeder extends Seeder
         $user->assignRole('Software Engineer');
 
         $user = User::create([
+            'name' => 'Peter Drury',
+            'username' => 'peterdrury',
+            'image' => 'profile-images/yNRS7zqgBveIE1lRKEksn1OHZte1KvPIMrn7Vfkz.png',
+            'email' => 'peter@gmail.com',
+            'password' => bcrypt('password123'),
+            'email_verified_at' => '2022-09-22 09:17:33'
+        ]);
+
+        $user->assignRole('Software Engineer');
+
+        $user = User::create([
             'name' => 'Aldo Dwie',
             'username' => 'aldo',
             'image' => 'profile-images/default.png',
@@ -269,6 +280,16 @@ class DatabaseSeeder extends Seeder
             'icon' => '',
             'published' => 1,
             'menu_desc' => 'Setup Referensi'
+        ]);
+        Menu::create([
+            'menu_name' => 'Matriks Perbandingan',
+            'main_id' => 4,
+            'link' => 'admin/matrix_difference',
+            'clicked' => 'matrix_difference',
+            'orderno' => 42,
+            'icon' => '',
+            'published' => 1,
+            'menu_desc' => 'Matriks Perbandingan Alternatif dan Kriteria'
         ]);
 
         Product::create([
