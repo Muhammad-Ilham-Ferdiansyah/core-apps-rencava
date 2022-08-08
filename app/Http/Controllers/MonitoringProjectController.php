@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DetailProject;
 use App\Models\MonitoringProject;
 use App\Models\Project;
+use Attribute;
 use Illuminate\Http\Request;
 
 class MonitoringProjectController extends Controller
@@ -18,7 +19,7 @@ class MonitoringProjectController extends Controller
     {
         return view('dashboard.user.mn_projects.index', [
             'title' => 'Monitoring Project',
-            'detail_projects' => DetailProject::where('user_id', auth()->user()->id)->get(),
+            'detail_projects' => DetailProject::where('user_id', auth()->user()->id)->where('created_at', 'desc')->get(),
             'project_by_pm' => Project::where('user_id', auth()->user()->id)->get()
         ]);
     }
@@ -115,11 +116,28 @@ class MonitoringProjectController extends Controller
     {
         if ($request->isMethod('put')) {
             $data = $request->all();
-
             MonitoringProject::where(['id' => $id])->update(['revision' => $data['revision']]);
 
             return redirect()->back()->with('success', 'Revision has been sended.');
         }
+    }
+
+    public function approved($id)
+    {
+        $completed = MonitoringProject::all();
+        // $not_completed = MonitoringProject::where('progress', '<>', 100)->get();
+        $data = MonitoringProject::where('id', $id)->get();
+        $data_target = $data[0]->progress;
+
+        // dd($completed[0]->progress);
+
+        if ($completed[0]->progress == 100) {
+            MonitoringProject::where(['id' => $id])->update(['status' => 100]);
+        } else {
+            MonitoringProject::where(['id' => $id])->update(['status' => $data_target]);
+        }
+
+        return redirect()->back()->with('success', 'Approval has been completed.');
     }
 
     /**

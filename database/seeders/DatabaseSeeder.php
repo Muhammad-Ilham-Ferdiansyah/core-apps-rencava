@@ -9,6 +9,7 @@ use App\Models\DetailProject;
 use App\Models\DetailTeam;
 use App\Models\Product;
 use App\Models\Project;
+use App\Models\Reference;
 use App\Models\RoleMenu;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -259,6 +260,16 @@ class DatabaseSeeder extends Seeder
             'published' => 1,
             'menu_desc' => 'Monitoring Proyek'
         ]);
+        Menu::create([
+            'menu_name' => 'Setup Referensi',
+            'main_id' => 4,
+            'link' => 'admin/setup_reference',
+            'clicked' => 'setup_referensi',
+            'orderno' => 41,
+            'icon' => '',
+            'published' => 1,
+            'menu_desc' => 'Setup Referensi'
+        ]);
 
         Product::create([
             'product_name' => 'PlitaSoft ILIIS',
@@ -346,6 +357,20 @@ class DatabaseSeeder extends Seeder
         DB::table('complexities')->insert([
             'name' => 'Kompleks',
             'desc_complexity' => 'Complexity Expert Point (5)'
+        ]);
+
+        //Setup Referensi
+        Reference::create([
+            'reference_name' => 'Kompleksitas',
+            'bobot' => 4
+        ]);
+        Reference::create([
+            'reference_name' => 'Waktu',
+            'bobot' => 5
+        ]);
+        Reference::create([
+            'reference_name' => 'Revisi',
+            'bobot' => 3
         ]);
     }
 }

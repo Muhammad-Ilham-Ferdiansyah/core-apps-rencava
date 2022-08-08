@@ -2,6 +2,7 @@
 
 @section('container')
     <div class="contain-wrapper">
+        {{-- {{ dd($monitoring_projects) }} --}}
         @if ($monitoring_projects->count())
             <div class="m-3">
                 <a href="/dashboard/user/mn_projects/assessment/{{ $monitoring_projects[0]->id }}"
@@ -9,7 +10,7 @@
                     <i class="ti-arrow-left btn-icon-prepend"></i> Back</a>
 
             </div>
-            <div class="row m-3">
+            <div class="row mt-3 ms-1">
                 @foreach ($monitoring_projects as $mproject)
                     <div class="col-lg-8 d-flex flex-column">
                         <div class="row flex-grow">
@@ -32,11 +33,21 @@
                                                 alt="{{ $mproject->jobdesc }}">
                                         </div>
                                         <div class="mt-3">
-                                            <button type="button" class="btn btn-dark" data-bs-toggle="modal"
-                                                data-bs-target="#revisionModal-{{ $mproject->id }}"> <i
-                                                    class="ti-comment-alt btn-icon-prepend"></i>
-                                                Tambah Revisi
-                                            </button>
+                                            @if ($mproject->status == null)
+                                                <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                                                    data-bs-target="#revisionModal-{{ $mproject->id }}"> <i
+                                                        class="ti-comment-alt btn-icon-prepend"></i>
+                                                    Tambah Revisi
+                                                </button>
+                                            @endif
+                                            @if ($mproject->revision == null)
+                                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                    data-bs-target="#approvalModal-{{ $mproject->id }}"
+                                                    {{ $mproject->status != null ? 'disabled' : '' }}> <i
+                                                        class="ti-check btn-icon-prepend"></i>
+                                                    {{ $mproject->status != null ? 'Approved' : 'Approval' }}
+                                                </button>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -81,6 +92,33 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary"
                             onclick="location.href='/dashboard/user/mn_projects/add_revision'">Save changes</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    @foreach ($monitoring_projects as $mproject)
+        <div class="modal fade" id="approvalModal-{{ $mproject->id }}" tabindex="-1" aria-labelledby="revisionModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Proses Approval</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/dashboard/user/mn_projects/approved/{{ $mproject->id }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="form-group">
+                                Apakah yakin untuk proses approval?
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-primary"
+                            onclick="location.href='/dashboard/user/mn_projects/approved'">Ya</button>
                     </div>
                     </form>
                 </div>

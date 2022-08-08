@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DetailProjectController;
 use App\Http\Controllers\DetailTeamController;
 use App\Http\Controllers\MonitoringProjectController;
+use App\Http\Controllers\SetupReferenceController;
 use App\Models\DetailProject;
 use App\Models\Menu;
 use App\Models\Project;
@@ -79,7 +80,10 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     Route::get('dashboard/user/mn_projects/assessment/{detail_projects:project_id}', [MonitoringProjectController::class, 'assessment']);
     Route::get('dashboard/user/mn_projects/show_details/{detail_projects:id}', [MonitoringProjectController::class, 'show_detail']);
     Route::put('dashboard/user/mn_projects/add_revision/{monitoring_projects:id}', [MonitoringProjectController::class, 'add_revision']);
+    Route::put('dashboard/user/mn_projects/approved/{monitoring_projects:id}', [MonitoringProjectController::class, 'approved']);
     // Route::get('dashboard/user/mn_projects/add_revision/{monitoring_projects:id}', [MonitoringProjectController::class, 'add_revision']);
+    //Setup Bobot
+    Route::resource('dashboard/admin/setup_reference', SetupReferenceController::class);
 });
 
 require __DIR__ . '/auth.php';
