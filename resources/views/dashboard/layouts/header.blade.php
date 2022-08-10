@@ -17,7 +17,8 @@
         <ul class="navbar-nav">
             <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
                 <h1 class="welcome-text text-dark">{{ $title }}</h1>
-                <h3 class="welcome-sub-text">Welcome back, {{ Auth::user()->name }}</h3>
+                <h3 class="welcome-sub-text">Welcome back, {{ Auth::user()->name }} as
+                    {{ Auth::user()->getRoleNames()->first() }}</h3>
             </li>
         </ul>
         <ul class="navbar-nav ms-auto">

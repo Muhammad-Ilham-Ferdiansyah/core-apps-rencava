@@ -100,7 +100,7 @@ class DatabaseSeeder extends Seeder
         $user = User::create([
             'name' => 'John Doe',
             'username' => 'johndoe',
-            'image' => 'profile-images/yNRS7zqgBveIE1lRKEksn1OHZte1KvPIMrn7Vfkz.png',
+            'image' => 'profile-images/bb1JwUVDGDu6eYAmriQYsyQxKQQ1VW4O2iZbh5cX.png',
             'email' => 'johndoe@gmail.com',
             'password' => bcrypt('password123'),
             'email_verified_at' => '2022-09-22 09:17:33'
@@ -111,7 +111,7 @@ class DatabaseSeeder extends Seeder
         $user = User::create([
             'name' => 'Peter Drury',
             'username' => 'peterdrury',
-            'image' => 'profile-images/yNRS7zqgBveIE1lRKEksn1OHZte1KvPIMrn7Vfkz.png',
+            'image' => 'profile-images/BI1WfksXFA7Lj3lhMypAdOtMZ32CaoxvXuyFzydU.png',
             'email' => 'peter@gmail.com',
             'password' => bcrypt('password123'),
             'email_verified_at' => '2022-09-22 09:17:33'

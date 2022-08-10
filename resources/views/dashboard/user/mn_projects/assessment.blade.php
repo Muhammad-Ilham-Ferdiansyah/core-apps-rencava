@@ -3,6 +3,11 @@
 @section('container')
     <div class="contain-wrapper">
         {{-- {{ dd($detail_projects) }} --}}
+        <div class="m-3">
+            <a href="/dashboard/user/mn_projects" class="btn btn-primary text-decoration-none">
+                <i class="ti-arrow-left btn-icon-prepend"></i> Back</a>
+
+        </div>
         <div class="card m-3">
             <div class="card-body">
                 <div class="table-responsive">

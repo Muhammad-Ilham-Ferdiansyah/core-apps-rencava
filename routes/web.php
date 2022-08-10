@@ -21,6 +21,7 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\SetupReferenceController;
 use App\Http\Controllers\MonitoringProjectController;
 use App\Models\MonitoringProject;
+use App\Models\Reference;
 use phpDocumentor\Reflection\Types\Null_;
 
 /*
@@ -96,12 +97,131 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
             ->get();
 
         return view('dashboard.admin.matrix_difference.index', [
-            'title' => 'Matriks Perbandingan Alternatif dan Kriteria',
+            'title' => 'Langkah Perhitungan Matriks',
             'matrix_differences' => DB::table('monitoring_projects')->orderBy('detail_project_id', 'asc')->get()->unique('detail_project_id'),
             'revision' => $revision
         ]);
     });
-    Route::get('dashboard/admin/matrix_normalize', function () {
+
+    //Tabs Langkah-langkah
+    Route::get('dashboard/admin/tab1', function () {
+        return view('dashboard.admin.tabs', [
+            'title' => 'Langkah Perhitungan Matriks',
+            'reference' => Reference::all()
+        ]);
+    });
+    Route::get('dashboard/admin/tab2', function () {
+        $revision = DB::table('monitoring_projects')->join('detail_projects', 'monitoring_projects.detail_project_id', '=', 'detail_projects.id')->where('evaluasi', '!=', NULL)
+            ->select('detail_project_id', 'evaluasi', DB::raw('count(*) as total_rev'), 'complexity_id')
+            ->groupBy('detail_project_id')
+            ->get();
+        return view('dashboard.admin.tabs', [
+            'title' => 'Langkah Perhitungan Matriks',
+            'matrix_differences' => DB::table('monitoring_projects')->orderBy('detail_project_id', 'asc')->get()->unique('detail_project_id'),
+            'revision' => $revision
+        ]);
+    });
+    Route::get('dashboard/admin/tab3', function () {
+        $pembagi = DB::table('monitoring_projects')->join('detail_projects', 'monitoring_projects.detail_project_id', '=', 'detail_projects.id')->where('evaluasi', '!=', NULL)
+            ->select('detail_project_id', 'evaluasi', DB::raw('count(*) as total_rev'), 'complexity_id')
+            ->groupBy('detail_project_id')
+            ->get();
+        $i = [];
+        $x = 0;
+        foreach ($pembagi as $pem) {
+            $a = pow($pem->complexity_id, 2);
+            $i[$x] = $a;
+            $x++;
+        }
+        $pembagiKompleksitas = array_sum($i);
+
+        //mencari pembagi waktu
+        $arrWaktu = [];
+        $indWaktu = 0;
+        foreach ($pembagi as $pem2) {
+            $doubleWaktu = pow($pem2->evaluasi, 2);
+            $arrWaktu[$indWaktu] = $doubleWaktu;
+            $indWaktu++;
+        }
+
+        $pembagiWaktu = array_sum($arrWaktu);
+
+        // dd($pembagiWaktu);
+        return view('dashboard.admin.tabs', [
+            'title' => 'Langkah Perhitungan Matriks',
+            'revision' => $pembagi,
+            'divider' => $pembagiKompleksitas,
+            'divider_time' => $pembagiWaktu,
+            // 'complexity' => $pembagi->complexity_id
+        ]);
+    });
+    Route::get('dashboard/admin/tab4', function () {
+        $pembagi = DB::table('monitoring_projects')->join('detail_projects', 'monitoring_projects.detail_project_id', '=', 'detail_projects.id')->where('evaluasi', '!=', NULL)
+            ->select('detail_project_id', 'evaluasi', DB::raw('count(*) as total_rev'), 'complexity_id')
+            ->groupBy('detail_project_id')
+            ->get();
+        $i = [];
+        $x = 0;
+        foreach ($pembagi as $pem) {
+            $a = pow($pem->complexity_id, 2);
+            $i[$x] = $a;
+            $x++;
+        }
+        $pembagiKompleksitas = array_sum($i);
+
+        //mencari pembagi waktu
+        $arrWaktu = [];
+        $indWaktu = 0;
+        foreach ($pembagi as $pem2) {
+            $doubleWaktu = pow($pem2->evaluasi, 2);
+            $arrWaktu[$indWaktu] = $doubleWaktu;
+            $indWaktu++;
+        }
+
+        $pembagiWaktu = array_sum($arrWaktu);
+
+        // dd($pembagiWaktu);
+        return view('dashboard.admin.tabs', [
+            'title' => 'Langkah Perhitungan Matriks',
+            'revision' => $pembagi,
+            'divider' => $pembagiKompleksitas,
+            'divider_time' => $pembagiWaktu,
+            // 'complexity' => $pembagi->complexity_id
+        ]);
+    });
+    Route::get('dashboard/admin/tab5', function () {
+        $pembagi = DB::table('monitoring_projects')->join('detail_projects', 'monitoring_projects.detail_project_id', '=', 'detail_projects.id')->where('evaluasi', '!=', NULL)
+            ->select('detail_project_id', 'evaluasi', DB::raw('count(*) as total_rev'), 'complexity_id')
+            ->groupBy('detail_project_id')
+            ->get();
+        $i = [];
+        $x = 0;
+        foreach ($pembagi as $pem) {
+            $a = pow($pem->complexity_id, 2);
+            $i[$x] = $a;
+            $x++;
+        }
+        $pembagiKompleksitas = array_sum($i);
+
+        //mencari pembagi waktu
+        $arrWaktu = [];
+        $indWaktu = 0;
+        foreach ($pembagi as $pem2) {
+            $doubleWaktu = pow($pem2->evaluasi, 2);
+            $arrWaktu[$indWaktu] = $doubleWaktu;
+            $indWaktu++;
+        }
+
+        $pembagiWaktu = array_sum($arrWaktu);
+
+        // dd($pembagiWaktu);
+        return view('dashboard.admin.tabs', [
+            'title' => 'Langkah Perhitungan Matriks',
+            'revision' => $pembagi,
+            'divider' => $pembagiKompleksitas,
+            'divider_time' => $pembagiWaktu,
+            // 'complexity' => $pembagi->complexity_id
+        ]);
     });
 });
 

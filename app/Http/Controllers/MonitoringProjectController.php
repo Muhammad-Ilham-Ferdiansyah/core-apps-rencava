@@ -149,6 +149,8 @@ class MonitoringProjectController extends Controller
             $evaluasi = 2;
         } else if (($date_target < $date_selesai) && $get_day == 4) {
             $evaluasi = 1;
+        } else {
+            $evaluasi = 1;
         }
 
 
