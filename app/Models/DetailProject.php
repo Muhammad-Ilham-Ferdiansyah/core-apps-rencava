@@ -29,4 +29,8 @@ class DetailProject extends Model
     {
         return $this->belongsTo(Complexity::class);
     }
+    public function preference()
+    {
+        return $this->hasMany(Preference::class);
+    }
 }

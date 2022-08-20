@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\DetailProject;
 use App\Models\MonitoringProject;
+use App\Models\Preference;
 use App\Models\Project;
+use Illuminate\Support\Facades\DB;
 use Attribute;
 use Illuminate\Http\Request;
 
@@ -127,6 +129,7 @@ class MonitoringProjectController extends Controller
         // $completed = MonitoringProject::where();
         // $not_completed = MonitoringProject::where('progress', '<>', 100)->get();
         $data = MonitoringProject::where('id', $id)->get();
+        $detailProject = DetailProject::where('id', $id)->get();
         $data_target = $data[0]->progress;
         $date_selesai = $data[0]->date_progress;
         $date_target = $data[0]->target;
@@ -153,6 +156,31 @@ class MonitoringProjectController extends Controller
             $evaluasi = 1;
         }
 
+        // dd($detailProject[0]->complexity_id);
+        // $i = 0;
+        // if ($data[0]->revision != null) {
+        //     $i = $i + 1;
+        // } else {
+        //     $i = 1;
+        // }
+
+        // if ($i > 4) {
+        //     $rev = 5;
+        // } else if ($i <= 4) {
+        //     $rev = $i + 1;
+        // }
+        // $rev = DB::table('monitoring_projects')
+        //     ->select('revision')
+        //     ->where('detail_project_id', '=', $id)
+        //     ->get();
+        // dd($rev);
+
+        // $complexitas = $detailProject[0]->complexity_id;
+        // $waktu       = $evaluasi;
+        // $revision    = $rev;
+        // //pembagi
+        // $pembagiComp = $rev;
+
 
         if ($data[0]->progress == 100) {
             MonitoringProject::where(['id' => $id])->update([
@@ -160,6 +188,11 @@ class MonitoringProjectController extends Controller
                 'date_selesai' => $date_selesai,
                 'evaluasi' => $evaluasi
             ]);
+            //insert ke Preference
+            // Preference::create([
+            //     'detail_project_id' => $data[0]->detail_project_id,
+            //     // 'preferensi' =>  
+            // ]);
         } elseif ($data[0]->progress != 100) {
             MonitoringProject::where(['id' => $id])->update(['status' => $data_target]);
         }

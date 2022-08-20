@@ -68,9 +68,13 @@ class SetupReferenceController extends Controller
      * @param  \App\Models\Reference  $reference
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reference $reference)
+    public function edit($id)
     {
-        //
+        // dd($id);
+        return view('dashboard.admin.setup_reference.edit', [
+            'title' => 'Edit Bobot',
+            'references' => Reference::where('id', $id)->get()
+        ]);
     }
 
     /**
@@ -80,9 +84,14 @@ class SetupReferenceController extends Controller
      * @param  \App\Models\Reference  $reference
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reference $reference)
+    public function update(Request $request, $id)
     {
-        //
+        // dd($id);
+        Reference::where('id', $id)->update([
+            'bobot' => $request->bobot
+        ]);
+
+        return redirect('dashboard/admin/setup_reference')->with('success', 'Bobot has been updated.');
     }
 
     /**

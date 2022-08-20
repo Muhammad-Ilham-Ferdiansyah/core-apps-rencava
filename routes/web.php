@@ -20,6 +20,7 @@ use Symfony\Component\HttpKernel\Event\ViewEvent;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\SetupReferenceController;
 use App\Http\Controllers\MonitoringProjectController;
+use App\Http\Controllers\PreferenceController;
 use App\Models\MonitoringProject;
 use App\Models\Reference;
 use phpDocumentor\Reflection\Types\Null_;
@@ -259,6 +260,7 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
             // 'complexity' => $pembagi->complexity_id
         ]);
     });
+    Route::resource('dashboard/admin/tab7', PreferenceController::class);
 });
 
 require __DIR__ . '/auth.php';

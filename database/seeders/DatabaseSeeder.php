@@ -282,24 +282,14 @@ class DatabaseSeeder extends Seeder
             'menu_desc' => 'Setup Referensi'
         ]);
         Menu::create([
-            'menu_name' => 'Matriks Perbandingan',
+            'menu_name' => 'Perhitungan Matriks',
             'main_id' => 4,
-            'link' => 'admin/matrix_difference',
-            'clicked' => 'matrix_difference',
+            'link' => 'admin/tab1',
+            'clicked' => 'matrix_calculate',
             'orderno' => 42,
             'icon' => '',
             'published' => 1,
-            'menu_desc' => 'Matriks Perbandingan Alternatif dan Kriteria'
-        ]);
-        Menu::create([
-            'menu_name' => 'Matriks Ternormalisasi',
-            'main_id' => 4,
-            'link' => 'admin/matrix_normalize',
-            'clicked' => 'matrix_normalize',
-            'orderno' => 43,
-            'icon' => '',
-            'published' => 1,
-            'menu_desc' => 'Matriks Ternormalisasi'
+            'menu_desc' => 'Perhitungan Matriks TOPSIS'
         ]);
 
         Product::create([

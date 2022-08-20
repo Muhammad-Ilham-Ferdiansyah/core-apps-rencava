@@ -3,8 +3,9 @@
 @section('container')
     <?php use App\Models\DetailProject; ?>
     <?php use App\Models\Reference; ?>
+    <?php use App\Models\Preference; ?>
     <div class="contain-wrapper">
-        <hr class="m-4">
+        {{-- <hr class="m-4"> --}}
         <div class="m-3">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -32,7 +33,8 @@
                         href="{{ url('dashboard/admin/tab6') }}" role="tab">Langkah 7</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Langkah 8</a>
+                    <a class="nav-link {{ request()->is('dashboard/admin/tab7') ? 'active text-bg-primary' : '' }}"
+                        href="{{ url('dashboard/admin/tab7') }}" role="tab">Lihat Peringkat</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -565,15 +567,16 @@
                             </div>
                         </div>
                     </div>
-                @else
+                @elseif (request()->is('dashboard/admin/tab6'))
                     <div class="tab-pane {{ request()->is('dashboard/admin/tab6') ? 'active' : '' }}"
                         id="{{ url('dashboard/admin/tab6') }}" role="tabpanel">
-                        <div class="tab-pane {{ request()->is('dashboard/admin/tab5') ? 'active' : '' }}"
-                            id="{{ url('dashboard/admin/tab5') }}" role="tabpanel">
+                        <div class="tab-pane {{ request()->is('dashboard/admin/tab6') ? 'active' : '' }}"
+                            id="{{ url('dashboard/admin/tab6') }}" role="tabpanel">
                             <h2 class="m-3">Langkah 7 Nilai Preferensi</h2>
                             <div class="card m-3">
                                 <?php $arrRev = [];
                                 $indRev = 0; ?>
+                                <?php Preference::truncate(); ?>
                                 @foreach ($revision as $p)
                                     <?php $rev2 = DB::table('monitoring_projects')
                                         ->select('revision')
@@ -605,6 +608,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">No</th>
+                                                    <th scope="col">ID Detail</th>
                                                     <th scope="col">Detail Pekerjaan <span
                                                             class="badge badge-success">Alternatif</span></th>
                                                     <th scope="col">Nilai Preferensi
@@ -672,7 +676,6 @@
                                                     <?php $minEv = min($arrEv); ?>
                                                 @endforeach
                                                 {{-- End Nyari Nilai Max --}}
-
                                                 @foreach ($revision as $rev3)
                                                     <?php $alternative = DetailProject::where('id', $rev3->detail_project_id)->get();
                                                     $reference = Reference::all();
@@ -722,9 +725,17 @@
                                                     $sumDmin = sqrt($dMin1 + $dMin2 + $dMin3);
                                                     $pembagiPref = $sumDmin + $sumDplus;
                                                     $preferensi = $sumDmin / $pembagiPref;
+                                                    // $collect = collect($preferensi);
+                                                    // $sorted = $collect->sortDesc();
+                                                    //insert to database
+                                                    $preferensiInsert = Preference::create([
+                                                        'detail_project_id' => $alternative[0]->id,
+                                                        'preferensi' => $preferensi,
+                                                    ]);
                                                     ?>
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $alternative[0]->id }}</td>
                                                         <td>{{ $alternative[0]->jobdesc }}</td>
                                                         <td>{{ $preferensi }}</td>
                                                     </tr>
@@ -736,6 +747,50 @@
                             </div>
                         </div>
                     </div>
+                @elseif (request()->is('dashboard/admin/tab7'))
+                    <div class="tab-pane {{ request()->is('dashboard/admin/tab7') ? 'active' : '' }}"
+                        id="{{ url('dashboard/admin/tab7') }}" role="tabpanel">
+                        <h2 class="m-3">Peringkat Detail Pekerjaan</h2>
+                        {{-- {{ dd($reference) }} --}}
+                        <div class="card m-3">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="myTable" class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Peringkat</th>
+                                                <th scope="col">Detail Pekerjaan <span
+                                                        class="badge badge-success">Alternatif</span></th>
+                                                <th scope="col">Nilai Preferensi
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{-- {{ dd($preferensi) }} --}}
+                                            @foreach ($preferensi as $pref)
+                                                <tr>
+                                                    @if ($loop->first)
+                                                        <td><span class="badge badge-success">Peringkat
+                                                                {{ $loop->iteration }}</span></td>
+                                                        <td>{{ $pref->detail_projects->jobdesc }}</td>
+                                                        <td>{{ $pref->preferensi }}</td>
+                                                    @else
+                                                        <td><span class="badge badge-warning">Peringkat
+                                                                {{ $loop->iteration }}</span></td>
+                                                        <td>{{ $pref->detail_projects->jobdesc }}</td>
+                                                        <td>{{ $pref->preferensi }}</td>
+                                                    @endif
+
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <h1>not found.</h1>
                 @endif
 
             </div>
