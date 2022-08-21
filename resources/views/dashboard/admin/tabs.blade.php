@@ -730,6 +730,7 @@
                                                     //insert to database
                                                     $preferensiInsert = Preference::create([
                                                         'detail_project_id' => $alternative[0]->id,
+                                                        'user_id' => $alternative[0]->user_id,
                                                         'preferensi' => $preferensi,
                                                     ]);
                                                     ?>

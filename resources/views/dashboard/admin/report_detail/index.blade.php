@@ -12,9 +12,8 @@
                             <th scope="col">Nama Software Engineer</th>
                             <th scope="col">Tanggal Mulai</th>
                             <th scope="col">Tanggal Selesai</th>
+                            <th scope="col">Progress</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Nilai Preferensi</th>
-                            {{-- <th scope="col">Peringkat</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -29,10 +28,17 @@
                                     {{ $report->name }}
                                 </td>
                                 <td>
-                                    {{ date('d M Y', strtotime($report->startdate)) }}
+                                    {{ date('d/m/Y', strtotime($report->startdate)) }}
                                 </td>
+                                @if ($report->date_selesai == null)
+                                    <td>-</td>
+                                @else
+                                    <td>
+                                        {{ date('d/m/Y', strtotime($report->date_selesai)) }}
+                                    </td>
+                                @endif
                                 <td>
-                                    {{ date('d M Y', strtotime($report->date_selesai)) }}
+                                    {{ $report->progress . '%' }}
                                 </td>
                                 @if ($report->status == 100)
                                     <td>
@@ -43,9 +49,6 @@
                                         <div class="badge badge-opacity-warning">On Going</div>
                                     </td>
                                 @endif
-                                <td>
-                                    {{ $report->preferensi }}
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>

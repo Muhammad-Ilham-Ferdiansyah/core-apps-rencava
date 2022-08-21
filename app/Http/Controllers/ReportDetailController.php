@@ -15,7 +15,6 @@ class ReportDetailController extends Controller
                 ->join('monitoring_projects', 'detail_projects.id', '=', 'monitoring_projects.detail_project_id')
                 ->join('users', 'detail_projects.user_id', '=', 'users.id')
                 ->join('preferences', 'detail_projects.id', '=', 'preferences.detail_project_id')
-                ->where('date_selesai', '!=', null)
                 ->get()
         ]);
     }

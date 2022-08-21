@@ -23,7 +23,10 @@ use App\Http\Controllers\MonitoringProjectController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\ReportDetailController;
 use App\Models\MonitoringProject;
+use App\Models\Preference;
+use App\Models\Product;
 use App\Models\Reference;
+use App\Models\User;
 use App\Models\ReportDetail;
 use phpDocumentor\Reflection\Types\Null_;
 
@@ -48,7 +51,19 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
         return view('dashboard.index', [
             'title' => 'Dashboard',
             'roles' => ModelsRole::all()->count(),
-            'app_menus' => Menu::all()
+            'app_menus' => Menu::all(),
+            'project_manager' => User::role('Project Manager')->count(),
+            'software_engineer' => User::role('Software Engineer')->count(),
+            'products' => Product::all()->count(),
+            'projects' => Project::all()->count(),
+            'detail_projects' => DetailProject::all()->count(),
+            'monitoring_projects' => DB::table('detail_projects')
+                ->join('monitoring_projects', 'detail_projects.id', '=', 'monitoring_projects.detail_project_id')
+                ->join('users', 'detail_projects.user_id', '=', 'users.id')
+                ->orderByDesc('date_progress')->get(),
+            'top_pekerjaan' => DB::table('preferences')
+                ->join('detail_projects', 'preferences.detail_project_id', '=', 'detail_projects.id')
+                ->orderByDesc('preferensi')->get()
         ]);
     });
 

@@ -112,18 +112,8 @@
     <script>
         $(document).ready(function() {
             $('#myReport').DataTable({
-                scrollY: '250px',
+                scrollY: '500px',
                 dom: 'Bfrtip',
-                button: [{
-                        extend: 'pdf',
-                        oriented: 'potrait',
-                        pageSize: 'A4',
-                        title: 'Laporan Detail Pekerjaan',
-                        download: 'open',
-                        className: 'btn-primary'
-                    },
-                    'csv', 'excel', 'print'
-                ],
             });
         });
     </script>

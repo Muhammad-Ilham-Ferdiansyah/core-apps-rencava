@@ -290,8 +290,8 @@
           options: statusOptions
       });
     }
-    if ($('#totalVisitors').length) {
-      var bar = new ProgressBar.Circle(totalVisitors, {
+    if ($('#totalPM').length) {
+      var bar = new ProgressBar.Circle(totalPM, {
         color: '#fff',
         // This has to be the same size as the maximum width to
         // prevent clipping
@@ -326,7 +326,197 @@
       });
   
       bar.text.style.fontSize = '0rem';
-      bar.animate(.64); // Number from 0.0 to 1.0
+      bar.animate(.20); // Number from 0.0 to 1.0
+    }
+    if ($('#totalSE').length) {
+      var bar = new ProgressBar.Circle(totalSE, {
+        color: '#fff',
+        // This has to be the same size as the maximum width to
+        // prevent clipping
+        strokeWidth: 15,
+        trailWidth: 15,
+        easing: 'easeInOut',
+        duration: 1400,
+        text: {
+          autoStyleContainer: false
+        },
+        from: {
+          color: '#34B1AA',
+          width: 15
+        },
+        to: {
+          color: '#677ae4',
+          width: 15
+        },
+        // Set default step function for all animate calls
+        step: function(state, circle) {
+          circle.path.setAttribute('stroke', state.color);
+          circle.path.setAttribute('stroke-width', state.width);
+  
+          var value = Math.round(circle.value() * 100);
+          if (value === 0) {
+            circle.setText('');
+          } else {
+            circle.setText(value);
+          }
+  
+        }
+      });
+  
+      bar.text.style.fontSize = '0rem';
+      bar.animate(.34); // Number from 0.0 to 1.0
+    }
+    if ($('#totalRole').length) {
+      var bar = new ProgressBar.Circle(totalRole, {
+        color: '#fff',
+        // This has to be the same size as the maximum width to
+        // prevent clipping
+        strokeWidth: 15,
+        trailWidth: 15,
+        easing: 'easeInOut',
+        duration: 1400,
+        text: {
+          autoStyleContainer: false
+        },
+        from: {
+          color: '#34A1BB',
+          width: 15
+        },
+        to: {
+          color: '#677ae4',
+          width: 15
+        },
+        // Set default step function for all animate calls
+        step: function(state, circle) {
+          circle.path.setAttribute('stroke', state.color);
+          circle.path.setAttribute('stroke-width', state.width);
+  
+          var value = Math.round(circle.value() * 100);
+          if (value === 0) {
+            circle.setText('');
+          } else {
+            circle.setText(value);
+          }
+  
+        }
+      });
+  
+      bar.text.style.fontSize = '0rem';
+      bar.animate(.40); // Number from 0.0 to 1.0
+    }
+    if ($('#totalProduct').length) {
+      var bar = new ProgressBar.Circle(totalProduct, {
+        color: '#fff',
+        // This has to be the same size as the maximum width to
+        // prevent clipping
+        strokeWidth: 15,
+        trailWidth: 15,
+        easing: 'easeInOut',
+        duration: 1400,
+        text: {
+          autoStyleContainer: false
+        },
+        from: {
+          color: '#283618',
+          width: 15
+        },
+        to: {
+          color: '#677ae4',
+          width: 15
+        },
+        // Set default step function for all animate calls
+        step: function(state, circle) {
+          circle.path.setAttribute('stroke', state.color);
+          circle.path.setAttribute('stroke-width', state.width);
+  
+          var value = Math.round(circle.value() * 100);
+          if (value === 0) {
+            circle.setText('');
+          } else {
+            circle.setText(value);
+          }
+  
+        }
+      });
+  
+      bar.text.style.fontSize = '0rem';
+      bar.animate(.60); // Number from 0.0 to 1.0
+    }
+    if ($('#totalProyek').length) {
+      var bar = new ProgressBar.Circle(totalProyek, {
+        color: '#fff',
+        // This has to be the same size as the maximum width to
+        // prevent clipping
+        strokeWidth: 15,
+        trailWidth: 15,
+        easing: 'easeInOut',
+        duration: 1400,
+        text: {
+          autoStyleContainer: false
+        },
+        from: {
+          color: '#e76f51',
+          width: 15
+        },
+        to: {
+          color: '#677ae4',
+          width: 15
+        },
+        // Set default step function for all animate calls
+        step: function(state, circle) {
+          circle.path.setAttribute('stroke', state.color);
+          circle.path.setAttribute('stroke-width', state.width);
+  
+          var value = Math.round(circle.value() * 100);
+          if (value === 0) {
+            circle.setText('');
+          } else {
+            circle.setText(value);
+          }
+  
+        }
+      });
+  
+      bar.text.style.fontSize = '0rem';
+      bar.animate(.28); // Number from 0.0 to 1.0
+    }
+    if ($('#totalDetail').length) {
+      var bar = new ProgressBar.Circle(totalDetail, {
+        color: '#fff',
+        // This has to be the same size as the maximum width to
+        // prevent clipping
+        strokeWidth: 15,
+        trailWidth: 15,
+        easing: 'easeInOut',
+        duration: 1400,
+        text: {
+          autoStyleContainer: false
+        },
+        from: {
+          color: '#fb5607',
+          width: 15
+        },
+        to: {
+          color: '#677ae4',
+          width: 15
+        },
+        // Set default step function for all animate calls
+        step: function(state, circle) {
+          circle.path.setAttribute('stroke', state.color);
+          circle.path.setAttribute('stroke-width', state.width);
+  
+          var value = Math.round(circle.value() * 100);
+          if (value === 0) {
+            circle.setText('');
+          } else {
+            circle.setText(value);
+          }
+  
+        }
+      });
+  
+      bar.text.style.fontSize = '0rem';
+      bar.animate(.30); // Number from 0.0 to 1.0
     }
     if ($('#visitperday').length) {
       var bar = new ProgressBar.Circle(visitperday, {
