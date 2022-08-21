@@ -1,4 +1,5 @@
 @extends('dashboard.layouts.main')
+@section('title', 'Data Produk')
 @section('container')
     <div class="contain-wrapper">
         {{-- {{ dd($roles) }} --}}
@@ -50,9 +51,8 @@
                                                         class="mdi mdi-pencil me-2"></i>Update</a>
                                                 <div class="dropdown-divider"></div>
                                                 <button class="dropdown-item text-danger delete-product"
-                                                    data-id="{{ $product->id }}"
-                                                    data-name="{{ $product->product_name }}" href="#"
-                                                    name="delete-product"><i class="mdi mdi-delete me-2"></i>
+                                                    data-id="{{ $product->id }}" data-name="{{ $product->product_name }}"
+                                                    href="#" name="delete-product"><i class="mdi mdi-delete me-2"></i>
                                                     Delete</button>
                                             </div>
                                         </div>

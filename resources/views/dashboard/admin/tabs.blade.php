@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.main')
-
+@section('title', 'Perhitungan Matriks')
 @section('container')
     <?php use App\Models\DetailProject; ?>
     <?php use App\Models\Reference; ?>

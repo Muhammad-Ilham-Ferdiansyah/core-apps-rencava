@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.main')
-
+@section('title', 'Tambah Data Klien')
 @section('container')
     <div class="contain-wrapper">
         <div class="card m-3">
@@ -13,8 +13,7 @@
                     <div class="form-group">
                         <label for="client_name">Client Name</label>
                         <input type="text" class="form-control @error('client_name') is-invalid @enderror"
-                            id="client_name" name="client_name" placeholder="Client Name"
-                            value="{{ old('client_name') }}">
+                            id="client_name" name="client_name" placeholder="Client Name" value="{{ old('client_name') }}">
                         @error('client_name')
                             <div class="invalid-feedback">
                                 {{ $message }}

@@ -21,8 +21,10 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\SetupReferenceController;
 use App\Http\Controllers\MonitoringProjectController;
 use App\Http\Controllers\PreferenceController;
+use App\Http\Controllers\ReportDetailController;
 use App\Models\MonitoringProject;
 use App\Models\Reference;
+use App\Models\ReportDetail;
 use phpDocumentor\Reflection\Types\Null_;
 
 /*
@@ -261,6 +263,7 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
         ]);
     });
     Route::resource('dashboard/admin/tab7', PreferenceController::class);
+    Route::get('dashboard/admin/report_detail', [ReportDetailController::class, 'index']);
 });
 
 require __DIR__ . '/auth.php';

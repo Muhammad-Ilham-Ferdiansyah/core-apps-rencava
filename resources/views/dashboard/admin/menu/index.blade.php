@@ -1,4 +1,5 @@
 @extends('dashboard.layouts.main')
+@section('title', 'Data Menu')
 @section('container')
     <div class="contain-wrapper">
         <div class="row m-3">

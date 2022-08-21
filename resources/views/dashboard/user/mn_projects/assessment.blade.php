@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.main')
-
+@section('title', 'Review Pekerjaan')
 @section('container')
     <div class="contain-wrapper">
         {{-- {{ dd($detail_projects) }} --}}

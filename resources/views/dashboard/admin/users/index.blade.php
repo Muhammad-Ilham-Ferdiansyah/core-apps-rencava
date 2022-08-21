@@ -1,4 +1,5 @@
 @extends('dashboard.layouts.main')
+@section('title', 'Data User')
 @section('container')
     <div class="contain-wrapper">
         <div class="row m-3">
@@ -28,8 +29,7 @@
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>
                                         <div class="d-flex">
-                                            <img src="{{ asset('storage/' . $user->image) }}" alt="profile"
-                                                class="me-3">
+                                            <img src="{{ asset('storage/' . $user->image) }}" alt="profile" class="me-3">
                                             <div>
                                                 <h6 class="text-dark">{{ $user->name }}</h6>
                                                 <p>

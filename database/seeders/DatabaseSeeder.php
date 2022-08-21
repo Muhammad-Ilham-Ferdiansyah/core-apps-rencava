@@ -291,6 +291,16 @@ class DatabaseSeeder extends Seeder
             'published' => 1,
             'menu_desc' => 'Perhitungan Matriks TOPSIS'
         ]);
+        Menu::create([
+            'menu_name' => 'Laporan Detail Pekerjaan',
+            'main_id' => 4,
+            'link' => 'admin/report_detail',
+            'clicked' => 'report_detail',
+            'orderno' => 43,
+            'icon' => '',
+            'published' => 1,
+            'menu_desc' => 'Laporan Detail Pekerjaan'
+        ]);
 
         Product::create([
             'product_name' => 'PlitaSoft ILIIS',

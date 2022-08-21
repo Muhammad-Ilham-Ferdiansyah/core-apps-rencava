@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.main')
-
+@section('title', 'Detail Pekerjaan')
 @section('container')
     <div class="contain-wrapper">
         <div class="row m-2">

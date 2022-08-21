@@ -1,4 +1,5 @@
 @extends('dashboard.layouts.main')
+@section('title', 'Data Proyek')
 @section('container')
     <div class="contain-wrapper">
         {{-- {{ dd($roles) }} --}}

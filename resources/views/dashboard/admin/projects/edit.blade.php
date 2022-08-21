@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.main')
-
+@section('title', 'Edit Proyek')
 @section('container')
     <div class="contain-wrapper">
         <div class="card m-3">
             <div class="card-body">
-                <h4 class="card-title">Edit Project</h4>
+                <h4 class="card-title">Edit Proyek</h4>
                 <p class="card-description">
                     Edit project here.
                 </p>

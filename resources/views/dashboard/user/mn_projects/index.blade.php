@@ -1,4 +1,5 @@
 @extends('dashboard.layouts.main')
+@section('title', 'Data Proyek')
 @section('container')
     <div class="contain-wrapper">
         @if (auth()->user()->roles->first()->id == 3)

@@ -1,16 +1,16 @@
 @extends('dashboard.layouts.main')
-
+@section('title', 'Tambah Detail Proyek')
 @section('container')
     <div class="contain-wrapper">
         <div class="card m-3">
             <div class="card-body">
-                <h4 class="card-title">Add Detail Project</h4>
+                <h4 class="card-title">Tambah Detail Proyek</h4>
                 <form class="forms-sample" method="POST" action="/dashboard/admin/detail_projects">
                     @csrf
                     <div class="form-group">
-                        <label for="project_id" class="col-sm-3">Nama Project</label>
+                        <label for="project_id" class="col-sm-3">Nama Proyek</label>
                         <select name="project_id" class="form-control text-dark @error('project_id') is-invalid @enderror">
-                            <option value="" disabled selected>Pilih Project</option>
+                            <option value="" disabled selected>Pilih Proyek</option>
                             @foreach ($projects as $project)
                                 <option value="{{ $project->id }}"
                                     {{ Request::old('project_id') == $project->id ? 'selected' : '' }}>

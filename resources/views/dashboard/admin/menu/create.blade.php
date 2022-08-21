@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.main')
-
+@section('title', 'Tambah Menu')
 @section('container')
     <div class="contain-wrapper">
         <div class="card m-3">
@@ -66,8 +66,7 @@
                                 <label for="orderno" class="col-sm-3 mt-1">Nomor Urut</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control @error('orderno') is-invalid @enderror"
-                                        id="orderno" name="orderno" placeholder="Nomor Urut"
-                                        value="{{ old('orderno') }}">
+                                        id="orderno" name="orderno" placeholder="Nomor Urut" value="{{ old('orderno') }}">
                                     @error('orderno')
                                         <div class="invalid-feedback">
                                             {{ $message }}
