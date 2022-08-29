@@ -9,9 +9,9 @@
                         <div class="row">
                             <div class="col-sm-2">
                                 <div class="d-flex justify-content-between align-items-center mb-2 mb-sm-0">
-                                    <div class="circle-progress-width">
+                                    {{-- <div class="circle-progress-width">
                                         <div id="totalPM" class="progressbar-js-circle ps-2"></div>
-                                    </div>
+                                    </div> --}}
                                     <div>
                                         <p class="text-small mb-2 m-3">Total Project Manager</p>
                                         <h4 class="mb-0 fw-bold m-3">{{ $project_manager }}</h4>
@@ -20,9 +20,9 @@
                             </div>
                             <div class="col-sm-2">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="circle-progress-width">
+                                    {{-- <div class="circle-progress-width">
                                         <div id="totalSE" class="progressbar-js-circle ps-2"></div>
-                                    </div>
+                                    </div> --}}
                                     <div>
                                         <p class="text-small mb-2 m-3">Total Software Engineer</p>
                                         <h4 class="mb-0 fw-bold m-3">{{ $software_engineer }}</h4>
@@ -31,9 +31,9 @@
                             </div>
                             <div class="col-sm-2">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="circle-progress-width">
+                                    {{-- <div class="circle-progress-width">
                                         <div id="totalRole" class="progressbar-js-circle p-2"></div>
-                                    </div>
+                                    </div> --}}
                                     <div>
                                         <p class="text-small mb-2 m-3">Total Role</p>
                                         <h4 class="mb-0 fw-bold m-3">{{ $roles }}</h4>
@@ -42,9 +42,9 @@
                             </div>
                             <div class="col-sm-2">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="circle-progress-width">
+                                    {{-- <div class="circle-progress-width">
                                         <div id="totalProduct" class="progressbar-js-circle ps-2"></div>
-                                    </div>
+                                    </div> --}}
                                     <div>
                                         <p class="text-small mb-2 m-3">Total Produk</p>
                                         <h4 class="mb-0 fw-bold m-3">{{ $products }}</h4>
@@ -53,9 +53,9 @@
                             </div>
                             <div class="col-sm-2">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="circle-progress-width">
+                                    {{-- <div class="circle-progress-width">
                                         <div id="totalProyek" class="progressbar-js-circle ps-2"></div>
-                                    </div>
+                                    </div> --}}
                                     <div>
                                         <p class="text-small mb-2 m-3">Total Proyek</p>
                                         <h4 class="mb-0 fw-bold m-3">{{ $projects }}</h4>
@@ -64,9 +64,9 @@
                             </div>
                             <div class="col-sm-2">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="circle-progress-width">
+                                    {{-- <div class="circle-progress-width">
                                         <div id="totalDetail" class="progressbar-js-circle ps-2"></div>
-                                    </div>
+                                    </div> --}}
                                     <div>
                                         <p class="text-small mb-2 m-3">Total Detail Proyek</p>
                                         <h4 class="mb-0 fw-bold m-3">{{ $detail_projects }}</h4>

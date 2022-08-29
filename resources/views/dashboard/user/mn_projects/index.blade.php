@@ -99,12 +99,12 @@
                 @endforeach
             </div>
         @else
-            <div class="row m-3">
+            {{-- <div class="row m-3">
                 <div class="col-lg-6">
                     <a href="/dashboard/user/mn_projects/create" class="btn btn-primary text-white me-0"><i
                             class="mdi mdi-plus me-2"></i>Add Progress</a>
                 </div>
-            </div>
+            </div> --}}
             <div class="row flex-grow m-2">
                 <div class="col-12 grid-margin stretch-card">
                     <div class="card card-rounded">
@@ -155,6 +155,11 @@
                                                             <i class="ti-pencil-alt btn-icon-prepend"></i>
                                                             Belum Ada Progress
                                                         </button>
+                                                        <button type="button" class="btn btn-success btn-icon-text p-2"
+                                                            onclick="location.href='/dashboard/user/mn_projects/createbyid/{{ $dt_project->id }}'">
+                                                            <i class="ti-eye btn-icon-prepend"></i>
+                                                            Tambah Progress
+                                                        </button>
                                                     </td>
                                                 @else
                                                     <td>
@@ -163,6 +168,13 @@
                                                             <i class="ti-eye btn-icon-prepend"></i>
                                                             Detail
                                                         </button>
+                                                        @if ($monitoring_project->status == 100)
+                                                            <button type="button" class="btn btn-success btn-icon-text p-2"
+                                                                onclick="location.href='/dashboard/user/mn_projects/createbyid/{{ $dt_project->id }}'">
+                                                                <i class="ti-eye btn-icon-prepend"></i>
+                                                                Tambah Progress
+                                                            </button>
+                                                        @endif
                                                     </td>
                                                 @endif
                                             </tr>

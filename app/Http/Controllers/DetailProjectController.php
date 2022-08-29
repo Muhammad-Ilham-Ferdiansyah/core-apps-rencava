@@ -20,9 +20,21 @@ class DetailProjectController extends Controller
      */
     public function index()
     {
+        // $projectId = Project::get()->id;
+        // $detPro = DetailProject::get();
+        // $data = collect($projectId)->keyBy('id');
+        // // $data = $projectId->concat($detPro);
+        // foreach ($detPro as $i => $customer) {
+        //     $detPro[$i]['project_id'] = '';
+        //     if ($data->has($customer['id']))
+        //         $detPro[$i]['class'] = $data[$customer['id']]['class'];
+        // }
+        // dd($customer);
         return view('dashboard.admin.detail_projects.index', [
             'title' => 'Detail Proyek',
-            'detail_project' => DetailProject::get()->unique('project_id')
+            'project' => Project::where('user_id', auth()->user()->id)->get(),
+            'detail_project' => DetailProject::where('project_id', Project::where('id')),
+            // 'id' => $projectId
         ]);
     }
 
@@ -37,7 +49,17 @@ class DetailProjectController extends Controller
             'title' => 'Add Detail Proyek',
             'projects' => Project::where('user_id', auth()->user()->id)->get(),
             'complexities' => Complexity::all(),
-            'users' => User::role('Software Engineer')->get()
+            'users' => User::role('Software Engineer')->get(),
+        ]);
+    }
+    public function createbyid($id)
+    {
+        return view('dashboard.admin.detail_projects.createbyid', [
+            'title' => 'Add Detail Proyek',
+            'projects' => Project::where('user_id', auth()->user()->id)->get(),
+            'complexities' => Complexity::all(),
+            'users' => User::role('Software Engineer')->get(),
+            'id' => $id
         ]);
     }
 

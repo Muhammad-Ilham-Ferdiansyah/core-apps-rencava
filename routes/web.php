@@ -94,6 +94,7 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     Route::get('dashboard/admin/projects/delete/{projects:id}', [ProjectController::class, 'delete']);
     //Detail Project
     Route::resource('dashboard/admin/detail_projects', DetailProjectController::class);
+    Route::get('dashboard/admin/detail_projects/createbyid/{projects:id}', [DetailProjectController::class, 'createbyid']);
     Route::get('dashboard/admin/detail_projects/show_detail/{detail_projects:user_id}', [DetailProjectController::class, 'show_detail']);
     Route::get('dashboard/admin/detail_projects/delete/{detail_projects:id}', [DetailProjectController::class, 'delete']);
     //Detail Team
@@ -102,6 +103,7 @@ Route::middleware(['auth', 'verified', 'isUser'])->group(function () {
     Route::resource('dashboard/user/mn_projects', MonitoringProjectController::class);
     Route::get('dashboard/user/mn_projects/assessment/{detail_projects:project_id}', [MonitoringProjectController::class, 'assessment']);
     Route::get('dashboard/user/mn_projects/show_details/{detail_projects:id}', [MonitoringProjectController::class, 'show_detail']);
+    Route::get('dashboard/user/mn_projects/createbyid/{detail_projects:id}', [MonitoringProjectController::class, 'createbyid']);
     Route::put('dashboard/user/mn_projects/add_revision/{monitoring_projects:id}', [MonitoringProjectController::class, 'add_revision']);
     Route::put('dashboard/user/mn_projects/approved/{monitoring_projects:id}', [MonitoringProjectController::class, 'approved']);
     // Route::get('dashboard/user/mn_projects/add_revision/{monitoring_projects:id}', [MonitoringProjectController::class, 'add_revision']);

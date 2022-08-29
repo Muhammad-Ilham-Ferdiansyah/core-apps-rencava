@@ -38,6 +38,14 @@ class MonitoringProjectController extends Controller
             'detail_projects' => DetailProject::where('user_id', auth()->user()->id)->get()
         ]);
     }
+    public function createbyid($id)
+    {
+        return view('dashboard.user.mn_projects.createbyid', [
+            'title' => 'Add Progress',
+            'detail_projects' => DetailProject::where('user_id', auth()->user()->id)->get(),
+            'id' => $id
+        ]);
+    }
 
     /**
      * Store a newly created resource in storage.
